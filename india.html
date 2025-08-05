@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AvanceePro Business Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #0d3b66;
+            /* Deep professional blue */
+            --secondary: #f4b942;
+            /* Gold accent */
+            --accent: #1a659e;
+            /* Complementary blue */
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --cobalt: #0047ab;
+            --lightgray: #f1f1f1;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .navbar {
+            background-color: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            position: relative;
+            margin: 0 10px;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: white !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(26, 101, 158, 0.9) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a62e;
+            border-color: #e0a62e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-light {
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .tools-carousel .item {
+            padding: 15px;
+        }
+
+        .tools-carousel .item img {
+            max-height: 100px;
+            margin: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .tools-carousel-section {
+            background-color: #f8f9fa;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link:hover {
+            color: var(--primary);
+        }
+
+        .card-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .bg-lightgray {
+            background-color: var(--lightgray);
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-control {
+            border-radius: 4px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.25rem rgba(26, 101, 158, 0.25);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .team-member {
+                flex: 0 0 calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-member {
+                flex: 0 0 100%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+
+        
+
+        .service-detail {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .service-detail h2 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        /* Nested submenu positioning */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover .dropdown-menu {
+            display: block;
+        }
+
+        .service-detail ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .service-detail ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-detail ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
+                    width="220px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="services.html">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="india.html">India</a></li>
+                                <li><a class="dropdown-item" href="australia.html">Australia</a></li>
+                                <li><a class="dropdown-item" href="usa.html">USA</a></li>
+                            </ul>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="p-4">
+     <h1>India Services</h1>
+
+    <div class="service-section">
+        <h2>Accounting Services</h2>
+        <p>AvanceePro provides end to end Accounting services for all kinds of business. We divide various accounting tasks in your business into various small processes and execute the tasks in a standard manner to help you reap maximum benefits by outsourcing your accounts.</p>
+        <ul>
+            <li>Accounting/ledger Setup in various accounting software's including online cloud based accounting</li>
+            <li>Book keeping</li>
+            <li>Intercompany Reconciliation</li>
+            <li>Cash flow /Funds Flow/ Forecasting</li>
+            <li>Monthly, Quarterly, Year-end review</li>
+            <li>Periodical Income (Profit & Loss) Statement</li>
+            <li>GST return filings</li>
+            <li>PT Return Filing</li>
+            <li>ESI & PF returns filings</li>
+            <li>TDS Returns and other Compliances</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Registration Services</h2>
+        <ul>
+            <li>Private Limited or Public Limited Company Registration.</li>
+            <li>Limited Liability Partnership (LLP)</li>
+            <li>Partnership Firm</li>
+            <li>Shop and Establishment</li>
+            <li>SSI</li>
+            <li>Provident Fund</li>
+            <li>Employee State Insurance</li>
+            <li>Professional Tax</li>
+            <li>PAN</li>
+            <li>TAN</li>
+            <li>GST</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Income Tax Services</h2>
+        <p>We specialize in providing Income tax services to individuals, small scale and medium scale and large scale businesses which are highly effective and efficient.</p>
+        <ul>
+            <li>Preparation of return</li>
+            <li>Getting Assessment done</li>
+            <li>Consultancy in tax matters & tax planning</li>
+            <li>Foreign taxation consultancy</li>
+            <li>Transfer Pricing matters – TP Study, TP Report, TP Assessment & Objections with DRP</li>
+            <li>TDS & Withholding tax compliance</li>
+            <li>Income Tax Appeals before CIT (Appeals)</li>
+            <li>Income Tax Appeals before ITAT</li>
+            <li>DTAA compliance</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Business Taxation</h2>
+        <ul>
+            <li>Corporate Tax</li>
+            <li>Structured Reviews to maximize tax planning opportunities</li>
+            <li>Partnerships</li>
+            <li>Capital gain tax planning for Business Owners</li>
+            <li>Tax planning for employees</li>
+            <li>Tax Investigations- Advice, Assistance and Support</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Personal Taxation</h2>
+        <ul>
+            <li>Advice and Assistance with self-assessment</li>
+            <li>Personal and family tax planning</li>
+            <li>Capital gains tax planning and Reviews</li>
+            <li>Retirement planning</li>
+            <li>Tax related advice on Investments</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>International Taxation</h2>
+        <ul>
+            <li>Individuals leaving India</li>
+            <li>Individuals Coming to India</li>
+            <li>Business Setting Up Abroad</li>
+            <li>Business Setting Up in India.</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Statutory compliance Review</h2>
+        <p>Statutory compliance has become critical and important in the recent times from an organizational perspective as well as from the director's responsibility viewpoint. Also the cost of default/non-compliance can be heavy in terms of financial and other obligations.</p>
+        <p>In view of the above, it is necessary that statutory health checkups at periodical intervals are carried out to avoid any surprises/non-compliance.</p>
+        <p>We undertake review of books of accounts and report the state of statutory compliance at periodical intervals to the management/BOD. We undertake statutory compliance review on a quarterly basis.</p>
+        <p>This includes review/verification of:</p>
+        <ul>
+            <li>TDS related compliances.</li>
+            <li>GST related compliances.</li>
+            <li>Routine Income Tax compliances.</li>
+            <li>Compliances in respect of Labour related laws like Provident Fund, ESI, and Professional Tax etc.</li>
+            <li>Shops and Establishment Act compliance.</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Business Process Outsourcing Services</h2>
+        <p>We provide business process outsourcing services to many reputed MNCs. We deal in providing book keeping for USA, Australia and UK clients. We carefully manage the work provided to us. Our experts are thorough with the pay roll processing and have good experience in preparing bank reconciliation statement. Our services are provided at market leading prices.</p>
+        <ul>
+            <li>Book-keeping for USA, Australia and UK clients.</li>
+            <li>Tax return for USA, Australia & UK clients.</li>
+            <li>Pay roll processing</li>
+            <li>Bank reconciliation statement</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Financial Services</h2>
+        <p>We have years of experience in providing business financial services to clients. Our experts carefully analyze the current situation and accordingly prepare the project reports. Loan arrangement needs are also well taken care by us including cash credit limit, term loan and project loan. We also offer due diligence for finance and valuation of shares.</p>
+        <ul>
+            <li>Preparation of project report</li>
+            <li>Loan arrangement – Cash credit limit, Term loan & Project loan</li>
+            <li>Due diligence for finance</li>
+            <li>Valuation of shares</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Company Law Matters Consultancy</h2>
+        <p>Every company according to the India law need to register with the registrar of companies and it is also necessary with documents for various statutory requirements. We have experts having great experience in offering our clients with the company law matters consultancy.</p>
+        <ul>
+            <li>Formation of company in India, viz, Private Limited, Public Limited, wholly owned subsidiary company, LLP etc.</li>
+            <li>All matters related with Registrar of Companies & Company Law Board</li>
+            <li>Maintenance & compliance of Statutory Records</li>
+            <li>Merger & acquisitions</li>
+            <li>Corporate restructuring</li>
+            <li>Preparation of Board minutes and member's minutes</li>
+            <li>Filing of annual returns and other returns</li>
+            <li>Consultancy in above matters</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Import-Export, Technology Park & Special Economic Zone</h2>
+        <p>We will provide our services to clients in the field of Import-Export, Technology Park & Special Economic Zone services.</p>
+        <ul>
+            <li>Import Export Code Number</li>
+            <li>STPI (Software Technology Park of India) matters</li>
+            <li>SEZ (Special Economic Zone) matters</li>
+            <li>Non STPI Matters</li>
+            <li>Membership with Export promotion council</li>
+            <li>Import-export Consultancy & documentation</li>
+            <li>Import License related matters</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Societies and Trust Consultancy</h2>
+        <p>We are engaged in providing societies and trust consultancy to clients. Our wide range of services includes formation, registration U/s 12A and 80G of income tax act. We offer highly efficient services which are provided at market leading rates.</p>
+        <ul>
+            <li>Formation</li>
+            <li>Registration U/s 12A and 80G of Income tax Act.</li>
+            <li>Registration under Foreign Contribution Regulation Act (FCRA),viz, Prior approval & Permanent registration.</li>
+            <li>Registration u/s 35AC of Income-tax Act.</li>
+            <li>Consultancy in above matters.</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>GST Consultancy</h2>
+        <p>We will offer our services to clients' services for GST consultancy which has proved highly beneficial for them. We also provide GST matters consultancy which has become extremely vital in present day scenario.</p>
+        <ul>
+            <li>Registration</li>
+            <li>Filing of periodicals returns</li>
+            <li>Maintenance of Records</li>
+            <li>Assessment</li>
+            <li>Appeals</li>
+        </ul>
+    </div>
+
+    <div class="service-section">
+        <h2>Basic Registrations and Consultancy</h2>
+        <p>We will offer our services to client's services for registration of Professional tax, Provident fund, Employee State Insurance, Shop and Establishment and also offer the services for filing of monthly, half yearly and yearly returns to clients.</p>
+    </div>
+
+    <div class="service-section">
+        <h2>Migration of books of accounts into ERP System</h2>
+        <p>Enterprise Resource Planning (ERP) systems are software packages that use relational database technology to integrate various units of an organization's information system. ERP systems provide several separate, but integrated modules, which can be installed as a package for any organization</p>
+        <p>We have experience in offering services in the field of migration of books of accounts into ERP system. We will identify, review, and provide recommendations for key controls associated with the project and can provide assurance that the ERP system will support business processes and enforce business controls on an ongoing basis.</p>
+        <p>The major advantages of implementation of ERP system are scalability, improved reporting, data quality with low cost of maintenance, improved data access and Regulatory compliance etc.</p>
+        <p>There are many more benefits of an ERP system, but these are the chief ones. Needless to say, a good ERP system is indispensable in the modern economic scenario.</p>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>AvanceePro</h5>
+                    <p class="mt-3">Providing end-to-end Accounting, Taxation, and Business Services for companies of
+                        all sizes.</p>
+                    <div class="mt-4">
+                        <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="accounting.html">Accounting & Bookkeeping</a></li>
+                        <li><a href="tax.html">Tax Return & Compliance</a></li>
+                        <li><a href="tds.html">TDS/Withholding Tax</a></li>
+                        <li><a href="appeals.html">Appeals & Assessments</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-5">
+                    <h5>Contact</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>No: 384, 2nd Floor, 15th Cross, 5th Main Rd, 6th Sector, HSR Layout, Bangalore -
+                                560102, India</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <span>080-79665489, +91 9164456153</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <span>info@avanceepro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AvanceePro Business Services Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (Bundle includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+
+</html>

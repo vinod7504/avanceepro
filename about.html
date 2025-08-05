@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AvanceePro Business Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d3b66;
+            --secondary: #f4b942;
+            --accent: #1a659e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --lightgray: #f1f1f1;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9fbfd;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .navbar {
+            background-color: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 500;
+            position: relative;
+            margin: 0 10px;
+            padding: 8px 0 !important;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .page-header {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(26, 101, 158, 0.9) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .breadcrumb {
+            justify-content: center;
+            background: transparent;
+            margin-bottom: 0;
+            padding: 0;
+        }
+        
+        .breadcrumb-item a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb-item a:hover {
+            color: white;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--secondary);
+        }
+        
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 0 auto 25px;
+        }
+        
+        .team-member h4 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .team-member .position {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .values-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .value-card {
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--light);
+            height: 100%;
+            transition: var(--transition);
+        }
+        
+        .value-card:hover {
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--lightgray);
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            top: 20px;
+        }
+        
+        .timeline-left .timeline-content {
+            left: 0;
+        }
+        
+        .timeline-right .timeline-content {
+            left: 55%;
+        }
+        
+        .timeline-left .timeline-content::after {
+            right: -15px;
+            border-width: 15px 0 15px 15px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .timeline-right .timeline-content::after {
+            left: -15px;
+            border-width: 15px 15px 15px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 15px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 1;
+            left: 50%;
+            margin-left: -40px;
+        }
+        
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .footer ul {
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .footer ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer ul li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px;
+            }
+            
+            .timeline-content::after {
+                left: -15px !important;
+                border-width: 15px 15px 15px 0 !important;
+                border-color: transparent white transparent transparent !important;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 0 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .team-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
+                    width="220px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="services.html">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="india.html">India</a></li>
+                                <li><a class="dropdown-item" href="australia.html">Australia</a></li>
+                                <li><a class="dropdown-item" href="usa.html">USA</a></li>
+                            </ul>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Company Section -->
+    <section class="section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="mb-4">Our Journey</h2>
+                    <p class="lead">AvanceePro Business Services Pvt Ltd is a leading Business Process Outsourcing Services company based in Bangalore.</p>
+                    <p>AvanceePro was started by professionals having rich experience in Accounting and Taxation services for small, medium and large industries and corporate. We are committed to providing comprehensive financial solutions that help businesses thrive in today's competitive landscape.</p>
+                    <p>With a team of highly qualified professionals and a client-centric approach, we have established ourselves as a trusted partner for businesses seeking reliable financial services and compliance solutions.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="AvanceePro Team" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Our Professional Team</h5>
+                            <p class="card-text">Committed to excellence in financial services since 2010</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+                <p>Guiding principles that define who we are and how we operate</p>
+            </div>
+            
+            <div class="values-container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="value-card">
+                            <div class="value-icon text-center">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="text-center mb-3">Vision</h3>
+                            <p class="text-center">To be the most trusted and respected professional services company recognized by our clients for delivering excellence.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="value-card">
+                            <div class="value-icon text-center">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-center mb-3">Mission</h3>
+                            <p class="text-center">To serve our clients by providing the highest quality professional services that address their business issues. We attract, recruit, and retain the most knowledgeable and passionate professionals, and we provide a collaborative culture that enables them to thrive professionally and personally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Leadership Team</h2>
+                <p>Meet the experts guiding AvanceePro to excellence in financial services</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="team-member">
+                        <img src="ertgt" alt="Prabhakara Rao G" class="team-img">
+                        <h4>Prabhakara Rao G</h4>
+                        <span class="position">Director</span>
+                        <p>Founder with over fifteen years' experience in Core Accounting, Auditing and Taxation Services. He ensures AvanceePro delivers reliability, quality, and value.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="team-member">
+                        <img src="ertrt" alt="Vijaya Lakshmi H V" class="team-img">
+                        <h4>Vijaya Lakshmi H V</h4>
+                        <span class="position">Director</span>
+                        <p>Co-founder with a Commerce degree. She ensures AvanceePro services include reliability, quality, and value for clients.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="team-member">
+                        <img src="fgbhg" alt="Datha Prasad" class="team-img">
+                        <h4>Datha Prasad</h4>
+                        <span class="position">Chartered Accountant</span>
+                        <p>Fellow Member of ICAI with ten years of professional experience in auditing, accounting, taxation, and representing clients before statutory authorities.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="team-member">
+                        <img src="rrt" alt="Sunil R K" class="team-img">
+                        <h4>Sunil R K</h4>
+                        <span class="position">Chartered Accountant</span>
+                        <p>Fellow member of ICAI with over 10 years of experience in Indian, Australian and US Accounting, Auditing & Taxation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>AvanceePro</h5>
+                    <p class="mt-3">Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
+                    <div class="mt-4">
+                        <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" class="text-white me-3"><i class="fab fa-linkedin-in fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#">Accounting & Bookkeeping</a></li>
+                        <li><a href="#">Tax Return & Compliance</a></li>
+                        <li><a href="#">TDS/Withholding Tax</a></li>
+                        <li><a href="#">Appeals & Assessments</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-5">
+                    <h5>Contact</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>No: 384, 2nd Floor, 15th Cross, 5th Main Rd, 6th Sector, HSR Layout, Bangalore - 560102, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>080-79665489, +91 9164456153</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@avanceepro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AvanceePro Business Services Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (Bundle includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
