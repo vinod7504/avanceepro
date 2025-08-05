@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AvanceePro Business Services</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary: #0d3b66; /* Deep professional blue */
+      --secondary: #f4b942; /* Gold accent */
+      --accent: #1a659e; /* Complementary blue */
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #28a745;
+      --cobalt: #0047ab;
+      --lightgray: #f1f1f1;
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .navbar {
+      background-color: var(--primary) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: white !important;
+    }
+    
+    .nav-link {
+      color: rgba(255,255,255,0.85) !important;
+      font-weight: 500;
+      position: relative;
+      margin: 0 10px;
+      padding: 8px 0 !important;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: white !important;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .hero {
+      padding: 120px 0;
+      background: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(26, 101, 158, 0.9) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .btn-primary {
+      background-color: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    
+    .btn-primary:hover {
+      background-color: #e0a62e;
+      border-color: #e0a62e;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .btn-outline-light {
+      padding: 12px 30px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn-outline-light:hover {
+      background-color: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #666;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+    
+    .card-body {
+      padding: 30px;
+    }
+    
+    .card-title {
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    .card-text {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .card-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .card-link:hover {
+      color: var(--primary);
+    }
+    
+    .card-link i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+    
+    .card-link:hover i {
+      transform: translateX(5px);
+    }
+    
+    .bg-lightgray {
+      background-color: var(--lightgray);
+    }
+    
+    .footer {
+      background-color: var(--primary);
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer h5 {
+      font-weight: 600;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+    
+    .footer ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    
+    .footer ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer ul li a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer ul li a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .footer-contact i {
+      color: var(--secondary);
+      margin-right: 15px;
+      font-size: 1.2rem;
+      min-width: 20px;
+    }
+    
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .form-control {
+      border-radius: 4px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 0.25rem rgba(26, 101, 158, 0.25);
+    }
+    .team-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(13, 59, 102, 0.1);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .team-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .team-member {
+      flex: 0 0 calc(25% - 30px);
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .member-img {
+      height: 250px;
+      background-color: var(--lightgray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .member-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .member-img img {
+      transform: scale(1.05);
+    }
+    
+    .member-info {
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .member-info::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+    
+    .member-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .member-position {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .member-desc {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    
+    .member-social {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .member-social {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .social-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    
+    .social-icon:hover {
+      background: var(--secondary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 992px) {
+      .team-member {
+        flex: 0 0 calc(50% - 30px);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .team-member {
+        flex: 0 0 100%;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    .team-quote {
+      text-align: center;
+      max-width: 800px;
+      margin: 50px auto 30px;
+      padding: 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 10px;
+      color: white;
+      position: relative;
+    }
+    
+    .team-quote p {
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+    
+    .team-quote::before, .team-quote::after {
+      content: '"';
+      position: absolute;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.15);
+      font-family: Georgia, serif;
+    }
+    
+    .team-quote::before {
+      top: 10px;
+      left: 20px;
+    }
+    
+    .team-quote::after {
+      bottom: -20px;
+      right: 20px;
+    }
+    
+    .team-contact {
+      text-align: center;
+      margin-top: 50px;
+      padding: 30px;
+      background-color: var(--light);
+      border-radius: 10px;
+    }
+    
+    .team-contact h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .contact-btn {
+      background: var(--secondary);
+      color: var(--primary);
+      border: none;
+      padding: 12px 35px;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .contact-btn:hover {
+      background: #e0a62e;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: var(--primary);
+    }
+    .team-member {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .team-member h4 {
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .team-member .position {
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .team-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 0 auto;
+    }
+    
+    .service-detail {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    .service-detail h2 {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--secondary);
+    }
+    
+    .service-detail ul {
+      padding-left: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .service-detail ul li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .service-detail ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+    }
+    
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 80px 0;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .card {
+        margin-bottom: 30px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png" width="300px">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="accounting.html">Accounting & Bookkeeping</a></li>
+              <li><a class="dropdown-item" href="tax.html">Tax Return & Compliance</a></li>
+              <li><a class="dropdown-item" href="tds.html">TDS/Withholding Tax</a></li>
+              <li><a class="dropdown-item" href="appeals.html">Appeals & Assessments</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="services.html">All Services</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 px-3" href="contact.html">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <h1 class="animate">Your Finance & Taxation Partner</h1>
+      <p class="lead animate delay-1">Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
+      <div class="mt-4 animate delay-2">
+        <a href="services.html" class="btn btn-primary me-2 me-md-3">Our Services</a>
+        <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Overview Section -->
+  <section class="section bg-lightgray">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Services</h2>
+        <p>We offer comprehensive solutions in accounting, taxation, compliance, and more to meet your business needs.</p>
+      </div>
+      <div class="row">
+        <!-- Accounting & Bookkeeping -->
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100 animate delay-1">
+            <div class="card-body text-center">
+              <div class="card-icon">
+                <i class="bi bi-journal-bookmark-fill"></i>
+              </div>
+              <h5 class="card-title">Accounting &amp; Bookkeeping</h5>
+              <p class="card-text">End-to-end bookkeeping and accounting solutions for businesses of all sizes.</p>
+              <a href="accounting.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Tax Return & Compliance -->
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100 animate delay-2">
+            <div class="card-body text-center">
+              <div class="card-icon">
+                <i class="bi bi-calculator-fill"></i>
+              </div>
+              <h5 class="card-title">Tax Return &amp; Compliance</h5>
+              <p class="card-text">Tax return preparation and filing for individuals and businesses.</p>
+              <a href="tax.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- TDS/Withholding Tax -->
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100 animate delay-3">
+            <div class="card-body text-center">
+              <div class="card-icon">
+                <i class="bi bi-percent"></i>
+              </div>
+              <h5 class="card-title">TDS/Withholding Tax</h5>
+              <p class="card-text">Complete TDS and withholding tax management and compliance.</p>
+              <a href="tds.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Appeals & Assessments -->
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100 animate">
+            <div class="card-body text-center">
+              <div class="card-icon">
+                <i class="bi bi-gavel"></i>
+              </div>
+              <h5 class="card-title">Appeals &amp; Assessments</h5>
+              <p class="card-text">Assistance with tax assessments and representation in income tax appeals.</p>
+              <a href="appeals.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose AvanceePro?</h2>
+        <p>Discover the advantages of partnering with our expert team</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-people-fill"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Expert Team</h5>
+              <p>Our team of qualified professionals brings years of experience and industry expertise to ensure your financial matters are handled with precision.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-shield-check"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Compliance Guarantee</h5>
+              <p>We stay updated with the latest tax laws and regulations to ensure your business remains fully compliant and avoids penalties.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Strategic Insights</h5>
+              <p>Beyond compliance, we provide valuable financial insights to help you make informed business decisions and drive growth.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-clock-history"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Timely Services</h5>
+              <p>We prioritize deadlines to ensure all your financial obligations are met on time, every time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-lock"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Data Security</h5>
+              <p>Your financial data is protected with enterprise-grade security measures and strict confidentiality protocols.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <div class="card-icon text-primary">
+                <i class="bi bi-cash-coin"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5>Cost-Effective</h5>
+              <p>Our tailored solutions help you save on operational costs while receiving top-tier financial services.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section bg-lightgray">
+    <div class="container">
+      <div class="section-title">
+        <h2>Client Testimonials</h2>
+        <p>What our clients say about our services</p>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
+                <div>
+                  <h5 class="mb-0">Rajesh Kumar</h5>
+                  <small class="text-muted">Director, TechSolutions Pvt Ltd</small>
+                </div>
+              </div>
+              <p class="card-text">"AvanceePro has transformed how we handle our finances. Their expertise in GST compliance saved us from significant penalties. Highly recommended!"</p>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
+                <div>
+                  <h5 class="mb-0">Priya Sharma</h5>
+                  <small class="text-muted">Founder, RetailChain India</small>
+                </div>
+              </div>
+              <p class="card-text">"The team at AvanceePro has been instrumental in helping us navigate complex tax laws. Their proactive approach has saved us time and money."</p>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
+                <div>
+                  <h5 class="mb-0">Sanjay Mehta</h5>
+                  <small class="text-muted">CFO, Manufacturing Group</small>
+                </div>
+              </div>
+              <p class="card-text">"Their TDS management services are exceptional. We've seen a 30% reduction in compliance errors since partnering with AvanceePro."</p>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="team-section">
+    <div class="section-title">
+      <h2>Our Leadership Team</h2>
+      <p>Meet the experts guiding AvanceePro to excellence in financial services</p>
+    </div>
+    
+    <div class="team-quote">
+      <p>"Our strength lies in our collective expertise and commitment to client success."</p>
+    </div>
+    
+    <div class="team-row">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <div class="member-img">
+          
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Prabhakara Rao G</h3>
+          <span class="member-position">Director</span>
+          <p class="member-desc">Founder with over fifteen years' experience in Core Accounting. Expert in financial strategy and business development.</p>
+        </div>
+        
+      </div>
+      
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <div class="member-img">
+          <img src="dfsdfg" alt="Vijaya Lakshmi H V">
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Vijaya Lakshmi H V</h3>
+          <span class="member-position">Director</span>
+          <p class="member-desc">Co-founder with a Commerce degree. Specializes in accounting operations and client relationship management.</p>
+        </div>
+        
+      </div>
+      
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <div class="member-img">
+          <img src="dgfg" alt="Datha Prasad Rao">
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Datha Prasad Rao</h3>
+          <span class="member-position">Chartered Accountant</span>
+          <p class="member-desc">Fellow Member of the Institute of Chartered Accountants of India. Expert in taxation and compliance matters.</p>
+        </div>
+        
+      </div>
+      
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <div class="member-img">
+          <img src="fyyj" alt="Sunil R K">
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Sunil R K</h3>
+          <span class="member-position">Chartered Accountant</span>
+          <p class="member-desc">Associate member of the Institute of Chartered Accountants in India. Specializes in auditing and corporate finance.</p>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="team-contact">
+      <h3>Want to consult with our experts?</h3>
+      <p>Our team is ready to help you with your financial needs</p>
+      <a href="#" class="contact-btn">Contact Our Team</a>
+    </div>
+  </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-5" style="background-color: var(--accent);">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-white">
+          <h3 class="mb-3">Ready to streamline your financial operations?</h3>
+          <p class="mb-0">Schedule a free consultation with our experts today.</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <a href="contact.html" class="btn btn-light btn-lg">Book Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h5>AvanceePro</h5>
+          <p class="mt-3">Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
+          <div class="mt-4">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="accounting.html">Accounting & Bookkeeping</a></li>
+            <li><a href="tax.html">Tax Return & Compliance</a></li>
+            <li><a href="tds.html">TDS/Withholding Tax</a></li>
+            <li><a href="appeals.html">Appeals & Assessments</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-5">
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li>
+              <i class="bi bi-geo-alt"></i>
+              <span>No: 384, 2nd Floor, 15th Cross, 5th Main Rd, 6th Sector, HSR Layout, Bangalore - 560102, India</span>
+            </li>
+            <li>
+              <i class="bi bi-telephone"></i>
+              <span>080-79665489, +91 9164456153</span>
+            </li>
+            <li>
+              <i class="bi bi-envelope"></i>
+              <span>info@avanceepro.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AvanceePro Business Services Pvt Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (Bundle includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.animate');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add('animate');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      animateElements.forEach(element => {
+        element.style.opacity = 0;
+        element.style.visibility = 'hidden';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(element);
+      });
+      
+      // Form validation for contact page
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          let valid = true;
+          
+          // Simple validation
+          const name = document.getElementById('name');
+          const email = document.getElementById('email');
+          const message = document.getElementById('message');
+          
+          if (!name.value.trim()) {
+            valid = false;
+            name.classList.add('is-invalid');
+          } else {
+            name.classList.remove('is-invalid');
+          }
+          
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.value)) {
+            valid = false;
+            email.classList.add('is-invalid');
+          } else {
+            email.classList.remove('is-invalid');
+          }
+          
+          if (!message.value.trim()) {
+            valid = false;
+            message.classList.add('is-invalid');
+          } else {
+            message.classList.remove('is-invalid');
+          }
+          
+          if (valid) {
+            // In a real scenario, you would submit the form
+            alert('Thank you for your message! We will contact you soon.');
+            contactForm.reset();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
