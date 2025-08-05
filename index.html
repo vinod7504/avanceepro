@@ -1,1166 +1,1390 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AvanceePro Business Services</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-  <style>
-    :root {
-      --primary: #0d3b66; /* Deep professional blue */
-      --secondary: #f4b942; /* Gold accent */
-      --accent: #1a659e; /* Complementary blue */
-      --light: #f8f9fa;
-      --dark: #212529;
-      --success: #28a745;
-      --cobalt: #0047ab;
-      --lightgray: #f1f1f1;
-      --transition: all 0.3s ease;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AvanceePro Business Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+     <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Owl Carousel JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <style>
+        :root {
+            --primary: #0d3b66;
+            /* Deep professional blue */
+            --secondary: #f4b942;
+            /* Gold accent */
+            --accent: #1a659e;
+            /* Complementary blue */
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --cobalt: #0047ab;
+            --lightgray: #f1f1f1;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .navbar {
+            background-color: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            position: relative;
+            margin: 0 10px;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: white !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(26, 101, 158, 0.9) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tools-carousel-section {
+      padding: 60px 0;
+      background-color: #f8f9fa;
     }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 700;
-      color: var(--primary);
-    }
-    
-    .navbar {
-      background-color: var(--primary) !important;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 15px 0;
-    }
-    
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: white !important;
-    }
-    
-    .nav-link {
-      color: rgba(255,255,255,0.85) !important;
-      font-weight: 500;
-      position: relative;
-      margin: 0 10px;
-      padding: 8px 0 !important;
-    }
-    
-    .nav-link:hover, .nav-link.active {
-      color: white !important;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--secondary);
-      transition: var(--transition);
-    }
-    
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
-    }
-    
-    .hero {
-      padding: 120px 0;
-      background: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(26, 101, 158, 0.9) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      position: relative;
-    }
-    
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    .hero p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: rgba(255,255,255,0.9);
-    }
-    
-    .btn-primary {
-      background-color: var(--secondary);
-      border-color: var(--secondary);
-      color: var(--primary);
-      font-weight: 600;
-      padding: 12px 30px;
-      border-radius: 4px;
-      transition: var(--transition);
-    }
-    
-    .btn-primary:hover {
-      background-color: #e0a62e;
-      border-color: #e0a62e;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .btn-outline-light {
-      padding: 12px 30px;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    
-    .btn-outline-light:hover {
-      background-color: rgba(255,255,255,0.1);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .section {
-      padding: 80px 0;
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .section-title h2 {
-      position: relative;
-      padding-bottom: 15px;
-      margin-bottom: 20px;
-    }
-    
-    .section-title h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background-color: var(--secondary);
-      border-radius: 2px;
-    }
-    
-    .section-title p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #666;
-    }
-    
-    .card {
-      border: none;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      height: 100%;
-    }
-    
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-    }
-    
-    .card-icon {
-      font-size: 2.5rem;
-      color: var(--secondary);
-      margin-bottom: 20px;
-    }
-    
-    .card-body {
-      padding: 30px;
-    }
-    
-    .card-title {
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: var(--primary);
-    }
-    
-    .card-text {
-      color: #666;
-      margin-bottom: 20px;
-    }
-    
-    .card-link {
-      color: var(--accent);
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-    }
-    
-    .card-link:hover {
-      color: var(--primary);
-    }
-    
-    .card-link i {
-      margin-left: 5px;
-      transition: var(--transition);
-    }
-    
-    .card-link:hover i {
-      transform: translateX(5px);
-    }
-    
-    .bg-lightgray {
-      background-color: var(--lightgray);
-    }
-    
-    .footer {
-      background-color: var(--primary);
-      color: white;
-      padding: 60px 0 30px;
-    }
-    
-    .footer h5 {
-      font-weight: 600;
-      margin-bottom: 25px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer h5::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: var(--secondary);
-    }
-    
-    .footer ul {
-      padding-left: 0;
-      list-style: none;
-    }
-    
-    .footer ul li {
-      margin-bottom: 12px;
-    }
-    
-    .footer ul li a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    
-    .footer ul li a:hover {
-      color: white;
-      padding-left: 5px;
-    }
-    
-    .footer-contact li {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 15px;
-    }
-    
-    .footer-contact i {
-      color: var(--secondary);
-      margin-right: 15px;
-      font-size: 1.2rem;
-      min-width: 20px;
-    }
-    
-    .copyright {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 20px;
-      margin-top: 40px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-    }
-    
-    .form-control {
-      border-radius: 4px;
-      padding: 12px 15px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      transition: var(--transition);
-    }
-    
-    .form-control:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 0.25rem rgba(26, 101, 158, 0.25);
-    }
-    .team-section {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 30px;
+
+    .tools-carousel .item {
       background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(13, 59, 102, 0.1);
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    
-    .section-title h2 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    
-    .section-title p {
-      font-size: 1.1rem;
-      color: #666;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background-color: var(--secondary);
-      border-radius: 2px;
-    }
-    
-    .team-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-    
-    .team-member {
-      flex: 0 0 calc(25% - 30px);
-      background: white;
+      padding: 15px 30px;
+      margin: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      transition: var(--transition);
-      position: relative;
     }
-    
-    .team-member:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    .member-img {
-      height: 250px;
-      background-color: var(--lightgray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    
-    .member-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    
-    .team-member:hover .member-img img {
-      transform: scale(1.05);
-    }
-    
-    .member-info {
-      padding: 25px 20px;
-      text-align: center;
-      position: relative;
-    }
-    
-    .member-info::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background-color: var(--secondary);
-    }
-    
-    .member-name {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 5px;
-    }
-    
-    .member-position {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 15px;
+
+    .tools-carousel .item img {
+      max-height: 100px;
+      margin: auto;
       display: block;
+      object-fit: contain;
     }
-    
-    .member-desc {
-      color: #555;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-    }
-    
-    .member-social {
+
+    .owl-carousel .owl-nav button {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: var(--transition);
-    }
-    
-    .team-member:hover .member-social {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .social-icon {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    
-    .social-icon:hover {
-      background: var(--secondary);
-      color: white;
-      transform: translateY(-3px);
-    }
-    
-    @media (max-width: 992px) {
-      .team-member {
-        flex: 0 0 calc(50% - 30px);
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .team-member {
-        flex: 0 0 100%;
-      }
-      
-      .section-title h2 {
-        font-size: 2rem;
-      }
-    }
-    
-    .team-quote {
-      text-align: center;
-      max-width: 800px;
-      margin: 50px auto 30px;
-      padding: 25px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 10px;
-      color: white;
-      position: relative;
-    }
-    
-    .team-quote p {
-      font-size: 1.3rem;
-      font-style: italic;
-      margin-bottom: 0;
-    }
-    
-    .team-quote::before, .team-quote::after {
-      content: '"';
-      position: absolute;
-      font-size: 5rem;
-      color: rgba(255,255,255,0.15);
-      font-family: Georgia, serif;
-    }
-    
-    .team-quote::before {
-      top: 10px;
-      left: 20px;
-    }
-    
-    .team-quote::after {
-      bottom: -20px;
-      right: 20px;
-    }
-    
-    .team-contact {
-      text-align: center;
-      margin-top: 50px;
-      padding: 30px;
-      background-color: var(--light);
-      border-radius: 10px;
-    }
-    
-    .team-contact h3 {
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-    
-    .contact-btn {
-      background: var(--secondary);
-      color: var(--primary);
+      top: 35%;
+      background: transparent;
       border: none;
-      padding: 12px 35px;
-      font-weight: 600;
-      border-radius: 5px;
-      transition: var(--transition);
-      text-decoration: none;
-      display: inline-block;
+      font-size: 2rem;
+      color: #0d3b66;
     }
-    
-    .contact-btn:hover {
-      background: #e0a62e;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      color: var(--primary);
+
+    .owl-carousel .owl-nav .owl-prev {
+      left: -30px;
     }
-    .team-member {
+
+    .owl-carousel .owl-nav .owl-next {
+      right: -30px;
+    }
+
+    .owl-carousel .owl-dots {
       text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .team-member h4 {
       margin-top: 20px;
-      margin-bottom: 5px;
     }
-    
-    .team-member .position {
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 15px;
-      display: block;
-    }
-    
-    .team-img {
-      width: 180px;
-      height: 180px;
+
+    .owl-carousel .owl-dot span {
+      width: 12px;
+      height: 12px;
+      background: #ccc;
       border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      margin: 0 auto;
+      display: inline-block;
+      margin: 0 4px;
     }
-    
-    .service-detail {
-      background-color: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 30px;
+
+    .owl-carousel .owl-dot.active span {
+      background: #0d3b66;
     }
-    
-    .service-detail h2 {
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 3px solid var(--secondary);
-    }
-    
-    .service-detail ul {
-      padding-left: 20px;
-      margin-bottom: 25px;
-    }
-    
-    .service-detail ul li {
-      margin-bottom: 10px;
-      position: relative;
-      padding-left: 20px;
-    }
-    
-    .service-detail ul li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 8px;
-      height: 8px;
-      background-color: var(--secondary);
-      border-radius: 50%;
-    }
-    
-    /* Animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .animate {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    .delay-1 {
-      animation-delay: 0.1s;
-    }
-    
-    .delay-2 {
-      animation-delay: 0.2s;
-    }
-    
-    .delay-3 {
-      animation-delay: 0.3s;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .hero {
-        padding: 80px 0;
-      }
-      
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .section {
-        padding: 60px 0;
-      }
-      
-      .section-title h2 {
-        font-size: 1.8rem;
-      }
-      
-      .card {
-        margin-bottom: 30px;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-    }
-  </style>
+
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a62e;
+            border-color: #e0a62e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-light {
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .tools-carousel .item {
+            padding: 15px;
+        }
+
+        .tools-carousel .item img {
+            max-height: 100px;
+            margin: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .tools-carousel-section {
+            background-color: #f8f9fa;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link:hover {
+            color: var(--primary);
+        }
+
+        .card-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .bg-lightgray {
+            background-color: var(--lightgray);
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-control {
+            border-radius: 4px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.25rem rgba(26, 101, 158, 0.25);
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(13, 59, 102, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .team-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            flex: 0 0 calc(25% - 30px);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-img {
+            height: 250px;
+            background-color: var(--lightgray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-img img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .member-info::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .member-position {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .member-desc {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .member-social {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .team-member {
+                flex: 0 0 calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-member {
+                flex: 0 0 100%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .team-quote {
+            text-align: center;
+            max-width: 800px;
+            margin: 50px auto 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            color: white;
+            position: relative;
+        }
+
+        .team-quote p {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .team-quote::before,
+        .team-quote::after {
+            content: '"';
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.15);
+            font-family: Georgia, serif;
+        }
+
+        .team-quote::before {
+            top: 10px;
+            left: 20px;
+        }
+
+        .team-quote::after {
+            bottom: -20px;
+            right: 20px;
+        }
+
+        .team-contact {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: var(--light);
+            border-radius: 10px;
+        }
+
+        .team-contact h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 12px 35px;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            background: #e0a62e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-member h4 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .team-member .position {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .team-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .service-detail {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .service-detail h2 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        /* Nested submenu positioning */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover .dropdown-menu {
+            display: block;
+        }
+
+        .service-detail ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        
+        .service-detail ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-detail ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="data:image/jpeg;base64,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" width="300px">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Services
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
+                    width="220px">
             </a>
-            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-              <li><a class="dropdown-item" href="accounting.html">Accounting & Bookkeeping</a></li>
-              <li><a class="dropdown-item" href="tax.html">Tax Return & Compliance</a></li>
-              <li><a class="dropdown-item" href="tds.html">TDS/Withholding Tax</a></li>
-              <li><a class="dropdown-item" href="appeals.html">Appeals & Assessments</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="services.html">All Services</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 px-3" href="contact.html">Get Started</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="services.html">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="india.html">India</a></li>
+                                <li><a class="dropdown-item" href="australia.html">Australia</a></li>
+                                <li><a class="dropdown-item" href="usa.html">USA</a></li>
+                            </ul>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="container">
-      <h1 class="animate">Your Finance & Taxation Partner</h1>
-      <p class="lead animate delay-1">Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
-      <div class="mt-4 animate delay-2">
-        <a href="services.html" class="btn btn-primary me-2 me-md-3">Our Services</a>
-        <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
-      </div>
-    </div>
-  </header>
+                        </ul>
+                    </li>
 
-  <!-- Services Overview Section -->
-  <section class="section bg-lightgray">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our Services</h2>
-        <p>We offer comprehensive solutions in accounting, taxation, compliance, and more to meet your business needs.</p>
-      </div>
-      <div class="row">
-        <!-- Accounting & Bookkeeping -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 animate delay-1">
-            <div class="card-body text-center">
-              <div class="card-icon">
-                <i class="bi bi-journal-bookmark-fill"></i>
-              </div>
-              <h5 class="card-title">Accounting &amp; Bookkeeping</h5>
-              <p class="card-text">End-to-end bookkeeping and accounting solutions for businesses of all sizes.</p>
-              <a href="accounting.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Tax Return & Compliance -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 animate delay-2">
-            <div class="card-body text-center">
-              <div class="card-icon">
-                <i class="bi bi-calculator-fill"></i>
-              </div>
-              <h5 class="card-title">Tax Return &amp; Compliance</h5>
-              <p class="card-text">Tax return preparation and filing for individuals and businesses.</p>
-              <a href="tax.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- TDS/Withholding Tax -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 animate delay-3">
-            <div class="card-body text-center">
-              <div class="card-icon">
-                <i class="bi bi-percent"></i>
-              </div>
-              <h5 class="card-title">TDS/Withholding Tax</h5>
-              <p class="card-text">Complete TDS and withholding tax management and compliance.</p>
-              <a href="tds.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Appeals & Assessments -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 animate">
-            <div class="card-body text-center">
-              <div class="card-icon">
-                <i class="bi bi-gavel"></i>
-              </div>
-              <h5 class="card-title">Appeals &amp; Assessments</h5>
-              <p class="card-text">Assistance with tax assessments and representation in income tax appeals.</p>
-              <a href="appeals.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Why Choose Us Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Why Choose AvanceePro?</h2>
-        <p>Discover the advantages of partnering with our expert team</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-people-fill"></i>
-              </div>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    
+                </ul>
             </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Expert Team</h5>
-              <p>Our team of qualified professionals brings years of experience and industry expertise to ensure your financial matters are handled with precision.</p>
-            </div>
-          </div>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-shield-check"></i>
-              </div>
-            </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Compliance Guarantee</h5>
-              <p>We stay updated with the latest tax laws and regulations to ensure your business remains fully compliant and avoids penalties.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-graph-up-arrow"></i>
-              </div>
-            </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Strategic Insights</h5>
-              <p>Beyond compliance, we provide valuable financial insights to help you make informed business decisions and drive growth.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-clock-history"></i>
-              </div>
-            </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Timely Services</h5>
-              <p>We prioritize deadlines to ensure all your financial obligations are met on time, every time.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-lock"></i>
-              </div>
-            </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Data Security</h5>
-              <p>Your financial data is protected with enterprise-grade security measures and strict confidentiality protocols.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <div class="card-icon text-primary">
-                <i class="bi bi-cash-coin"></i>
-              </div>
-            </div>
-            <div class="flex-grow-1 ms-4">
-              <h5>Cost-Effective</h5>
-              <p>Our tailored solutions help you save on operational costs while receiving top-tier financial services.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Testimonials Section -->
-  <section class="section bg-lightgray">
-    <div class="container">
-      <div class="section-title">
-        <h2>Client Testimonials</h2>
-        <p>What our clients say about our services</p>
-      </div>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
-                <div>
-                  <h5 class="mb-0">Rajesh Kumar</h5>
-                  <small class="text-muted">Director, TechSolutions Pvt Ltd</small>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="animate">Your Finance & Taxation Partner</h1>
+            <p class="lead animate delay-1">Providing end-to-end Accounting, Taxation, and Business Services for
+                companies of all sizes.</p>
+            <div class="mt-4 animate delay-2">
+                <a href="services.html" class="btn btn-primary me-2 me-md-3">Our Services</a>
+                <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Overview Section -->
+    <section class="section bg-lightgray">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer comprehensive solutions in accounting, taxation, compliance, and more to meet your business
+                    needs.</p>
+            </div>
+            <div class="row">
+                <!-- Accounting & Bookkeeping -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 animate delay-1">
+                        <div class="card-body text-center">
+                            <div class="card-icon">
+                                <i class="bi bi-journal-bookmark-fill"></i>
+                            </div>
+                            <h5 class="card-title">Accounting &amp; Bookkeeping</h5>
+                            <p class="card-text">End-to-end bookkeeping and accounting solutions for businesses of all
+                                sizes.</p>
+                            <a href="accounting.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <p class="card-text">"AvanceePro has transformed how we handle our finances. Their expertise in GST compliance saved us from significant penalties. Highly recommended!"</p>
-              <div class="text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
-                <div>
-                  <h5 class="mb-0">Priya Sharma</h5>
-                  <small class="text-muted">Founder, RetailChain India</small>
+                <!-- Tax Return & Compliance -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 animate delay-2">
+                        <div class="card-body text-center">
+                            <div class="card-icon">
+                                <i class="bi bi-calculator-fill"></i>
+                            </div>
+                            <h5 class="card-title">Tax Return &amp; Compliance</h5>
+                            <p class="card-text">Tax return preparation and filing for individuals and businesses.</p>
+                            <a href="tax.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <p class="card-text">"The team at AvanceePro has been instrumental in helping us navigate complex tax laws. Their proactive approach has saved us time and money."</p>
-              <div class="text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="rounded-circle me-3" width="60" height="60">
-                <div>
-                  <h5 class="mb-0">Sanjay Mehta</h5>
-                  <small class="text-muted">CFO, Manufacturing Group</small>
+                <!-- TDS/Withholding Tax -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 animate delay-3">
+                        <div class="card-body text-center">
+                            <div class="card-icon">
+                                <i class="bi bi-percent"></i>
+                            </div>
+                            <h5 class="card-title">TDS/Withholding Tax</h5>
+                            <p class="card-text">Complete TDS and withholding tax management and compliance.</p>
+                            <a href="tds.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <p class="card-text">"Their TDS management services are exceptional. We've seen a 30% reduction in compliance errors since partnering with AvanceePro."</p>
-              <div class="text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
+                <!-- Appeals & Assessments -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 animate">
+                        <div class="card-body text-center">
+                            <div class="card-icon">
+                                <i class="bi bi-gavel"></i>
+                            </div>
+                            <h5 class="card-title">Appeals &amp; Assessments</h5>
+                            <p class="card-text">Assistance with tax assessments and representation in income tax
+                                appeals.</p>
+                            <a href="appeals.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="team-section">
-    <div class="section-title">
-      <h2>Our Leadership Team</h2>
-      <p>Meet the experts guiding AvanceePro to excellence in financial services</p>
-    </div>
-    
-    <div class="team-quote">
-      <p>"Our strength lies in our collective expertise and commitment to client success."</p>
-    </div>
-    
-    <div class="team-row">
-      <!-- Team Member 1 -->
-      <div class="team-member">
-        <div class="member-img">
-          
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Prabhakara Rao G</h3>
-          <span class="member-position">Director</span>
-          <p class="member-desc">Founder with over fifteen years' experience in Core Accounting. Expert in financial strategy and business development.</p>
-        </div>
-        
+    <section class="tools-carousel-section text-center">
+  <div class="container">
+    <h2 class="mb-4">Tools We Use</h2>
+    <div class="owl-carousel owl-theme tools-carousel">
+      <!-- MYOB -->
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/myobdown.png" alt="MYOB" />
+      </div>
+
+      <!-- Xero -->
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/xero.png" alt="Xero" />
+      </div>
+
+      <!-- Zoho -->
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/ZOHO.png" alt="Zoho" />
+      </div>
+
+      <!-- QuickBooks -->
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/QB.png" alt="QuickBooks" />
+      </div>
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/tally1.png" alt="Tally" />
+      </div>
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/Recon3.png" alt="Reckon" />
       </div>
       
-      <!-- Team Member 2 -->
-      <div class="team-member">
-        <div class="member-img">
-          <img src="dfsdfg" alt="Vijaya Lakshmi H V">
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Vijaya Lakshmi H V</h3>
-          <span class="member-position">Director</span>
-          <p class="member-desc">Co-founder with a Commerce degree. Specializes in accounting operations and client relationship management.</p>
-        </div>
-        
+      <!-- RealBooks -->
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/RealBooks.png" alt="RealBooks" />
       </div>
-      
-      <!-- Team Member 3 -->
-      <div class="team-member">
-        <div class="member-img">
-          <img src="dgfg" alt="Datha Prasad Rao">
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Datha Prasad Rao</h3>
-          <span class="member-position">Chartered Accountant</span>
-          <p class="member-desc">Fellow Member of the Institute of Chartered Accountants of India. Expert in taxation and compliance matters.</p>
-        </div>
-        
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/super_fund.png" alt="Simple fund" />
       </div>
-      
-      <!-- Team Member 4 -->
-      <div class="team-member">
-        <div class="member-img">
-          <img src="fyyj" alt="Sunil R K">
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Sunil R K</h3>
-          <span class="member-position">Chartered Accountant</span>
-          <p class="member-desc">Associate member of the Institute of Chartered Accountants in India. Specializes in auditing and corporate finance.</p>
-        </div>
-        
+      <div class="item">
+        <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/Handiledger.png" alt="Handledger" />
       </div>
-    </div>
-    
-    <div class="team-contact">
-      <h3>Want to consult with our experts?</h3>
-      <p>Our team is ready to help you with your financial needs</p>
-      <a href="#" class="contact-btn">Contact Our Team</a>
     </div>
   </div>
-  </section>
+</section>
 
-  <!-- Call to Action -->
-  <section class="py-5" style="background-color: var(--accent);">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-8 text-white">
-          <h3 class="mb-3">Ready to streamline your financial operations?</h3>
-          <p class="mb-0">Schedule a free consultation with our experts today.</p>
-        </div>
-        <div class="col-md-4 text-md-end mt-3 mt-md-0">
-          <a href="contact.html" class="btn btn-light btn-lg">Book Consultation</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <h5>AvanceePro</h5>
-          <p class="mt-3">Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
-          <div class="mt-4">
-            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
-            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
-            <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
-          <h5>Quick Links</h5>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
-          <h5>Services</h5>
-          <ul>
-            <li><a href="accounting.html">Accounting & Bookkeeping</a></li>
-            <li><a href="tax.html">Tax Return & Compliance</a></li>
-            <li><a href="tds.html">TDS/Withholding Tax</a></li>
-            <li><a href="appeals.html">Appeals & Assessments</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-5">
-          <h5>Contact</h5>
-          <ul class="footer-contact">
-            <li>
-              <i class="bi bi-geo-alt"></i>
-              <span>No: 384, 2nd Floor, 15th Cross, 5th Main Rd, 6th Sector, HSR Layout, Bangalore - 560102, India</span>
-            </li>
-            <li>
-              <i class="bi bi-telephone"></i>
-              <span>080-79665489, +91 9164456153</span>
-            </li>
-            <li>
-              <i class="bi bi-envelope"></i>
-              <span>info@avanceepro.com</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 AvanceePro Business Services Pvt Ltd. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
 
-  <!-- Bootstrap JS (Bundle includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Animation on scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('.animate');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.visibility = 'visible';
-            entry.target.classList.add('animate');
-          }
+    <!-- Why Choose Us Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose AvanceePro?</h2>
+                <p>Discover the advantages of partnering with our expert team</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Expert Team</h5>
+                            <p>Our team of qualified professionals brings years of experience and industry expertise to
+                                ensure your financial matters are handled with precision.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Compliance Guarantee</h5>
+                            <p>We stay updated with the latest tax laws and regulations to ensure your business remains
+                                fully compliant and avoids penalties.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Strategic Insights</h5>
+                            <p>Beyond compliance, we provide valuable financial insights to help you make informed
+                                business decisions and drive growth.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Timely Services</h5>
+                            <p>We prioritize deadlines to ensure all your financial obligations are met on time, every
+                                time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-lock"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Data Security</h5>
+                            <p>Your financial data is protected with enterprise-grade security measures and strict
+                                confidentiality protocols.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5>Cost-Effective</h5>
+                            <p>Our tailored solutions help you save on operational costs while receiving top-tier
+                                financial services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-lightgray">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about our services</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client"
+                                    class="rounded-circle me-3" width="60" height="60">
+                                <div>
+                                    <h5 class="mb-0">Rajesh Kumar</h5>
+                                    <small class="text-muted">Director, TechSolutions Pvt Ltd</small>
+                                </div>
+                            </div>
+                            <p class="card-text">"AvanceePro has transformed how we handle our finances. Their expertise
+                                in GST compliance saved us from significant penalties. Highly recommended!"</p>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client"
+                                    class="rounded-circle me-3" width="60" height="60">
+                                <div>
+                                    <h5 class="mb-0">Priya Sharma</h5>
+                                    <small class="text-muted">Founder, RetailChain India</small>
+                                </div>
+                            </div>
+                            <p class="card-text">"The team at AvanceePro has been instrumental in helping us navigate
+                                complex tax laws. Their proactive approach has saved us time and money."</p>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client"
+                                    class="rounded-circle me-3" width="60" height="60">
+                                <div>
+                                    <h5 class="mb-0">Sanjay Mehta</h5>
+                                    <small class="text-muted">CFO, Manufacturing Group</small>
+                                </div>
+                            </div>
+                            <p class="card-text">"Their TDS management services are exceptional. We've seen a 30%
+                                reduction in compliance errors since partnering with AvanceePro."</p>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="team-section">
+            <div class="section-title">
+                <h2>Our Leadership Team</h2>
+                <p>Meet the experts guiding AvanceePro to excellence in financial services</p>
+            </div>
+
+            <div class="team-quote">
+                <p>"Our strength lies in our collective expertise and commitment to client success."</p>
+            </div>
+
+            <div class="team-row">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-img">
+
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Prabhakara Rao G</h3>
+                        <span class="member-position">Director</span>
+                        <p class="member-desc">Founder with over fifteen years' experience in Core Accounting. Expert in
+                            financial strategy and business development.</p>
+                    </div>
+
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="dfsdfg" alt="Vijaya Lakshmi H V">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Vijaya Lakshmi H V</h3>
+                        <span class="member-position">Director</span>
+                        <p class="member-desc">Co-founder with a Commerce degree. Specializes in accounting operations
+                            and client relationship management.</p>
+                    </div>
+
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="dgfg" alt="Datha Prasad Rao">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Datha Prasad Rao</h3>
+                        <span class="member-position">Chartered Accountant</span>
+                        <p class="member-desc">Fellow Member of the Institute of Chartered Accountants of India. Expert
+                            in taxation and compliance matters.</p>
+                    </div>
+
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="fyyj" alt="Sunil R K">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Sunil R K</h3>
+                        <span class="member-position">Chartered Accountant</span>
+                        <p class="member-desc">Associate member of the Institute of Chartered Accountants in India.
+                            Specializes in auditing and corporate finance.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="team-contact">
+                <h3>Want to consult with our experts?</h3>
+                <p>Our team is ready to help you with your financial needs</p>
+                <a href="contact.html" class="contact-btn">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background-color: var(--accent);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-white">
+                    <h3 class="mb-3">Ready to streamline your financial operations?</h3>
+                    <p class="mb-0">Schedule a free consultation with our experts today.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <a href="contact.html" class="btn btn-light btn-lg">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>AvanceePro</h5>
+                    <p class="mt-3">Providing end-to-end Accounting, Taxation, and Business Services for companies of
+                        all sizes.</p>
+                    <div class="mt-4">
+                        <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="accounting.html">Accounting & Bookkeeping</a></li>
+                        <li><a href="tax.html">Tax Return & Compliance</a></li>
+                        <li><a href="tds.html">TDS/Withholding Tax</a></li>
+                        <li><a href="appeals.html">Appeals & Assessments</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-5">
+                    <h5>Contact</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>No: 384, 2nd Floor, 15th Cross, 5th Main Rd, 6th Sector, HSR Layout, Bangalore -
+                                560102, India</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <span>080-79665489, +91 9164456153</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <span>info@avanceepro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AvanceePro Business Services Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (Bundle includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const animateElements = document.querySelectorAll('.animate');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.visibility = 'visible';
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.visibility = 'hidden';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+
+            // Form validation for contact page
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    let valid = true;
+
+                    // Simple validation
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const message = document.getElementById('message');
+
+                    if (!name.value.trim()) {
+                        valid = false;
+                        name.classList.add('is-invalid');
+                    } else {
+                        name.classList.remove('is-invalid');
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email.value)) {
+                        valid = false;
+                        email.classList.add('is-invalid');
+                    } else {
+                        email.classList.remove('is-invalid');
+                    }
+
+                    if (!message.value.trim()) {
+                        valid = false;
+                        message.classList.add('is-invalid');
+                    } else {
+                        message.classList.remove('is-invalid');
+                    }
+
+                    if (valid) {
+                        // In a real scenario, you would submit the form
+                        alert('Thank you for your message! We will contact you soon.');
+                        contactForm.reset();
+                    }
+                });
+            }
         });
-      }, {
-        threshold: 0.1
-      });
-      
-      animateElements.forEach(element => {
-        element.style.opacity = 0;
-        element.style.visibility = 'hidden';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
-      });
-      
-      // Form validation for contact page
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          let valid = true;
-          
-          // Simple validation
-          const name = document.getElementById('name');
-          const email = document.getElementById('email');
-          const message = document.getElementById('message');
-          
-          if (!name.value.trim()) {
-            valid = false;
-            name.classList.add('is-invalid');
-          } else {
-            name.classList.remove('is-invalid');
-          }
-          
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email.value)) {
-            valid = false;
-            email.classList.add('is-invalid');
-          } else {
-            email.classList.remove('is-invalid');
-          }
-          
-          if (!message.value.trim()) {
-            valid = false;
-            message.classList.add('is-invalid');
-          } else {
-            message.classList.remove('is-invalid');
-          }
-          
-          if (valid) {
-            // In a real scenario, you would submit the form
-            alert('Thank you for your message! We will contact you soon.');
-            contactForm.reset();
-          }
+
+        $(document).ready(function () {
+            $(".tools-carousel").owlCarousel({
+                loop: true,
+                margin: 30,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 2
+                    },
+                    768: {
+                        items: 3
+                    },
+                    992: {
+                        items: 5
+                    }
+                }
+            });
         });
-      }
-    });
-  </script>
+    </script>
 </body>
 
 </html>
