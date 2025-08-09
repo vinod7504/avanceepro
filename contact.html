@@ -341,6 +341,20 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
         }
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
 
         @media (max-width: 992px) {
             .page-header h1 {
@@ -386,7 +400,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item dropdown">
+                    
+                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="services.html">
                             Services
                         </a>
@@ -398,6 +413,7 @@
                             </ul>
 
                         </ul>
+                    </li>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
                     
@@ -487,7 +503,7 @@
                         <h3 class="mb-4">Send us a Message</h3>
                         <p class="mb-4">Fields marked with an * are required</p>
 
-                        <form>
+                        <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -538,6 +554,9 @@
                         all sizes.</p>
                     <div class="mt-4">
                         <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" class="text-white me-3"><i class="fab fa-linkedin-in fs-5"></i></a>
+                        <a href="https://wa.me/919164453153" target="_blank" class="text-white me-3">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
@@ -568,11 +587,14 @@
                         </li>
                         <li>
                             <i class="fas fa-phone-alt"></i>
-                            <span>080-79665489, +91 9164456153</span>
+                            <span>8035171029, +91 9164456153</span>
                         </li>
                         <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@avanceepro.com</span>
+                            <i class="bi bi-envelope"></i>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@avanceepro.com" target="_blank"
+                                style="text-decoration: none; color: inherit;">
+                                info@avanceepro.com
+                            </a>
                         </li>
                     </ul>
                 </div>
