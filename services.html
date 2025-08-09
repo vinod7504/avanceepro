@@ -270,7 +270,20 @@
         .nav-link.active::after {
             width: 100%;
         }
+        .dropdown-submenu {
+            position: relative;
+        }
 
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.1rem;
+            display: none;
+        }
+
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
         
         .btn-contact:hover {
             background: #e0a62e;
@@ -294,7 +307,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
                     width="220px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -367,7 +380,9 @@
             <div class="text-center mt-5">
                 <h3>Comprehensive Financial Solutions</h3>
                 <p class="lead">We provide end-to-end services tailored to your business needs</p>
-                <a href="contact.html"><button class="btn-contact">Contact Us Today</button></a>
+                <a href="https://wa.me/919164453153" target="_blank"><button class="btn-contact">
+                            <i class="bi bi-whatsapp fs-5"></i> Contact us Today
+                        </button></a>
             </div>
         </div>
         
@@ -422,15 +437,25 @@
                     <h4>AvanceePro</h4>
                     <p>Providing end-to-end Accounting, Taxation, and Business Services for companies of all sizes.</p>
                     <div class="mt-3">
-                        <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" class="text-white me-3"><i class="fab fa-linkedin-in fs-5"></i></a>
+                        <a href="https://www.linkedin.com/in/avancee-pro-51001bbb/" target="_blank" class="text-white me-3"><i class="fab fa-linkedin-in fs-5"></i></a>
+
+                        <a href="https://wa.me/919164453153" target="_blank" class="text-white me-3">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <h4>Contact Information</h4>
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> HSR Layout, Bangalore, India</li>
-                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> 080-79665489, +91 9164456153</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@avanceepro.com</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> 8035171029, +91 9164456153</li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@avanceepro.com" target="_blank"
+                                style="text-decoration: none; color: inherit;">
+                                info@avanceepro.com
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
@@ -467,6 +492,4 @@
         });
     </script>
 </body>
-
 </html>
-
