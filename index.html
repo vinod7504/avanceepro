@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AvanceePro Business Services</title>
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
+    <!-- Favicon -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -795,6 +798,62 @@
             }
         }
 
+        .recommend-btn {
+            background: linear-gradient(90deg, #ffffff, #e6e6e6);
+            color: #0b3a6b;
+            /* your blue */
+            border: none;
+        }
+
+
+
+        .ms-custom {
+            margin-left: 180px !important;
+        }
+
+        .search-box {
+            background-color: #ffffff !important;
+            /* default white */
+            color: #000000;
+            padding-right: 3rem;
+            background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/search.svg");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 18px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            /* optional clean border */
+        }
+
+        .service-card {
+            border-radius: 15px;
+            background: linear-gradient(180deg, #ffffff, #f2f8ff);
+            /* light gradient */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .list-link {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .list-link:hover {
+            color: #0d6efd;
+            /* bootstrap blue on hover */
+            background-color: #eef6ff;
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 1.8rem;
@@ -805,16 +864,28 @@
                 width: 100%;
                 margin-bottom: 10px;
             }
+
+            .search-box {
+                border-radius: 30px;
+                padding: 10px 20px;
+            }
+
+            .recommend-btn {
+                border-radius: 20px;
+                margin: 5px;
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
+
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
+            <a class="navbar-brand" href="index.html">
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
                     width="220px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -823,9 +894,22 @@
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info d-flex bottom-50">Consult an Expert</button>
+                            <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Talk to consultant</a></li>
+                                <li><a class="dropdown-item" href="#">Talk to Charted Accountant</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="services.html">
                             Services
                         </a>
@@ -835,17 +919,51 @@
                                 <li><a class="dropdown-item" href="australia.html">Australia</a></li>
                                 <li><a class="dropdown-item" href="usa.html">USA</a></li>
                             </ul>
-
                         </ul>
-                    </li>
-
-
+                    </li> -->
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-light" data-bs-toggle="offcanvas"
+                            data-bs-target="#loginSlider">
+                            Login
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="loginSlider">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Login or Create an Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_autoresponse"
+                    value="Thank you for contacting me! I’ll get back to you soon.">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
 
     <!-- Hero Section -->
     <header class="hero">
@@ -853,12 +971,145 @@
             <h1 class="animate">Your Finance & Taxation Partner</h1>
             <p class="lead animate delay-1">Providing end-to-end Accounting, Taxation, and Business Services for
                 companies of all sizes.</p>
+            <form id="searchForm">
+                <div class="input-group mb-2 d-flex mx-auto" style="max-width:900px; width:100%;">
+                    <input type="text" id="searchInput" class="form-control search-box rounded-5 p-3"
+                        placeholder="Try 'Trademark'">
+                </div>
+            </form>
+
+            <div class="d-flex flex-wrap justify-content-center gap-4"> <button
+                    class="btn btn-outline-light recommend-btn">Trademark Registration</button> <button
+                    class="btn btn-outline-light recommend-btn">GST Registration</button> <button
+                    class="btn btn-outline-light recommend-btn">Company Registration</button> <button
+                    class="btn btn-outline-light recommend-btn">Accounting &amp; Business Compliance</button>
+            </div>
             <div class="mt-4 animate delay-2">
-                <a href="services.html" class="btn btn-primary me-2 me-md-3">Our Services</a>
                 <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
             </div>
         </div>
     </header>
+
+
+    <div class="container my-5">
+        <div class="row g-4 justify-content-center">
+
+            <!-- Card: Register your Company -->
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 service-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="50"
+                                alt="Register Company">
+                        </div>
+                        <h5 class="card-title text-center fw-bold">
+                            <a href="register-company.html" class="text-decoration-none text-dark">Register your
+                                Company</a>
+                        </h5>
+                        <p class="text-center text-muted">Starting from ₹999/-</p>
+                        <ul class="list-unstyled">
+                            <li><a href="private-limited.html" class="list-link">Private Limited Company
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="llp.html" class="list-link">Limited Liability Partnership
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="opc.html" class="list-link">One Person Company <span>&rsaquo;</span></a></li>
+                            <li><a href="partnership.html" class="list-link">Partnership Firm <span>&rsaquo;</span></a>
+                            </li>
+                            <li><a href="sole-proprietorship.html" class="list-link">Sole Proprietorship
+                                    <span>&rsaquo;</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: File GST -->
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 service-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" width="50"
+                                alt="File GST">
+                        </div>
+                        <h5 class="card-title text-center fw-bold">
+                            <a href="file-gst.html" class="text-decoration-none text-dark">File GST</a>
+                        </h5>
+                        <p class="text-center text-muted">Starting from ₹399/-</p>
+                        <ul class="list-unstyled">
+                            <li><a href="gst-registration.html" class="list-link">GST Registration
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="gst-filing.html" class="list-link">GST Filing <span>&rsaquo;</span></a></li>
+                            <li><a href="gst-cancellation.html" class="list-link">GST Cancellation & Revocation
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="gst-notice.html" class="list-link">Reply to GST Notice
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="indirect-tax.html" class="list-link">Indirect Tax <span>&rsaquo;</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Maintain your Accounts -->
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 service-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" width="50"
+                                alt="Accounts">
+                        </div>
+                        <h5 class="card-title text-center fw-bold">
+                            <a href="maintain-accounts.html" class="text-decoration-none text-dark">Maintain your
+                                Accounts</a>
+                        </h5>
+                        <p class="text-center text-muted">Starting from ₹4999/-</p>
+                        <ul class="list-unstyled">
+                            <li><a href="accounting-bookkeeping.html" class="list-link">Accounting & Book-keeping
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="annual-compliance.html" class="list-link">Annual Compliance
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="tds-return.html" class="list-link">TDS Return Filing <span>&rsaquo;</span></a>
+                            </li>
+                            <li><a href="income-tax-notice.html" class="list-link">Income Tax Notice
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="secretarial-audit.html" class="list-link">Secretarial Audit
+                                    <span>&rsaquo;</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Licenses -->
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 service-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135673.png" width="50"
+                                alt="Licenses">
+                        </div>
+                        <h5 class="card-title text-center fw-bold">
+                            <a href="licenses.html" class="text-decoration-none text-dark">Licenses</a>
+                        </h5>
+                        <p class="text-center text-muted">Starting from ₹999/-</p>
+                        <ul class="list-unstyled">
+                            <li><a href="iso-registration.html" class="list-link">ISO Registration
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="fssai-registration.html" class="list-link">FSSAI Registration
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="iec-registration.html" class="list-link">IEC Registration
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="liquor-license.html" class="list-link">Liquor License Registration
+                                    <span>&rsaquo;</span></a></li>
+                            <li><a href="psara-registration.html" class="list-link">PSARA Registration
+                                    <span>&rsaquo;</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
     <!-- Services Overview Section -->
     <section class="section bg-lightgray">
@@ -879,7 +1130,7 @@
                             <h5 class="card-title">Accounting &amp; Bookkeeping</h5>
                             <p class="card-text">End-to-end bookkeeping and accounting solutions for businesses of all
                                 sizes.</p>
-                            <a href="index.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                            <a href="" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -892,7 +1143,7 @@
                             </div>
                             <h5 class="card-title">Tax Return &amp; Compliance</h5>
                             <p class="card-text">Tax return preparation and filing for individuals and businesses.</p>
-                            <a href="index.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                            <a href="" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -905,7 +1156,7 @@
                             </div>
                             <h5 class="card-title">TDS/Withholding Tax</h5>
                             <p class="card-text">Complete TDS and withholding tax management and compliance.</p>
-                            <a href="index.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                            <a href="" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -919,13 +1170,16 @@
                             <h5 class="card-title">Appeals &amp; Assessments</h5>
                             <p class="card-text">Assistance with tax assessments and representation in income tax
                                 appeals.</p>
-                            <a href="index.html" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+                            <a href="" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
     <section class="tools-carousel-section text-center">
         <div class="container">
@@ -1181,7 +1435,7 @@
                     <!-- </div> -->
                     <div class="member-info">
                         <h3 class="member-name">Vijaya Lakshmi H V</h3>
-                        <span class="member-position">Director</span>
+                        <span class="member-position">Co-Director</span>
                         <p class="member-desc">Co-founder with a Commerce degree. Specializes in accounting operations
                             and client relationship management.</p>
                     </div>
@@ -1236,8 +1490,8 @@
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
                     <!-- <a href="contact.html" class="btn btn-light btn-lg">Book Consultation</a> -->
                     <a href="https://wa.me/919164453153" target="_blank" class="btn btn-light btn-lg">
-                            <i class="bi bi-whatsapp fs-5"></i> Book Consultation
-                        </a>
+                        <i class="bi bi-whatsapp fs-5"></i> Book Consultation
+                    </a>
                 </div>
             </div>
         </div>
@@ -1309,6 +1563,53 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Animation on scroll
+
+        const placeholders = [
+            "Trademark Registration",
+            "GST Registration",
+            "Company Registration",
+            "Accounting and Business Compliance"
+        ];
+
+        let input = document.getElementById("searchInput");
+        let wordIndex = 0;
+        let charIndex = 0;
+        let currentText = "";
+        let typingSpeed = 100;
+        let pauseTime = 1500;
+
+        function typeEffect() {
+            if (charIndex < placeholders[wordIndex].length) {
+                currentText += placeholders[wordIndex][charIndex];
+                input.setAttribute("placeholder", "Try '" + currentText + "'");
+                charIndex++;
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                // pause, then move to next word
+                setTimeout(() => {
+                    wordIndex = (wordIndex + 1) % placeholders.length;
+                    charIndex = 0;
+                    currentText = "";
+                    input.setAttribute("placeholder", "");
+                    typeEffect();
+                }, pauseTime);
+            }
+        }
+
+        typeEffect();
+
+        document.getElementById("searchForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let query = document.getElementById("searchInput").value.trim();
+
+            if (query) {
+                // build URL like localhost/{query}
+                let url = "http://127.0.0.1:5500/" + encodeURIComponent(query);
+                window.location.href = url; // redirect
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
             const animateElements = document.querySelectorAll('.animate');
 
@@ -1399,7 +1700,3 @@
 </body>
 
 </html>
-
-
-
-
