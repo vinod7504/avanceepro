@@ -41,6 +41,15 @@
             --transition: all 0.3s ease;
         }
 
+
+
+        /* added new */
+
+
+
+
+        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
@@ -765,6 +774,8 @@
             animation-delay: 0.3s;
         }
 
+
+
         /* Responsive adjustments */
         @media (max-width: 992px) {
             .hero h1 {
@@ -921,18 +932,6 @@
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="services.html">
-                            Services
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="india.html">India</a></li>
-                                <li><a class="dropdown-item" href="australia.html">Australia</a></li>
-                                <li><a class="dropdown-item" href="usa.html">USA</a></li>
-                            </ul>
-                        </ul>
-                    </li> -->
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 
                     <li class="nav-item">
@@ -983,10 +982,26 @@
             <h1 class="animate">Your Finance & Taxation Partner</h1>
             <p class="lead animate delay-1">Providing end-to-end Accounting, Taxation, and Business Services for
                 companies of all sizes.</p>
-            <form id="searchForm">
+            <!-- <form id="searchForm">
                 <div class="input-group mb-2 d-flex mx-auto" style="max-width:900px; width:100%;">
                     <input type="text" id="searchInput" class="form-control search-box rounded-5 p-3"
                         placeholder="Try 'Trademark'">
+                </div>
+            </form> -->
+
+
+            <form id="searchForm" class="position-relative mx-auto" style="max-width:900px;">
+                <div class="input-group mb-2">
+                    <input type="search" id="searchInput" class="form-control search-box rounded-5 p-3"
+                        placeholder="Try 'Trademark'" autocomplete="off" spellcheck="false" inputmode="search"
+                        enterkeyhint="go" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false"
+                        aria-owns="searchSuggestions">
+                </div>
+
+                <!-- suggestions dropdown -->
+                <div id="searchSuggestions"
+                    class="search-suggestions position-absolute w-100 bg-white shadow list-group rounded-4"
+                    role="listbox" aria-label="Search suggestions">
                 </div>
             </form>
 
@@ -1081,7 +1096,8 @@
                                     <span>&rsaquo;</span></a></li>
                             <li><a href="annual-compliance.html" class="list-link">Annual Compliance
                                     <span>&rsaquo;</span></a></li>
-                            <li><a href="tds-return-filing.html" class="list-link">TDS Return Filing <span>&rsaquo;</span></a>
+                            <li><a href="tds-return-filing.html" class="list-link">TDS Return Filing
+                                    <span>&rsaquo;</span></a>
                             </li>
                             <li><a href="income-tax-notice.html" class="list-link">Income Tax Notice
                                     <span>&rsaquo;</span></a></li>
@@ -1710,6 +1726,371 @@
                 }
             });
         });
+
+
+
+
+        // From here start
+
+
+        (function () {
+            // --- 1) Catalog of pages (title, url, synonyms/tags) ---
+            const PAGES = [
+                // Company / entity types
+                { title: "Private Limited Company", url: "private-limited.html", tags: ["pvt ltd", "company", "incorporation", "register company", "company registration"] },
+                { title: "Limited Liability Partnership", url: "llp.html", tags: ["llp", "partnership llp", "register llp"] },
+                { title: "One Person Company", url: "opc.html", tags: ["opc", "one person", "one person company"] },
+                { title: "Partnership Firm", url: "partnership.html", tags: ["partnership", "firm registration"] },
+                { title: "Sole Proprietorship", url: "sole-proprietorship.html", tags: ["proprietorship", "sole proprietor", "udyam"] },
+
+                // GST and tax
+                { title: "GST Registration", url: "gst-registration.html", tags: ["gst reg", "apply gst", "get gst", "new gst"] },
+                { title: "GST Filing", url: "gst-filing.html", tags: ["file gst", "gstr", "return filing"] },
+                { title: "GST Cancellation & Revocation", url: "gst-cancellation.html", tags: ["cancel gst", "revocation"] },
+                { title: "Reply to GST Notice", url: "gst-notice.html", tags: ["gst notice", "show cause", "scn"] },
+                { title: "Indirect Tax", url: "indirect-tax.html", tags: ["indirect tax", "excise", "customs"] },
+
+                // Accounts / compliance
+                { title: "Accounting & Book-keeping", url: "accounting-bookkeeping.html", tags: ["accounting", "bookkeeping", "books"] },
+                { title: "Annual Compliance", url: "annual-compliance.html", tags: ["roc", "mca", "compliance"] },
+                { title: "TDS Return Filing", url: "tds-return-filing.html", tags: ["tds", "withholding", "26q", "24q"] },
+                { title: "Income Tax Notice", url: "income-tax-notice.html", tags: ["income tax", "notice", "assessment"] },
+                { title: "Secretarial Audit", url: "secretarial-audit.html", tags: ["secretarial", "audit"] },
+
+                // Licenses
+                { title: "ISO Registration", url: "iso-registration.html", tags: ["iso", "certificate"] },
+                { title: "FSSAI Registration", url: "fssai-registration.html", tags: ["fssai", "food license"] },
+                { title: "IEC Registration", url: "iec-registration.html", tags: ["iec", "import export code"] },
+                { title: "Liquor License Registration", url: "liquor-license.html", tags: ["liquor", "alcohol"] },
+                { title: "PSARA Registration", url: "psara-registration.html", tags: ["psara", "security agency"] },
+
+                // Top cards and generic
+                { title: "Register your Company", url: "register-company.html", tags: ["company registration", "incorporation", "start company"] },
+                { title: "File GST", url: "file-gst.html", tags: ["gst file", "gstr"] },
+                { title: "Maintain your Accounts", url: "maintain-accounts.html", tags: ["accounts", "book-keeping"] },
+
+                // Info pages
+                { title: "Accounting & Bookkeeping (Overview)", url: "account.html", tags: ["account", "bookkeeping overview"] },
+                { title: "Tax Return & Compliance (Overview)", url: "Taxreturn.html", tags: ["tax return", "compliance overview"] },
+                { title: "TDS/Withholding Tax (Overview)", url: "tds.html", tags: ["tds overview", "withholding"] },
+                { title: "Appeals & Assessments (Overview)", url: "appeals.html", tags: ["appeals", "assessment overview"] },
+
+                // Generic navigation
+                { title: "About Us", url: "about.html", tags: ["about", "company info"] },
+                { title: "Contact", url: "contact.html", tags: ["contact", "support", "reach us"] },
+                { title: "Home", url: "index.html", tags: ["home", "index", "landing"] }
+            ];
+
+            // --- 2) Helpers ---
+            const byId = (id) => document.getElementById(id);
+            const norm = (s) => (s || "")
+                .toString()
+                .toLowerCase()
+                .normalize("NFKD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9\s]/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            // history-based boost (persisted)
+            const HITS_KEY = "ap_page_hits";
+            const loadHits = () => {
+                try { return JSON.parse(localStorage.getItem(HITS_KEY) || "{ }"); }
+                catch { return {}; }
+            };
+            const saveHits = (obj) => {
+                try { localStorage.setItem(HITS_KEY, JSON.stringify(obj)); } catch { }
+            };
+            const bumpHit = (url) => {
+                const hits = loadHits();
+                hits[url] = (hits[url] || 0) + 1;
+                saveHits(hits);
+            };
+
+            // Build searchable index
+            const INDEX = PAGES.map(p => ({
+                ...p,
+                _hay: norm([p.title, ...(p.tags || [])].join(" ")),
+                _title: norm(p.title)
+            }));
+
+            // --- 3) Scoring logic ---
+            function score(query, item, hits) {
+                if (!query) return 0;
+                const title = item._title;
+                const hay = item._hay;
+
+                let s = 0;
+
+                // exact title match
+                if (title === query) s += 100;
+
+                // starts-with on title
+                if (title.startsWith(query)) s += 60;
+
+                // token-wise starts-with on title
+                const qFirst = query.split(" ")[0];
+                if (qFirst && title.startsWith(qFirst)) s += 20;
+
+                // includes anywhere (title + tags)
+                if (hay.includes(query)) s += 25;
+
+                // word boundary starts-with in haystack
+                const re = new RegExp(`\\b${escapeReg(query)}`);
+                if (re.test(hay)) s += 15;
+
+                // history boost
+                const h = hits[item.url] || 0;
+                s += Math.min(40, h * 5);
+
+                return s;
+            }
+
+            function escapeReg(s) {
+                return s.replace(/[.*+?^${ }()|[\]\\]/g, "\\$&");
+            }
+
+            // --- 4) DOM wiring ---
+            const form = byId("searchForm");
+            const input = byId("searchInput");
+
+            // make input mobile-friendly
+            if (input) {
+                input.setAttribute("inputmode", "search");
+                input.setAttribute("enterkeyhint", "go");
+                input.setAttribute("autocomplete", "off");
+                input.setAttribute("aria-autocomplete", "list");
+                input.setAttribute("aria-expanded", "false");
+                input.setAttribute("role", "combobox");
+            }
+
+            // suggestions container (created once)
+            let suggest = document.createElement("div");
+            suggest.className = "ap-suggest hidden";
+            suggest.setAttribute("role", "listbox");
+            suggest.id = "apSuggestList";
+            // inline message container
+            let msg = document.createElement("div");
+            msg.className = "ap-inline-msg";
+            msg.style.display = "none";
+
+            // Attach right after the form
+            if (form) {
+                // ensure form has search-wrap class for positioning
+                if (!form.classList.contains("search-wrap")) form.classList.add("search-wrap");
+                form.appendChild(suggest);
+                form.insertAdjacentElement("afterend", msg);
+            }
+
+            let activeIndex = -1;         // for keyboard nav
+            let currentResults = [];      // last results shown
+            const MAX_SUGGEST = 8;
+
+            function renderSuggestions(results, query) {
+                suggest.innerHTML = "";
+                activeIndex = -1;
+
+                if (!results.length) {
+                    const empty = document.createElement("div");
+                    empty.className = "ap-suggest-empty";
+                    empty.textContent = query ? `No results for “${query}”.` : "Start typing to search…";
+                    suggest.appendChild(empty);
+                    suggest.classList.remove("hidden");
+                    input.setAttribute("aria-expanded", "true");
+                    return;
+                }
+
+                results.slice(0, MAX_SUGGEST).forEach((r, i) => {
+                    const div = document.createElement("div");
+                    div.className = "ap-suggest-item";
+                    div.setAttribute("role", "option");
+                    div.setAttribute("id", `ap-opt-${i}`);
+                    div.innerHTML = `
+            <i class="bi bi-search"></i>
+            <span>${highlight(r.title, query)}</span>
+            <span class="ap-suggest-tag">${shortTag(r.tags)}</span>
+            `;
+                    div.addEventListener("click", () => goTo(r));
+                    div.addEventListener("mousemove", () => setActive(i));
+                    suggest.appendChild(div);
+                });
+
+                suggest.classList.remove("hidden");
+                input.setAttribute("aria-expanded", "true");
+            }
+
+            function shortTag(tags = []) {
+                if (!tags.length) return "";
+                const t = tags[0];
+                if (!t) return "";
+                // show first tag as micro context
+                return t.length > 22 ? t.slice(0, 22) + "…" : t;
+            }
+
+            function highlight(text, query) {
+                if (!query) return text;
+                const q = escapeReg(norm(query));
+                // try to highlight by words from original text (preserve original case)
+                const re = new RegExp("(" + q + ")", "ig");
+                return text.replace(re, "<mark>$1</mark>");
+            }
+
+            function setActive(i) {
+                const items = [...suggest.querySelectorAll(".ap-suggest-item")];
+                items.forEach(el => el.classList.remove("active"));
+                if (i >= 0 && i < items.length) {
+                    items[i].classList.add("active");
+                    activeIndex = i;
+                    input.setAttribute("aria-activedescendant", items[i].id);
+                } else {
+                    activeIndex = -1;
+                    input.removeAttribute("aria-activedescendant");
+                }
+            }
+
+            function notify(text) {
+                msg.textContent = text;
+                msg.style.display = "block";
+                setTimeout(() => { msg.style.display = "none"; }, 3000);
+            }
+
+            function goTo(item) {
+                if (!item || !item.url) return;
+                bumpHit(item.url);
+                window.location.href = item.url;
+            }
+
+            function chooseBestOrNotify(query) {
+                const hits = loadHits();
+                const q = norm(query);
+                const results = rank(q, hits);
+
+                if (results.length) {
+                    goTo(results[0]); // open best match
+                } else {
+                    notify(`No relevant page found for “${query}”.`);
+                    // keep dropdown visible with "no results"
+                    renderSuggestions([], query);
+                }
+            }
+
+            function rank(q, hits) {
+                if (!q) return [];
+                const scored = INDEX.map(item => ({ ...item, _score: score(q, item, hits) }));
+                return scored
+                    .filter(x => x._score > 0)
+                    .sort((a, b) => b._score - a._score);
+            }
+
+            // debounce for input
+            let tId = null;
+            function debounce(fn, d = 120) {
+                return (...args) => {
+                    clearTimeout(tId);
+                    tId = setTimeout(() => fn(...args), d);
+                };
+            }
+
+            const onType = debounce(() => {
+                const q = norm(input.value);
+                const hits = loadHits();
+                currentResults = rank(q, hits);
+                renderSuggestions(currentResults, input.value.trim());
+            }, 120);
+
+            // --- 5) Events ---
+            if (input) {
+                input.addEventListener("input", onType);
+
+                // keyboard navigation
+                input.addEventListener("keydown", (e) => {
+                    const items = [...suggest.querySelectorAll(".ap-suggest-item")];
+                    const hasItems = items.length > 0;
+
+                    if (e.key === "ArrowDown" && hasItems) {
+                        e.preventDefault();
+                        setActive((activeIndex + 1) % items.length);
+                    }
+                    else if (e.key === "ArrowUp" && hasItems) {
+                        e.preventDefault();
+                        setActive((activeIndex - 1 + items.length) % items.length);
+                    }
+                    else if (e.key === "Enter") {
+                        e.preventDefault();
+                        // if an item is active, open it; otherwise open best match
+                        if (activeIndex >= 0 && activeIndex < currentResults.length) {
+                            goTo(currentResults[activeIndex]);
+                        } else {
+                            chooseBestOrNotify(input.value.trim());
+                        }
+                    }
+                    else if (e.key === "Escape") {
+                        suggest.classList.add("hidden");
+                        input.setAttribute("aria-expanded", "false");
+                        setActive(-1);
+                    }
+                });
+
+                // close on blur (slight delay to allow click)
+                input.addEventListener("blur", () => setTimeout(() => {
+                    suggest.classList.add("hidden");
+                    input.setAttribute("aria-expanded", "false");
+                    setActive(-1);
+                }, 120));
+            }
+
+            if (form) {
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    chooseBestOrNotify(input.value.trim());
+                });
+            }
+
+            // hook "recommend" buttons (if present) to prefill and search
+            document.querySelectorAll(".recommend-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const txt = (btn.textContent || "").trim();
+                    input.value = txt;
+                    onType();
+                    // immediate navigate to best match
+                    chooseBestOrNotify(txt);
+                });
+            });
+
+            // --- 6) Optional rotating placeholder "typing" effect ---
+            const placeholders = [
+                "Trademark Registration",
+                "GST Registration",
+                "Company Registration",
+                "Accounting and Business Compliance"
+            ];
+            let pIdx = 0, cIdx = 0, cur = "", typing = true;
+            const typingSpeed = 90, pauseTime = 1200;
+
+            function cyclePlaceholder() {
+                if (!input) return;
+                const target = placeholders[pIdx];
+                if (typing) {
+                    if (cIdx < target.length) {
+                        cur += target[cIdx++];
+                        input.setAttribute("placeholder", "Try '" + cur + "'");
+                        setTimeout(cyclePlaceholder, typingSpeed);
+                    } else {
+                        typing = false;
+                        setTimeout(cyclePlaceholder, pauseTime);
+                    }
+                } else {
+                    // reset and move on
+                    pIdx = (pIdx + 1) % placeholders.length;
+                    cIdx = 0; cur = ""; typing = true;
+                    input.setAttribute("placeholder", "");
+                    setTimeout(cyclePlaceholder, typingSpeed);
+                }
+            }
+            cyclePlaceholder();
+
+        })();
+
     </script>
 </body>
 
