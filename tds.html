@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TDS / Withholding Tax – Services</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Owl Carousel CSS (kept per your stack) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <style>
+        :root {
+            --primary: #0d3b66;
+            /* deep blue */
+            --accent: #1a659e;
+            --gold: #f4b942;
+            --text: #0b1220;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: var(--text)
+        }
+
+        /* ===== Navbar ===== */
+        .navbar {
+            background: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08)
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff !important
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .9) !important;
+            position: relative
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff !important
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width .25s ease
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%
+        }
+
+        .btn-outline-light {
+            --bs-btn-hover-bg: rgba(255, 255, 255, .12);
+            --bs-btn-hover-border-color: #fff
+        }
+
+        /* ===== Section ===== */
+        .svc .title-wrap {
+            border-left: 6px solid var(--primary);
+            padding-left: 18px
+        }
+
+        .svc h2 {
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .svc p.lead {
+            color: #60708a
+        }
+
+        .category-card {
+            background: #fff;
+            border: 1px solid #e7ecf3;
+            border-radius: 14px;
+            box-shadow: 0 8px 22px rgba(13, 59, 102, .06);
+            overflow: hidden
+        }
+
+        .category-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 18px;
+            background: #fff;
+            border: 0;
+            font-weight: 700;
+            color: #1d2b4a;
+            text-align: left;
+        }
+
+        .category-head:hover {
+            background: #f9fbff
+        }
+
+        .category-left {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #eef5ff;
+            color: var(--primary);
+            font-size: 18px
+        }
+
+        .chev {
+            transition: transform .2s ease;
+            color: #74829a
+        }
+
+        .category-head[aria-expanded="true"] .chev {
+            transform: rotate(180deg)
+        }
+
+        .sublist {
+            border-top: 1px dashed #e5ebf4;
+            padding: 10px 0 2px 0;
+            margin: 0 14px 14px 14px
+        }
+
+        .subitem {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 10px;
+            border-bottom: 1px solid #eef2f7
+        }
+
+        .subitem:last-child {
+            border-bottom: 0
+        }
+
+        .subitem a {
+            text-decoration: none;
+            color: #0b3a6b;
+            font-weight: 600
+        }
+
+        .subitem a:hover {
+            color: var(--primary)
+        }
+
+        .bullet {
+            color: var(--gold)
+        }
+
+        .cat-gap {
+            height: 12px
+        }
+
+        .visual-card {
+            position: sticky;
+            top: 24px;
+            background: #fff;
+            border: 1px solid #e7ecf3;
+            border-radius: 16px;
+            box-shadow: 0 10px 26px rgba(13, 59, 102, .07);
+            overflow: hidden
+        }
+
+        .visual-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover
+        }
+
+        .visual-body {
+            padding: 18px
+        }
+
+        .visual-title {
+            font-weight: 800;
+            color: #1d2b4a
+        }
+
+        .visual-text {
+            color: #5f6f89
+        }
+
+        @media (max-width:991.98px) {
+            .visual-card {
+                position: static
+            }
+
+            .visual-img {
+                height: 220px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
+                    alt="AvanceePro" style="height:38px">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item dropdown me-lg-2">
+                        <a class="btn btn-warning text-dark fw-semibold dropdown-toggle" href="#" id="consultMenu"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-headset me-1"></i> Consult an Expert
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="consultMenu">
+                            <li><a class="dropdown-item" href="#">Talk to Consultant</a></li>
+                            <li><a class="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-outline-light" data-bs-toggle="offcanvas"
+                            data-bs-target="#loginPanel">Login</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="loginPanel" aria-labelledby="loginPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="loginPanelLabel">Login or Create an Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_autoresponse"
+                    value="Thank you for contacting me! I’ll get back to you soon.">
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email address</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Enter phone number"
+                        required>
+                </div>
+                <button class="btn btn-warning w-100 fw-semibold text-dark" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Content ===== -->
+    <section class="svc container py-5">
+        <div class="title-wrap mb-4">
+            <h2 class="mb-1">Choose the service in TDS / Withholding Tax</h2>
+            <p class="lead mb-0">Open a category to view options — the preview on the right updates automatically.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- LEFT -->
+            <div class="col-lg-7">
+                <div class="accordion" id="tdsAccordion">
+
+                    <!-- Setup & Registration -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-setup" aria-expanded="true" aria-controls="cat-setup"
+                            data-visual-title="TAN & Deductor Setup"
+                            data-visual-text="TAN allotment, deductor registration on TRACES and end-to-end onboarding."
+                            data-visual-img="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-person-gear"></i></span>
+                                TAN / Deductor Setup
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-setup" class="collapse show" data-bs-parent="#tdsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-upc-scan bullet"></i>
+                                    <a href="#!" data-visual-title="TAN Registration"
+                                        data-visual-text="New TAN application, changes and reactivation support."
+                                        data-visual-img="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1400&auto=format&fit=crop">TAN
+                                        Registration / Change</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-link-45deg bullet"></i>
+                                    <a href="#!" data-visual-title="TRACES Registration"
+                                        data-visual-text="Register the deductor on TRACES, create users and set up roles."
+                                        data-visual-img="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1400&auto=format&fit=crop">TRACES
+                                        Registration</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-credit-card bullet"></i>
+                                    <a href="#!" data-visual-title="Challan Payment (ITNS 281)"
+                                        data-visual-text="Challan creation, OLTAS tracking and CIN verification."
+                                        data-visual-img="https://images.unsplash.com/photo-1556742111-a301076d9d18?q=80&w=1400&auto=format&fit=crop">Challan
+                                        ITNS-281 Payment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Quarterly Returns -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-returns" aria-expanded="false" aria-controls="cat-returns"
+                            data-visual-title="Quarterly TDS/TCS Returns"
+                            data-visual-text="Preparation and filing of 24Q, 26Q, 27Q and 27EQ with FVU validation."
+                            data-visual-img="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-journal-check"></i></span>
+                                Quarterly Returns
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-returns" class="collapse" data-bs-parent="#tdsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-filetype-q bullet"></i>
+                                    <a href="#!" data-visual-title="Form 24Q (Salary)"
+                                        data-visual-text="Employee-wise working, deductions and Form-16 generation."
+                                        data-visual-img="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1400&auto=format&fit=crop">Form
+                                        24Q – Salary</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-filetype-q bullet"></i>
+                                    <a href="#!" data-visual-title="Form 26Q (Domestic)"
+                                        data-visual-text="Non-salary resident payments: contractors, rent, professional fees."
+                                        data-visual-img="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop">Form
+                                        26Q – Non-Salary (Residents)</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-globe2 bullet"></i>
+                                    <a href="#!" data-visual-title="Form 27Q (Non-Residents)"
+                                        data-visual-text="Withholding u/s 195 with DTAA, rate checks and documentation."
+                                        data-visual-img="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1400&auto=format&fit=crop">Form
+                                        27Q – Non-Residents</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-cart-check bullet"></i>
+                                    <a href="#!" data-visual-title="Form 27EQ (TCS)"
+                                        data-visual-text="TCS computation, challans and quarterly filing for collectors."
+                                        data-visual-img="https://images.unsplash.com/photo-1542228262-3d663b306a53?q=80&w=1400&auto=format&fit=crop">Form
+                                        27EQ – TCS</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-pencil-square bullet"></i>
+                                    <a href="#!" data-visual-title="Correction Statements"
+                                        data-visual-text="Defaults removal via C1-C9 corrections, challan/offline & online."
+                                        data-visual-img="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1400&auto=format&fit=crop">Correction
+                                        Statements (RPU/FVU)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- TRACES & Certificates -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-traces" aria-expanded="false" aria-controls="cat-traces"
+                            data-visual-title="TRACES Utilities & Certificates"
+                            data-visual-text="Form 16/16A, justification reports, defaults rectification and refunds."
+                            data-visual-img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-shield-check"></i></span>
+                                TRACES & Certificates
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-traces" class="collapse" data-bs-parent="#tdsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-file-earmark-text bullet"></i>
+                                    <a href="#!" data-visual-title="Form 16 / 16A"
+                                        data-visual-text="Download, digitally sign and distribute salary & non-salary TDS certificates."
+                                        data-visual-img="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">Form
+                                        16 & 16A</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-clipboard2-pulse bullet"></i>
+                                    <a href="#!" data-visual-title="Justification Reports & Defaults"
+                                        data-visual-text="Resolve short deduction, interest, late fee and PAN errors."
+                                        data-visual-img="https://images.unsplash.com/photo-1581091014534-8987c1d2d7d5?q=80&w=1400&auto=format&fit=crop">Justification
+                                        Reports</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-arrow-counterclockwise bullet"></i>
+                                    <a href="#!" data-visual-title="Refunds & Challan Correction"
+                                        data-visual-text="Request challan corrections, CIN merge/split and refunds where eligible."
+                                        data-visual-img="https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1400&auto=format&fit=crop">Refunds
+                                        / Challan Correction</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Cross-border & Special -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-special" aria-expanded="false" aria-controls="cat-special"
+                            data-visual-title="Cross-border & Special Cases"
+                            data-visual-text="Form 15CA/CB, 197 lower/NIL deduction and 195 analysis for NR payments."
+                            data-visual-img="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-globe-asia-australia"></i></span>
+                                Cross-border & Special Cases
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-special" class="collapse" data-bs-parent="#tdsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-file-earmark-ruled bullet"></i>
+                                    <a href="#!" data-visual-title="Form 15CA / 15CB"
+                                        data-visual-text="CA certificate, DTAA relief checks and e-filing for foreign remittances."
+                                        data-visual-img="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop">Form
+                                        15CA/CB (Foreign Remittance)</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-badge-ad bullet"></i>
+                                    <a href="#!" data-visual-title="Section 197 – Lower/NIL TDS"
+                                        data-visual-text="Application, follow-up and compliance under s.197 / 206C(9)."
+                                        data-visual-img="https://images.unsplash.com/photo-1542228262-3d663b306a53?q=80&w=1400&auto=format&fit=crop">Lower/NIL
+                                        Deduction Certificate</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-search bullet"></i>
+                                    <a href="#!" data-visual-title="Section 195 Opinion"
+                                        data-visual-text="Chargeability, PE and DTAA analysis for payments to non-residents."
+                                        data-visual-img="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1400&auto=format&fit=crop">Section
+                                        195 Technical Opinion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Health Check -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-health" aria-expanded="false" aria-controls="cat-health"
+                            data-visual-title="Compliance Health Check"
+                            data-visual-text="End-to-end review of deductor compliance with MIS of risks & actions."
+                            data-visual-img="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-heart-pulse"></i></span>
+                                Compliance Health Check
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-health" class="collapse" data-bs-parent="#tdsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-clipboard2-check bullet"></i>
+                                    <a href="#!" data-visual-title="Ledger & PAN Validation"
+                                        data-visual-text="PAN master clean-up, invalid PAN detection and rate checks."
+                                        data-visual-img="https://images.unsplash.com/photo-1581091014534-8987c1d2d7d5?q=80&w=1400&auto=format&fit=crop">PAN
+                                        & Rate Validation</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-clock-history bullet"></i>
+                                    <a href="#!" data-visual-title="Interest & Late Fee Computation"
+                                        data-visual-text="Automated 201(1A) interest & late fee workings with timelines."
+                                        data-visual-img="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop">Interest
+                                        & Late Fee</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-envelope-exclamation bullet"></i>
+                                    <a href="#!" data-visual-title="Notices & Assessment Support"
+                                        data-visual-text="Reply/draft for CPC-TDS and AO notices with documentation."
+                                        data-visual-img="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1400&auto=format&fit=crop">Notices
+                                        & Assessments</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5">
+                <div class="visual-card">
+                    <img id="visualImg" class="visual-img" alt="Service preview"
+                        src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1400&auto=format&fit=crop">
+                    <div class="visual-body">
+                        <h5 id="visualTitle" class="visual-title mb-1">TAN &amp; Deductor Setup</h5>
+                        <p id="visualText" class="visual-text mb-0">
+                            TAN allotment, deductor registration on TRACES and end-to-end onboarding.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery (kept per your stack) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS (not used on this page but included as requested) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Update right preview
+        function updatePreview(fromEl) {
+            const img = fromEl.getAttribute('data-visual-img');
+            const ttl = fromEl.getAttribute('data-visual-title');
+            const text = fromEl.getAttribute('data-visual-text');
+            if (img) { document.getElementById('visualImg').src = img; }
+            if (ttl) { document.getElementById('visualTitle').textContent = ttl; }
+            if (text) { document.getElementById('visualText').textContent = text; }
+        }
+
+        // When opening a main heading
+        document.querySelectorAll('.category-head').forEach(btn => {
+            btn.addEventListener('click', () => updatePreview(btn));
+        });
+
+        // When hovering/focusing/clicking a sub-item
+        document.querySelectorAll('.subitem a').forEach(a => {
+            a.addEventListener('mouseenter', () => updatePreview(a));
+            a.addEventListener('focus', () => updatePreview(a));
+            a.addEventListener('click', () => updatePreview(a));
+        });
+    </script>
+</body>
+
+</html>

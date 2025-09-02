@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Appeals & Assessments – Services</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Owl Carousel CSS (kept to match your stack) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <style>
+        :root {
+            --primary: #0d3b66;
+            --accent: #1a659e;
+            --gold: #f4b942;
+            --text: #0b1220;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: var(--text)
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08)
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff !important
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .9) !important;
+            position: relative
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff !important
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width .25s ease
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%
+        }
+
+        .btn-outline-light {
+            --bs-btn-hover-bg: rgba(255, 255, 255, .12);
+            --bs-btn-hover-border-color: #fff
+        }
+
+        /* Section */
+        .svc .title-wrap {
+            border-left: 6px solid var(--primary);
+            padding-left: 18px
+        }
+
+        .svc h2 {
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .svc p.lead {
+            color: #60708a
+        }
+
+        .category-card {
+            background: #fff;
+            border: 1px solid #e7ecf3;
+            border-radius: 14px;
+            box-shadow: 0 8px 22px rgba(13, 59, 102, .06);
+            overflow: hidden
+        }
+
+        .category-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 18px;
+            background: #fff;
+            border: 0;
+            font-weight: 700;
+            color: #1d2b4a;
+            text-align: left;
+        }
+
+        .category-head:hover {
+            background: #f9fbff
+        }
+
+        .category-left {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #eef5ff;
+            color: var(--primary);
+            font-size: 18px
+        }
+
+        .chev {
+            transition: transform .2s ease;
+            color: #74829a
+        }
+
+        .category-head[aria-expanded="true"] .chev {
+            transform: rotate(180deg)
+        }
+
+        .sublist {
+            border-top: 1px dashed #e5ebf4;
+            padding: 10px 0 2px 0;
+            margin: 0 14px 14px 14px
+        }
+
+        .subitem {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 10px;
+            border-bottom: 1px solid #eef2f7
+        }
+
+        .subitem:last-child {
+            border-bottom: 0
+        }
+
+        .subitem a {
+            text-decoration: none;
+            color: #0b3a6b;
+            font-weight: 600
+        }
+
+        .subitem a:hover {
+            color: var(--primary)
+        }
+
+        .bullet {
+            color: var(--gold)
+        }
+
+        .cat-gap {
+            height: 12px
+        }
+
+        .visual-card {
+            position: sticky;
+            top: 24px;
+            background: #fff;
+            border: 1px solid #e7ecf3;
+            border-radius: 16px;
+            box-shadow: 0 10px 26px rgba(13, 59, 102, .07);
+            overflow: hidden
+        }
+
+        .visual-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover
+        }
+
+        .visual-body {
+            padding: 18px
+        }
+
+        .visual-title {
+            font-weight: 800;
+            color: #1d2b4a
+        }
+
+        .visual-text {
+            color: #5f6f89
+        }
+
+        @media (max-width:991.98px) {
+            .visual-card {
+                position: static
+            }
+
+            .visual-img {
+                height: 220px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
+                    alt="AvanceePro" style="height:38px">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item dropdown me-lg-2">
+                        <a class="btn btn-warning text-dark fw-semibold dropdown-toggle" href="#" id="consultMenu"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-headset me-1"></i> Consult an Expert
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="consultMenu">
+                            <li><a class="dropdown-item" href="#">Talk to Consultant</a></li>
+                            <li><a class="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-outline-light" data-bs-toggle="offcanvas"
+                            data-bs-target="#loginPanel">Login</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="loginPanel" aria-labelledby="loginPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="loginPanelLabel">Login or Create an Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_autoresponse"
+                    value="Thank you for contacting me! I’ll get back to you soon.">
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email address</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Enter phone number"
+                        required>
+                </div>
+                <button class="btn btn-warning w-100 fw-semibold text-dark" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <section class="svc container py-5">
+        <div class="title-wrap mb-4">
+            <h2 class="mb-1">Appeals &amp; Assessments</h2>
+            <p class="lead mb-0">Assistance with tax assessments and representation in income tax appeals.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- LEFT -->
+            <div class="col-lg-7">
+                <div class="accordion" id="appealsAccordion">
+
+                    <!-- Pre-assessment & Notices -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-notices" aria-expanded="true" aria-controls="cat-notices"
+                            data-visual-title="Pre-assessment & Notices"
+                            data-visual-text="Drafting strong responses to 133(6), 142(1), 143(2) and CPC communications."
+                            data-visual-img="https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-envelope-exclamation"></i></span>
+                                Pre-assessment & Notices
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-notices" class="collapse show" data-bs-parent="#appealsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-mailbox2 bullet"></i>
+                                    <a href="#!" data-visual-title="143(1) Intimation – Response"
+                                        data-visual-text="Review adjustments, file online response and seek rectification where needed."
+                                        data-visual-img="https://images.unsplash.com/photo-1556742111-a301076d9d18?q=80&w=1400&auto=format&fit=crop">143(1)
+                                        Intimation – Response</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-journal-text bullet"></i>
+                                    <a href="#!" data-visual-title="142(1) & 143(2) – Scrutiny"
+                                        data-visual-text="Collation of evidences, submissions and hearing support for scrutiny."
+                                        data-visual-img="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1400&auto=format&fit=crop">142(1)
+                                        / 143(2) – Scrutiny Support</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-clipboard2-data bullet"></i>
+                                    <a href="#!" data-visual-title="e-Proceedings (Faceless)"
+                                        data-visual-text="Full support for notices and hearings on the faceless portal."
+                                        data-visual-img="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1400&auto=format&fit=crop">Faceless
+                                        e-Proceedings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Assessments & Re-assessment -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-assessment" aria-expanded="false" aria-controls="cat-assessment"
+                            data-visual-title="Assessments & Re-assessment"
+                            data-visual-text="Representation in regular, best-judgment and re-assessment including 148A."
+                            data-visual-img="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-balance-scale"></i></span>
+                                Assessments & Re-assessment
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-assessment" class="collapse" data-bs-parent="#appealsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-check2-square bullet"></i>
+                                    <a href="#!" data-visual-title="Scrutiny Assessment – 143(3)"
+                                        data-visual-text="End-to-end handling of scrutiny with detailed paper-book & case law."
+                                        data-visual-img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop">143(3)
+                                        Scrutiny Assessment</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-exclamation-triangle bullet"></i>
+                                    <a href="#!" data-visual-title="Best Judgment – 144"
+                                        data-visual-text="Mitigate additions and restore opportunity through submissions."
+                                        data-visual-img="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop">144
+                                        Best-Judgment Assessment</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-arrow-repeat bullet"></i>
+                                    <a href="#!" data-visual-title="Reassessment – 147 / 148A"
+                                        data-visual-text="Challenge reasons recorded, reply to 148A(b) and represent u/s 147."
+                                        data-visual-img="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop">147
+                                        / 148A Re-assessment</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-shield-lock bullet"></i>
+                                    <a href="#!" data-visual-title="Search / Seizure – 153A/153C"
+                                        data-visual-text="Block assessment handling post search/survey with strategy."
+                                        data-visual-img="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1400&auto=format&fit=crop">153A
+                                        / 153C (Search & Survey)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Appeals -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-appeals" aria-expanded="false" aria-controls="cat-appeals"
+                            data-visual-title="Appeals – JCIT(A), CIT(A), ITAT"
+                            data-visual-text="Drafting statements of facts/grounds, filing Form 35/36 and arguing appeals."
+                            data-visual-img="https://images.unsplash.com/photo-1542228262-3d663b306a53?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-court"></i></span>
+                                Appeals – Representation
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-appeals" class="collapse" data-bs-parent="#appealsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-journal-plus bullet"></i>
+                                    <a href="#!" data-visual-title="Form 35 – Appeal to CIT(A) / JCIT(A)"
+                                        data-visual-text="Prepare grounds, compile paper-book and e-file Form 35."
+                                        data-visual-img="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">CIT(A)
+                                        / JCIT(A) Appeals</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-journal-richtext bullet"></i>
+                                    <a href="#!" data-visual-title="Form 36 – Appeal to ITAT"
+                                        data-visual-text="Draft pleadings, case-law notes and represent before the Tribunal."
+                                        data-visual-img="https://images.unsplash.com/photo-1481887328591-3e277f9473dc?q=80&w=1400&auto=format&fit=crop">ITAT
+                                        Appeals</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-hammer bullet"></i>
+                                    <a href="#!" data-visual-title="Stay of Demand – 220(6)"
+                                        data-visual-text="Stay/instalment applications pending appeal; hearing representation."
+                                        data-visual-img="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop">Stay
+                                        / Instalment of Demand</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Post-assessment & Remedies -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-remedies" aria-expanded="false" aria-controls="cat-remedies"
+                            data-visual-title="Post-assessment Remedies"
+                            data-visual-text="Rectification 154, Revision 264/263, refunds & grievance redressal."
+                            data-visual-img="https://images.unsplash.com/photo-1581091014534-8987c1d2d7d5?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-tools"></i></span>
+                                Post-assessment & Remedies
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-remedies" class="collapse" data-bs-parent="#appealsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-pen bullet"></i>
+                                    <a href="#!" data-visual-title="Rectification – Section 154"
+                                        data-visual-text="Correct mistakes apparent from record and secure quick relief."
+                                        data-visual-img="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1400&auto=format&fit=crop">Rectification
+                                        u/s 154</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-arrow-repeat bullet"></i>
+                                    <a href="#!" data-visual-title="Revision – 264 / 263"
+                                        data-visual-text="Favorable revision u/s 264 and defence in 263 revisionary proceedings."
+                                        data-visual-img="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400&auto=format&fit=crop">Revision
+                                        u/s 264 / 263</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-cash-coin bullet"></i>
+                                    <a href="#!" data-visual-title="Refunds & 245 Adjustments"
+                                        data-visual-text="Follow-up for pending refunds and challenge incorrect set-offs."
+                                        data-visual-img="https://images.unsplash.com/photo-1554224155-1725f2fe4e9f?q=80&w=1400&auto=format&fit=crop">Refunds
+                                        / 245 Adjustments</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cat-gap"></div>
+
+                    <!-- Penalty, Prosecution & TDS CPC -->
+                    <div class="category-card">
+                        <button class="category-head" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cat-penalty" aria-expanded="false" aria-controls="cat-penalty"
+                            data-visual-title="Penalty, Prosecution & CPC-TDS"
+                            data-visual-text="Respond to penalty 270A/271, show-cause notices and CPC-TDS defaults."
+                            data-visual-img="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1400&auto=format&fit=crop">
+                            <span class="category-left">
+                                <span class="category-icon"><i class="bi bi-exclamation-octagon"></i></span>
+                                Penalty, Prosecution & CPC-TDS
+                            </span>
+                            <i class="bi bi-chevron-down chev"></i>
+                        </button>
+
+                        <div id="cat-penalty" class="collapse" data-bs-parent="#appealsAccordion">
+                            <div class="sublist">
+                                <div class="subitem"><i class="bi bi-flag bullet"></i>
+                                    <a href="#!" data-visual-title="Penalty Proceedings – 270A/271"
+                                        data-visual-text="Prepare replies, submissions and seek immunity/waiver where eligible."
+                                        data-visual-img="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">Penalty
+                                        u/s 270A / 271</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-inboxes bullet"></i>
+                                    <a href="#!" data-visual-title="Prosecution Notices"
+                                        data-visual-text="Early engagement and defence strategy for prosecution show-cause."
+                                        data-visual-img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop">Prosecution
+                                        – Show-Cause</a>
+                                </div>
+                                <div class="subitem"><i class="bi bi-diagram-3 bullet"></i>
+                                    <a href="#!" data-visual-title="CPC-TDS Defaults"
+                                        data-visual-text="Resolve short deduction/late fee/interest via corrections and submissions."
+                                        data-visual-img="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1400&auto=format&fit=crop">CPC-TDS
+                                        Defaults & Corrections</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5">
+                <div class="visual-card">
+                    <img id="visualImg" class="visual-img" alt="Service preview"
+                        src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1400&auto=format&fit=crop">
+                    <div class="visual-body">
+                        <h5 id="visualTitle" class="visual-title mb-1">Pre-assessment & Notices</h5>
+                        <p id="visualText" class="visual-text mb-0">
+                            Drafting strong responses to 133(6), 142(1), 143(2) and CPC communications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS (included per your stack) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Update preview on the right
+        function updatePreview(el) {
+            const img = el.getAttribute('data-visual-img');
+            const ttl = el.getAttribute('data-visual-title');
+            const txt = el.getAttribute('data-visual-text');
+            if (img) { document.getElementById('visualImg').src = img; }
+            if (ttl) { document.getElementById('visualTitle').textContent = ttl; }
+            if (txt) { document.getElementById('visualText').textContent = txt; }
+        }
+
+        document.querySelectorAll('.category-head').forEach(btn => {
+            btn.addEventListener('click', () => updatePreview(btn));
+        });
+
+        document.querySelectorAll('.subitem a').forEach(a => {
+            a.addEventListener('mouseenter', () => updatePreview(a));
+            a.addEventListener('focus', () => updatePreview(a));
+            a.addEventListener('click', () => updatePreview(a));
+        });
+    </script>
+</body>
+
+</html>
