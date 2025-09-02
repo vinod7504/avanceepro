@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TDS Return Filing | AvanceePro</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
+
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary: #0d3b66;
+            --accent: #1a659e;
+            --gold: #f4b942;
+            --ink: #0b1220;
+            --muted: #5f6f89;
+            --line: #e9eef6;
+        }
+
+        body {
+            background: #fbfdff;
+            color: var(--ink)
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary) !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .08)
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: 700
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .9) !important;
+            position: relative
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff !important
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 2px;
+            width: 0;
+            background: var(--gold);
+            transition: width .2s
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%
+        }
+
+        .btn-outline-light {
+            --bs-btn-hover-bg: rgba(255, 255, 255, .12);
+            --bs-btn-hover-border-color: #fff
+        }
+
+        /* Page */
+        .crumbs a {
+            color: #335d92;
+            text-decoration: none
+        }
+
+        .crumbs a:hover {
+            text-decoration: underline
+        }
+
+        .leader-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: .45rem .9rem;
+            box-shadow: 0 8px 20px rgba(13, 59, 102, .06);
+            font-weight: 700;
+            color: #1d2b4a
+        }
+
+        .leader-badge i {
+            color: #f4b942
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .2px;
+            color: #10233f
+        }
+
+        .tick {
+            color: #12a150
+        }
+
+        .left-wrap {
+            padding-right: 6%
+        }
+
+        .bullet-points li {
+            margin-bottom: .65rem
+        }
+
+        .bullet-points i {
+            color: #0d9a4a;
+            margin-right: .5rem
+        }
+
+        @media (max-width:991.98px) {
+            .left-wrap {
+                padding-right: 0
+            }
+        }
+
+        /* Right form card */
+        .apply-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 12px 28px rgba(13, 59, 102, .08);
+            padding: 22px
+        }
+
+        .apply-card h5 {
+            font-weight: 800;
+            color: #14263f
+        }
+
+        .apply-card .form-control {
+            height: 48px
+        }
+
+        .apply-btn {
+            background: #09233e;
+            color: #fff;
+            font-weight: 700;
+            height: 52px;
+            border-radius: 10px;
+            border: none
+        }
+
+        .apply-btn:hover {
+            filter: brightness(1.08)
+        }
+
+        /* Toggle */
+        .toggle {
+            --w: 44px;
+            --h: 24px;
+            position: relative;
+            width: var(--w);
+            height: var(--h);
+            border-radius: 999px;
+            background: #dbe5f1;
+            cursor: pointer
+        }
+
+        .toggle input {
+            display: none
+        }
+
+        .toggle .knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            transition: all .18s
+        }
+
+        .toggle input:checked+.knob {
+            left: 23px
+        }
+
+        .toggle input:checked~.track {
+            background: #23c36b
+        }
+
+        .toggle .track {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: #dbe5f1;
+            transition: background .18s;
+            z-index: -1
+        }
+
+        /* Chips */
+        .feature-chip {
+            display: inline-flex;
+            gap: .5rem;
+            align-items: center;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: .35rem .7rem
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png"
+                    alt="AvanceePro" style="height:38px">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <!-- Consult dropdown -->
+                    <li class="nav-item dropdown me-lg-2">
+                        <a class="btn btn-warning text-dark fw-semibold dropdown-toggle" href="#" id="consultMenu"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-headset me-1"></i> Consult an Expert
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="consultMenu">
+                            <li><a class="dropdown-item" href="#">Talk to Consultant</a></li>
+                            <li><a class="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#loginPanel">
+                            Login
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="loginPanel" aria-labelledby="loginPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="loginPanelLabel">Login or Create an Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="User Login/Contact – AvanceePro">
+                <input type="hidden" name="Source" value="Login Panel">
+
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    <input name="Email" type="email" class="form-control" placeholder="Enter email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input name="Phone" type="tel" class="form-control" placeholder="Enter phone number" required>
+                </div>
+
+                <button class="btn btn-warning w-100 fw-semibold text-dark" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <main class="container py-4 py-lg-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3 crumbs">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="tax-compliance.html">Tax Compliance</a></li>
+                <li class="breadcrumb-item active" aria-current="page">TDS Return Filing</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4 g-lg-5 align-items-start">
+            <!-- Left: Heading + copy -->
+            <div class="col-lg-7 left-wrap">
+                <span class="leader-badge mb-3">
+                    <i class="bi bi-cash-coin"></i> Quarterly TDS/TCS e-filing support (NSDL/RPU-FVU)
+                </span>
+
+                <h1 class="display-5 hero-title mt-2">
+                    TDS Return Filing:
+                    24Q, 26Q, 27Q, 27EQ with Challan & Deductee Validation
+                </h1>
+
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                    <span class="feature-chip"><i class="bi bi-file-spreadsheet"></i> FVU Generation</span>
+                    <span class="feature-chip"><i class="bi bi-shield-check"></i> PAN/TAN Validation</span>
+                    <span class="feature-chip"><i class="bi bi-cloud-upload"></i> Portal Upload & Acknowledgement</span>
+                </div>
+
+                <ul class="list-unstyled bullet-points mt-3 fs-5">
+                    <li><i class="bi bi-check2-circle tick"></i>Original & Correction returns; Justification report
+                        handling.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Traces challan-deductee mapping, BIN validation & CSI
+                        checks.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Form-wise support: <strong>24Q (Salary), 26Q (Domestic),
+                            27Q (Non-resident), 27EQ (TCS)</strong>.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Late fee/interest computation and <strong>notice
+                            resolution</strong>.</li>
+                </ul>
+
+                <hr class="my-4">
+                <div class="row g-3 text-muted">
+                    <div class="col-6 col-md-4"><i class="bi bi-alarm me-2 text-primary"></i>Quarterly timelines</div>
+                    <div class="col-6 col-md-4"><i class="bi bi-clipboard2-check me-2 text-primary"></i>FVU-compliant
+                        files</div>
+                    <div class="col-12 col-md-4"><i class="bi bi-people me-2 text-primary"></i>1:1 Expert help</div>
+                </div>
+
+                <!-- Documents Required -->
+                <div class="mt-4">
+                    <h4 class="h5 fw-bold">Documents Required</h4>
+                    <ul class="mt-2">
+                        <li>TAN, Organisation Name & Address</li>
+                        <li>Deductee details (Name, PAN, section, amount, TDS)</li>
+                        <li>Challan details (BSR, Date, CIN, Amount) & CSI file</li>
+                        <li>Salary sheets (for 24Q) / Vendor registers (for 26Q)</li>
+                        <li>Any previous FVU/acknowledgement (for corrections)</li>
+                    </ul>
+                </div>
+
+                <!-- Process -->
+                <div class="mt-3">
+                    <h4 class="h5 fw-bold">Our Process</h4>
+                    <ol class="mt-2">
+                        <li>Collect data & challans, validate PAN/TAN</li>
+                        <li>Prepare RPU, generate FVU & fix errors</li>
+                        <li>Upload on portal & share acknowledgement</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Right: Apply form -->
+            <div class="col-lg-5">
+                <div class="apply-card">
+                    <h5 class="mb-3">Start Your TDS Return</h5>
+
+                    <!-- FormSubmit: sends an email to services@avanceepro.in -->
+                    <form action="https://formsubmit.co/services@avanceepro.in" method="POST"
+                        enctype="multipart/form-data">
+                        <!-- Controls -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="New Lead – TDS Return Filing">
+                        <input type="hidden" name="_autoresponse"
+                            value="Thank you for contacting AvanceePro regarding TDS Return Filing. Our team will reach out shortly.">
+                        <input type="hidden" name="Service" value="TDS Return Filing">
+                        <input type="hidden" name="Source" value="TDS Return Filing Page">
+                        <input type="hidden" name="Priority" id="priorityField" value="Normal">
+                        <!-- Optional redirect -->
+                        <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html"> -->
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="Email" placeholder="you@business.com"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" name="Mobile Number" placeholder="10-digit mobile"
+                                pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">City / Pincode</label>
+                            <input type="text" class="form-control" name="City/Pincode"
+                                placeholder="e.g. Hyderabad 500001" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">TAN</label>
+                            <input type="text" class="form-control" name="TAN" placeholder="BLRA12345B"
+                                pattern="[A-Z]{4}[0-9]{5}[A-Z]{1}" style="text-transform:uppercase" required>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Financial Year</label>
+                                <input type="text" class="form-control" name="Financial Year" placeholder="2025-26"
+                                    pattern="[0-9]{4}-[0-9]{2}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Quarter</label>
+                                <select class="form-select" name="Quarter" required>
+                                    <option value="" selected disabled>Select quarter</option>
+                                    <option>Q1 (Apr–Jun)</option>
+                                    <option>Q2 (Jul–Sep)</option>
+                                    <option>Q3 (Oct–Dec)</option>
+                                    <option>Q4 (Jan–Mar)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Form Type</label>
+                                <select class="form-select" name="Form Type" required>
+                                    <option value="" selected disabled>Select</option>
+                                    <option>24Q (Salary)</option>
+                                    <option>26Q (Domestic)</option>
+                                    <option>27Q (Non-resident)</option>
+                                    <option>27EQ (TCS)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Return Type</label>
+                                <select class="form-select" name="Return Type" required>
+                                    <option value="" selected disabled>Select</option>
+                                    <option>Original</option>
+                                    <option>Correction</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">No. of Deductees</label>
+                                <input type="number" class="form-control" name="Deductees" min="1" placeholder="e.g. 12"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total TDS Deposited (₹)</label>
+                                <input type="number" class="form-control" name="Total TDS" min="0" step="0.01"
+                                    placeholder="e.g. 15420.00" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Upload Data (Excel/CSV/RPU) & CSI</label>
+                            <input type="file" class="form-control" name="Data Files"
+                                accept=".xls,.xlsx,.csv,.txt,.zip,.7z,.rar" multiple required>
+                            <small class="text-muted">You may upload multiple files (Challan/BSR/CSI, deductee sheet,
+                                prior FVU/ack).</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Notes / Specific Requests</label>
+                            <textarea class="form-control" name="Notes" rows="3"
+                                placeholder="Any additions: late fee/interest calc, correction category, etc."></textarea>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <small class="text-muted">Get updates via <i class="bi bi-whatsapp text-success"></i>
+                                WhatsApp</small>
+                            <label class="toggle ms-2">
+                                <input type="checkbox" name="WhatsApp updates" value="Yes" checked>
+                                <span class="knob"></span>
+                                <span class="track"></span>
+                            </label>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <small class="text-muted">Mark as <span class="fw-semibold">Urgent</span></small>
+                            <label class="toggle ms-2" id="priorityToggle">
+                                <input type="checkbox">
+                                <span class="knob"></span>
+                                <span class="track"></span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="apply-btn w-100">File My TDS Return</button>
+                    </form>
+
+                    <div class="small text-muted mt-3">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Timelines depend on data completeness and portal availability.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-4 border-top" style="background:#f7fafc">
+        <div class="container small text-muted d-flex flex-wrap justify-content-between gap-2">
+            <span>© 2025 AvanceePro Business Services Pvt Ltd</span>
+            <span>
+                <a class="text-decoration-none me-3"
+                    href="https://www.linkedin.com/in/avancee-pro-51001bbb/">LinkedIn</a>
+                <a class="text-decoration-none" href="https://wa.me/919164453153">WhatsApp</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Uppercase TAN as user types
+        document.addEventListener('input', (e) => {
+            if (e.target && e.target.name === 'TAN') {
+                e.target.value = e.target.value.toUpperCase();
+            }
+        });
+
+        // Urgency toggle -> hidden field
+        const priorityToggle = document.getElementById('priorityToggle');
+        const priorityField = document.getElementById('priorityField');
+        if (priorityToggle) {
+            priorityToggle.addEventListener('change', (e) => {
+                const checked = e.target.querySelector('input').checked;
+                priorityField.value = checked ? 'High' : 'Normal';
+            });
+        }
+    </script>
+</body>
+
+</html>

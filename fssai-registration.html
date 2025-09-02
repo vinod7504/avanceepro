@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FSSAI Registration & License | AvanceePro</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
+
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary: #0d3b66;
+            --accent: #1a659e;
+            --gold: #f4b942;
+            --ink: #0b1220;
+            --muted: #5f6f89;
+            --line: #e9eef6;
+        }
+
+        body {
+            background: #fbfdff;
+            color: var(--ink)
+        }
+
+        /* ===== Navbar ===== */
+        .navbar {
+            background: var(--primary) !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .08)
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: 700
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .9) !important;
+            position: relative
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff !important
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 2px;
+            width: 0;
+            background: var(--gold);
+            transition: width .2s ease
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%
+        }
+
+        .btn-outline-light {
+            --bs-btn-hover-bg: rgba(255, 255, 255, .12);
+            --bs-btn-hover-border-color: #fff
+        }
+
+        /* ===== Page ===== */
+        .crumbs a {
+            color: #335d92;
+            text-decoration: none
+        }
+
+        .crumbs a:hover {
+            text-decoration: underline
+        }
+
+        .leader-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: .45rem .9rem;
+            box-shadow: 0 8px 20px rgba(13, 59, 102, .06);
+            font-weight: 700;
+            color: #1d2b4a
+        }
+
+        .leader-badge i {
+            color: #f4b942
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .2px;
+            color: #10233f
+        }
+
+        .tick {
+            color: #12a150
+        }
+
+        /* Right card (form) */
+        .apply-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 12px 28px rgba(13, 59, 102, .08);
+            padding: 22px
+        }
+
+        .apply-card h5 {
+            font-weight: 800;
+            color: #14263f
+        }
+
+        .apply-card .form-control,
+        .apply-card .form-select {
+            height: 48px
+        }
+
+        .apply-btn {
+            background: #09233e;
+            color: #fff;
+            font-weight: 700;
+            height: 52px;
+            border-radius: 10px;
+            border: none
+        }
+
+        .apply-btn:hover {
+            filter: brightness(1.08)
+        }
+
+        .toggle {
+            --w: 44px;
+            --h: 24px;
+            position: relative;
+            width: var(--w);
+            height: var(--h);
+            border-radius: 999px;
+            background: #dbe5f1;
+            cursor: pointer
+        }
+
+        .toggle input {
+            display: none
+        }
+
+        .toggle .knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            transition: all .18s ease
+        }
+
+        .toggle input:checked+.knob {
+            left: 23px;
+            background: #fff
+        }
+
+        .toggle input:checked~.track {
+            background: #23c36b
+        }
+
+        .toggle .track {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: #dbe5f1;
+            transition: background .18s ease;
+            z-index: -1
+        }
+
+        /* Left content */
+        .left-wrap {
+            padding-right: 6%
+        }
+
+        .bullet-points li {
+            margin-bottom: .65rem
+        }
+
+        .bullet-points i {
+            color: #0d9a4a;
+            margin-right: .5rem
+        }
+
+        .doc-chip {
+            display: inline-block;
+            border: 1px dashed var(--accent);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: .25rem .6rem;
+            margin: .2rem .3rem .2rem 0;
+            font-size: .9rem
+        }
+
+        @media (max-width:991.98px) {
+            .left-wrap {
+                padding-right: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
+                    alt="AvanceePro" style="height:38px">
+                <span class="d-none d-sm-inline">AvanceePro</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <!-- Consult dropdown -->
+                    <li class="nav-item dropdown me-lg-2">
+                        <a class="btn btn-warning text-dark fw-semibold dropdown-toggle" href="#" id="consultMenu"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-headset me-1"></i> Consult an Expert
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="consultMenu">
+                            <li><a class="dropdown-item" href="#">Talk to Consultant</a></li>
+                            <li><a class="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#loginPanel">
+                            Login
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== Login Offcanvas ===== -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="loginPanel" aria-labelledby="loginPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="loginPanelLabel">Login or Create an Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="User Login/Contact – AvanceePro">
+                <input type="hidden" name="Source" value="Login Panel">
+
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    <input name="Email" type="email" class="form-control" placeholder="Enter email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input name="Phone" type="tel" class="form-control" placeholder="Enter phone number" required>
+                </div>
+
+                <button class="btn btn-warning w-100 fw-semibold text-dark" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Page Content ===== -->
+    <main class="container py-4 py-lg-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3 crumbs">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="licenses.html">Licenses & Registrations</a></li>
+                <li class="breadcrumb-item active" aria-current="page">FSSAI Registration / License</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4 g-lg-5 align-items-start">
+            <!-- Left: heading + copy -->
+            <div class="col-lg-7 left-wrap">
+                <span class="leader-badge mb-3">
+                    <i class="bi bi-award-fill"></i> Hassle-free FSSAI licensing across India
+                </span>
+
+                <h1 class="display-5 hero-title mt-2">
+                    FSSAI Registration & License:
+                    Basic, State & Central – End-to-End Support
+                </h1>
+
+                <ul class="list-unstyled bullet-points mt-3 fs-5">
+                    <li><i class="bi bi-check2-circle tick"></i>Guidance on <strong>Basic / State / Central</strong>
+                        license selection.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Application, inspections (if any) &
+                        <strong>renewals</strong> handled by experts.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Help with <strong>Food Category & Product List</strong>,
+                        label & premise details.</li>
+                    <li><i class="bi bi-check2-circle tick"></i>Fast processing with accurate documentation to avoid
+                        queries.</li>
+                </ul>
+
+                <hr class="my-4">
+
+                <!-- Document Checklist Chips -->
+                <h5 class="mb-2">Quick document checklist</h5>
+                <div class="mb-3">
+                    <span class="doc-chip"><i class="bi bi-file-earmark-text me-1"></i>Business PAN</span>
+                    <span class="doc-chip"><i class="bi bi-person-badge me-1"></i>Promoter ID & Address</span>
+                    <span class="doc-chip"><i class="bi bi-geo-alt me-1"></i>Premises Proof / NOC</span>
+                    <span class="doc-chip"><i class="bi bi-receipt me-1"></i>Entity Certificate (e.g., GST/Udyam)</span>
+                    <span class="doc-chip"><i class="bi bi-basket3 me-1"></i>Food Category / Product List</span>
+                    <span class="doc-chip"><i class="bi bi-journal-text me-1"></i>Layout / Utility Bills (if
+                        asked)</span>
+                </div>
+
+                <!-- FAQ -->
+                <div class="mt-3">
+                    <div class="accordion" id="faqAcc">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="q1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+                                    Which license should I choose—Basic, State or Central?
+                                </button>
+                            </h2>
+                            <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1"
+                                data-bs-parent="#faqAcc">
+                                <div class="accordion-body">
+                                    <strong>Basic</strong> (turnover ≤ ₹12L for petty FBOs), <strong>State</strong>
+                                    (turnover up to ₹20 Cr or as per category),
+                                    <strong>Central</strong> (turnover above State limits, import/export, or specific
+                                    categories). We assess your business and advise appropriately.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mt-2">
+                            <h2 class="accordion-header" id="q2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+                                    How long is the license valid?
+                                </button>
+                            </h2>
+                            <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2"
+                                data-bs-parent="#faqAcc">
+                                <div class="accordion-body">
+                                    1–5 years. We also handle timely renewals so you stay compliant.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: apply form card -->
+            <div class="col-lg-5">
+                <div class="apply-card">
+                    <h5 class="mb-3">Apply for FSSAI Registration / License</h5>
+
+                    <!-- FormSubmit: sends an email to services@avanceepro.in -->
+                    <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                        <!-- FormSubmit controls -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="New Lead – FSSAI Registration/License">
+                        <input type="hidden" name="_autoresponse"
+                            value="Thank you for contacting AvanceePro! Our licensing team will reach out to you shortly.">
+                        <input type="hidden" name="Service" value="FSSAI Registration / License">
+
+                        <div class="mb-3">
+                            <label class="form-label">Business / Brand Name</label>
+                            <input type="text" class="form-control" name="Business Name"
+                                placeholder="e.g. FreshBite Foods" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Applicant Name</label>
+                            <input type="text" class="form-control" name="Applicant Name" placeholder="As per ID proof"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="Email" placeholder="you@business.com"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" name="Mobile Number" placeholder="10-digit mobile"
+                                pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-7">
+                                <div class="mb-3">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" name="City" placeholder="e.g. Bengaluru"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="mb-3">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" name="State" placeholder="e.g. Karnataka"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nature of Business</label>
+                            <select class="form-select" name="Nature of Business" required>
+                                <option value="" selected disabled>Select</option>
+                                <option>Manufacturer</option>
+                                <option>Trader / Distributor</option>
+                                <option>Retailer</option>
+                                <option>Restaurant / Cloud Kitchen</option>
+                                <option>Transporter / Warehouse</option>
+                                <option>Importer / Exporter</option>
+                                <option>E-commerce / Online Seller</option>
+                                <option>Other FBO</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Estimated Annual Turnover</label>
+                            <select class="form-select" name="Turnover" required>
+                                <option value="" selected disabled>Select range (₹)</option>
+                                <option>Up to 12 Lakhs</option>
+                                <option>12L – 1 Cr</option>
+                                <option>1 Cr – 20 Cr</option>
+                                <option>20 Cr – 50 Cr</option>
+                                <option>50 Cr+</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">License Type Needed</label>
+                            <select class="form-select" name="License Type" required>
+                                <option value="" selected disabled>Select</option>
+                                <option>Basic Registration</option>
+                                <option>State License</option>
+                                <option>Central License</option>
+                                <option>Not sure – need guidance</option>
+                            </select>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Preferred Validity</label>
+                                    <select class="form-select" name="Validity">
+                                        <option value="" selected disabled>Select years</option>
+                                        <option>1 Year</option>
+                                        <option>2 Years</option>
+                                        <option>3 Years</option>
+                                        <option>4 Years</option>
+                                        <option>5 Years</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Multiple Locations?</label>
+                                    <select class="form-select" name="Multi Location">
+                                        <option>No</option>
+                                        <option>Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Food Category / Products (brief)</label>
+                            <input type="text" class="form-control" name="Food Category"
+                                placeholder="e.g., bakery, dairy, snacks, beverages">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Any notes for us? (optional)</label>
+                            <textarea class="form-control" name="Notes" rows="3"
+                                placeholder="Premise status (owned/rented), cold storage, labels, import/export etc."></textarea>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <small class="text-muted">Get easy updates through <i
+                                    class="bi bi-whatsapp text-success"></i> WhatsApp</small>
+                            <label class="toggle ms-2">
+                                <input type="checkbox" name="WhatsApp updates" value="Yes" checked>
+                                <span class="knob"></span>
+                                <span class="track"></span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="apply-btn w-100">Get Started</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (minimal) -->
+    <footer class="py-4 mt-4 border-top" style="background:#f7fafc">
+        <div class="container small text-muted d-flex flex-wrap justify-content-between gap-2">
+            <span>© 2025 AvanceePro Business Services Pvt Ltd</span>
+            <span>
+                <a class="text-decoration-none me-3"
+                    href="https://www.linkedin.com/in/avancee-pro-51001bbb/">LinkedIn</a>
+                <a class="text-decoration-none" href="https://wa.me/919164453153">WhatsApp</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
