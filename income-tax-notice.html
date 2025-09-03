@@ -81,23 +81,6 @@
             text-decoration: underline
         }
 
-        .leader-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            background: #fff;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            padding: .45rem .9rem;
-            box-shadow: 0 8px 20px rgba(13, 59, 102, .06);
-            font-weight: 700;
-            color: #1d2b4a
-        }
-
-        .leader-badge i {
-            color: #f4b942
-        }
-
         .hero-title {
             font-weight: 800;
             letter-spacing: .2px;
@@ -122,7 +105,8 @@
             color: #14263f
         }
 
-        .apply-card .form-control {
+        .apply-card .form-control,
+        .apply-card .form-select {
             height: 48px
         }
 
@@ -139,6 +123,7 @@
             filter: brightness(1.08)
         }
 
+        /* Toggle */
         .toggle {
             --w: 44px;
             --h: 24px;
@@ -196,6 +181,7 @@
             margin-right: .5rem
         }
 
+        /* Extras */
         .callout {
             background: #f6fbff;
             border: 1px dashed #cfe4ff;
@@ -232,7 +218,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
@@ -284,6 +269,9 @@
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_subject" value="User Login/Contact – AvanceePro">
                 <input type="hidden" name="Source" value="Login Panel">
+                <input type="hidden" name="_autoresponse"
+                    value="Thank you! AvanceePro has received your request. Our team will contact you shortly.">
+                <input type="hidden" name="_next" value="">
 
                 <div class="mb-3">
                     <label class="form-label">Email address</label>
@@ -313,14 +301,7 @@
         <div class="row g-4 g-lg-5 align-items-start">
             <!-- Left: heading + copy -->
             <div class="col-lg-7 left-wrap">
-                <!-- <span class="leader-badge mb-3">
-                    <i class="bi bi-shield-check"></i> Expert replies to Income Tax Notices with end-to-end
-                    representation
-                </span> -->
-
-                <h1 class="display-5 hero-title mt-2">
-                    Income Tax Notice: Drafting, Replies & Representation
-                </h1>
+                <h1 class="display-5 hero-title mt-2">Income Tax Notice: Drafting, Replies & Representation</h1>
 
                 <p class="mt-3 fs-5 text-secondary">
                     Received a notice from the Income Tax Department? Our team analyses the notice, gathers evidence,
@@ -372,15 +353,6 @@
                     <strong><i class="bi bi-info-circle me-2"></i>Tip:</strong>
                     Keep your <em>DIN</em> (Document Identification Number), PAN, Assessment Year, and AO details handy.
                 </div>
-
-                <!-- <hr class="my-4">
-                <div class="row g-3 text-muted">
-                    <div class="col-6 col-md-4"><i class="bi bi-clock-history me-2 text-primary"></i>Faster Turnaround
-                    </div>
-                    <div class="col-6 col-md-4"><i class="bi bi-shield-lock me-2 text-primary"></i>Data Security</div>
-                    <div class="col-12 col-md-4"><i class="bi bi-people me-2 text-primary"></i>Dedicated CA Support
-                    </div>
-                </div> -->
             </div>
 
             <!-- Right: enquiry form card -->
@@ -397,6 +369,8 @@
                         <input type="hidden" name="_autoresponse"
                             value="Thank you for contacting AvanceePro! Our team will reach out to you shortly.">
                         <input type="hidden" name="Service" value="Income Tax Notice">
+                        <input type="hidden" name="Source" value="Income Tax Notice Page">
+                        <input type="hidden" name="_next" value="">
 
                         <div class="mb-3">
                             <label class="form-label">Email</label>
@@ -475,8 +449,55 @@
         </div>
     </footer>
 
+    <!-- Success Modal (global for the page) -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-5">✅ Thank you! We will contact you soon.</div>
+                <div class="modal-footer">
+                    <button type="button" id="successOkBtn" class="btn btn-success">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Success redirect & modal logic (same as your GST page) -->
+    <script>
+        (function () {
+            // Auto-fill each hidden _next to redirect back with ?success=1
+            const successUrl = `${location.origin}${location.pathname}?success=1`;
+            document.querySelectorAll('input[name="_next"]').forEach(el => el.value = successUrl);
+
+            // If returned with success=1, show modal and then clean URL
+            const params = new URLSearchParams(location.search);
+            if (params.get('success') === '1') {
+                const modalEl = document.getElementById('successModal');
+                const modal = new bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false });
+                modal.show();
+
+                // On OK: clean URL and reload (optional but keeps forms fresh)
+                document.getElementById('successOkBtn').addEventListener('click', () => {
+                    const cleanUrl = location.pathname + location.hash;
+                    history.replaceState({}, document.title, cleanUrl);
+                    location.reload();
+                });
+
+                // Also clean URL if user closes via (x)
+                modalEl.addEventListener('hidden.bs.modal', () => {
+                    const cleanUrl = location.pathname + location.hash;
+                    history.replaceState({}, document.title, cleanUrl);
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>

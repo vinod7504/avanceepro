@@ -5,15 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Annual Compliance (ROC, ITR, GST, TDS) | AvanceePro</title>
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png"
         href="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo">
-
-    <!-- Bootstrap + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
     <style>
         :root {
             --primary: #0d3b66;
@@ -21,7 +16,7 @@
             --gold: #f4b942;
             --ink: #0b1220;
             --muted: #5f6f89;
-            --line: #e9eef6;
+            --line: #e9eef6
         }
 
         body {
@@ -29,7 +24,6 @@
             color: var(--ink)
         }
 
-        /* ===== Navbar ===== */
         .navbar {
             background: var(--primary) !important;
             box-shadow: 0 2px 12px rgba(0, 0, 0, .08)
@@ -71,7 +65,6 @@
             --bs-btn-hover-border-color: #fff
         }
 
-        /* ===== Page ===== */
         .crumbs a {
             color: #335d92;
             text-decoration: none
@@ -108,7 +101,6 @@
             color: #12a150
         }
 
-        /* Right card (form) */
         .apply-card {
             background: #fff;
             border: 1px solid var(--line);
@@ -184,7 +176,6 @@
             z-index: -1
         }
 
-        /* Left content card */
         .left-wrap {
             padding-right: 6%
         }
@@ -204,7 +195,6 @@
             }
         }
 
-        /* mini chips */
         .chip {
             display: inline-flex;
             align-items: center;
@@ -223,23 +213,18 @@
 </head>
 
 <body>
-
-    <!-- ===== Navbar ===== -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
                 <img src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
                     alt="AvanceePro" style="height:38px">
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                    <!-- Consult dropdown -->
                     <li class="nav-item dropdown me-lg-2">
                         <a class="btn btn-warning text-dark fw-semibold dropdown-toggle" href="#" id="consultMenu"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -250,22 +235,16 @@
                             <li><a class="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
                         </ul>
                     </li>
-
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-
-                    <li class="nav-item ms-lg-2">
-                        <button class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#loginPanel">
-                            Login
-                        </button>
-                    </li>
+                    <li class="nav-item ms-lg-2"><button class="btn btn-outline-light" data-bs-toggle="offcanvas"
+                            data-bs-target="#loginPanel">Login</button></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ===== Login Offcanvas ===== -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="loginPanel" aria-labelledby="loginPanelLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="loginPanelLabel">Login or Create an Account</h5>
@@ -277,7 +256,9 @@
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_subject" value="User Login/Contact – AvanceePro">
                 <input type="hidden" name="Source" value="Login Panel">
-
+                <input type="hidden" name="_autoresponse"
+                    value="Thank you! AvanceePro has received your request. Our team will contact you shortly.">
+                <input type="hidden" name="_next" value="">
                 <div class="mb-3">
                     <label class="form-label">Email address</label>
                     <input name="Email" type="email" class="form-control" placeholder="Enter email" required>
@@ -286,15 +267,12 @@
                     <label class="form-label">Phone Number</label>
                     <input name="Phone" type="tel" class="form-control" placeholder="Enter phone number" required>
                 </div>
-
                 <button class="btn btn-warning w-100 fw-semibold text-dark" type="submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <!-- ===== Page Content ===== -->
     <main class="container py-4 py-lg-5">
-        <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="mb-3 crumbs">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -305,14 +283,8 @@
 
         <div class="row g-4 g-lg-5 align-items-start">
             <div class="col-lg-7 left-wrap">
-                <!-- <span class="leader-badge mb-3">
-                    <i class="bi bi-award-fill"></i> End-to-end annual compliance managed by experts
-                </span> -->
-
-                <h1 class="display-5 hero-title mt-2">
-                    Annual Compliance for Companies, LLPs & Firms — ROC, ITR, GST, TDS & Audit
-                </h1>
-
+                <h1 class="display-5 hero-title mt-2">Annual Compliance for Companies, LLPs &amp; Firms — ROC, ITR, GST,
+                    TDS &amp; Audit</h1>
                 <ul class="list-unstyled bullet-points mt-3 fs-5">
                     <li><i class="bi bi-check2-circle tick"></i>Secretarial filings: <strong>AOC-4, MGT-7/7A, DIR-3
                             KYC</strong> (companies).</li>
@@ -320,37 +292,24 @@
                         compliance.</li>
                     <li><i class="bi bi-check2-circle tick"></i>Tax: <strong>ITR, TDS returns, GST annual return
                             (GSTR-9/9C)</strong>.</li>
-                    <li><i class="bi bi-check2-circle tick"></i>Books, audit coordination & <strong>due-date
+                    <li><i class="bi bi-check2-circle tick"></i>Books, audit coordination &amp; <strong>due-date
                             tracking</strong> with timely reminders.</li>
                 </ul>
-
-                <!-- <hr class="my-4">
-
-                <div class="mb-3">
-                    <span class="chip"><i class="bi bi-calendar-check"></i> Due-date alerts</span>
-                    <span class="chip"><i class="bi bi-clipboard-check"></i> Checklists</span>
-                    <span class="chip"><i class="bi bi-shield-check"></i> Govt. compliant</span>
-                    <span class="chip"><i class="bi bi-people"></i> Dedicated CA</span>
-                </div> -->
-
                 <div class="mt-3 p-3 border rounded-3 bg-light">
                     <div class="fw-semibold mb-2"><i class="bi bi-folder-check me-2"></i>Documents (indicative)</div>
                     <ul class="mb-0">
                         <li>MOA/AOA or LLP Deed / Partnership Deed</li>
-                        <li>Financials: Trial balance, BS & P&L, ledgers, bank statements</li>
-                        <li>GST/TDS challans & returns, Form 26AS/AIS</li>
-                        <li>Directors/Partners KYC & DSC validity</li>
+                        <li>Financials: Trial balance, BS &amp; P&amp;L, ledgers, bank statements</li>
+                        <li>GST/TDS challans &amp; returns, Form 26AS/AIS</li>
+                        <li>Directors/Partners KYC &amp; DSC validity</li>
                     </ul>
                 </div>
-
                 <div class="mt-4">
                     <div class="accordion" id="faq">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="q1">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#a1">
-                                    What entities need annual ROC filing?
-                                </button>
+                                    data-bs-target="#a1">What entities need annual ROC filing?</button>
                             </h2>
                             <div id="a1" class="accordion-collapse collapse" data-bs-parent="#faq">
                                 <div class="accordion-body">All companies (Private/Public/Section-8) and LLPs registered
@@ -361,9 +320,7 @@
                         <div class="accordion-item mt-2">
                             <h2 class="accordion-header" id="q2">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#a2">
-                                    Can you also handle GST/TDS/ITR end-to-end?
-                                </button>
+                                    data-bs-target="#a2">Can you also handle GST/TDS/ITR end-to-end?</button>
                             </h2>
                             <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faq">
                                 <div class="accordion-body">Yes, we cover bookkeeping, TDS returns, GST monthly/annual,
@@ -374,21 +331,17 @@
                 </div>
             </div>
 
-            <!-- Right: apply form card -->
             <div class="col-lg-5">
                 <div class="apply-card">
                     <h5 class="mb-3">Start Your Annual Compliance</h5>
-
-                    <!-- FormSubmit: sends an email to services@avanceepro.in -->
                     <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
-                        <!-- FormSubmit controls -->
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_subject" value="New Annual Compliance Lead">
                         <input type="hidden" name="_autoresponse"
                             value="Thank you for contacting AvanceePro! Our compliance team will reach out to you shortly.">
                         <input type="hidden" name="Service" value="Annual Compliance">
-
+                        <input type="hidden" name="_next" value="">
                         <div class="mb-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-select" name="Entity Type" required>
@@ -400,7 +353,6 @@
                                 <option>Section 8 / NGO</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Financial Year</label>
                             <select class="form-select" name="Financial Year" required>
@@ -410,25 +362,21 @@
                                 <option>FY 2025-26</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" name="Email" placeholder="you@company.com"
                                 required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Mobile Number</label>
                             <input type="tel" class="form-control" name="Mobile Number" placeholder="10-digit mobile"
                                 pattern="[0-9]{10}" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">City / Pincode</label>
                             <input type="text" class="form-control" name="City/Pincode"
                                 placeholder="e.g. Bengaluru 560102" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Services Required</label>
                             <div class="row g-2">
@@ -443,7 +391,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="Services[]"
                                             value="LLP Form 11 & Form 8">
-                                        <label class="form-check-label small">LLP Form 11 & Form 8</label>
+                                        <label class="form-check-label small">LLP Form 11 &amp; Form 8</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -484,24 +432,20 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Turnover Range</label>
                             <select class="form-select" name="Turnover">
-                                <option value="< 20L">
-                                    < ₹20 Lakh</option>
+                                <option value="< 20L">&lt; ₹20 Lakh</option>
                                 <option value="20L - 1Cr">₹20 Lakh – ₹1 Cr</option>
                                 <option value="1Cr - 5Cr">₹1 Cr – ₹5 Cr</option>
-                                <option value="> 5Cr">> ₹5 Cr</option>
+                                <option value="> 5Cr">&gt; ₹5 Cr</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Notes (optional)</label>
                             <textarea class="form-control" name="Notes" rows="3"
                                 placeholder="Tell us about pending filings, notices, or timelines…"></textarea>
                         </div>
-
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <small class="text-muted">Get easy updates through <i
                                     class="bi bi-whatsapp text-success"></i> WhatsApp</small>
@@ -511,7 +455,6 @@
                                 <span class="track"></span>
                             </label>
                         </div>
-
                         <button type="submit" class="apply-btn w-100">Get Started</button>
                     </form>
                 </div>
@@ -519,7 +462,22 @@
         </div>
     </main>
 
-    <!-- Footer (minimal) -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-5">✅ Thank you! We will contact you soon.</div>
+                <div class="modal-footer">
+                    <button type="button" id="successOkBtn" class="btn btn-success">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="py-4 mt-4 border-top" style="background:#f7fafc">
         <div class="container small text-muted d-flex flex-wrap justify-content-between gap-2">
             <span>© 2025 AvanceePro Business Services Pvt Ltd</span>
@@ -531,8 +489,29 @@
         </div>
     </footer>
 
-    <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function () {
+            const successUrl = `${location.origin}${location.pathname}?success=1`;
+            document.querySelectorAll('input[name="_next"]').forEach(el => el.value = successUrl);
+
+            const params = new URLSearchParams(location.search);
+            if (params.get('success') === '1') {
+                const modalEl = document.getElementById('successModal');
+                const modal = new bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false });
+                modal.show();
+                document.getElementById('successOkBtn').addEventListener('click', () => {
+                    const cleanUrl = location.pathname + location.hash;
+                    history.replaceState({}, document.title, cleanUrl);
+                    location.reload();
+                });
+                modalEl.addEventListener('hidden.bs.modal', () => {
+                    const cleanUrl = location.pathname + location.hash;
+                    history.replaceState({}, document.title, cleanUrl);
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
