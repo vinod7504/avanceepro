@@ -216,6 +216,13 @@ body {
     background: none;
     color: var(--primary);
   }
+
+  .hero-title-animated {
+    animation: none;
+    background: none;
+    color: #ffffff;
+    filter: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -566,6 +573,38 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(2rem, 4.8vw, 4.2rem);
   font-weight: 800;
   margin-bottom: 18px;
+}
+
+.hero-title-animated {
+  display: inline-block;
+  text-transform: lowercase;
+  letter-spacing: 0.015em;
+  background: linear-gradient(95deg, #ffffff 0%, #d8eeff 28%, #ffffff 56%, #c8e8ff 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(8, 34, 69, 0.28));
+  animation: heroTitleShimmer 7s linear infinite, heroTitleGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes heroTitleShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 220% 50%;
+  }
+}
+
+@keyframes heroTitleGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 2px 8px rgba(8, 34, 69, 0.28));
+  }
+  50% {
+    filter: drop-shadow(0 6px 18px rgba(170, 220, 255, 0.55));
+  }
 }
 
 .home-hero p {
