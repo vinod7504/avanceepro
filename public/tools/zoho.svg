@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" role="img" aria-labelledby="title">
+  <title>Zoho Books</title>
+  <rect width="400" height="120" rx="14" fill="#ffffff"/>
+  <rect x="70" y="34" width="60" height="52" rx="6" fill="#e53935"/>
+  <rect x="135" y="34" width="60" height="52" rx="6" fill="#43a047"/>
+  <rect x="200" y="34" width="60" height="52" rx="6" fill="#1e88e5"/>
+  <rect x="265" y="34" width="60" height="52" rx="6" fill="#fbc02d"/>
+  <text x="100" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">Z</text>
+  <text x="165" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">O</text>
+  <text x="230" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">H</text>
+  <text x="295" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">O</text>
+</svg>
