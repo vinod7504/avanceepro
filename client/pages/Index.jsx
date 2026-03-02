@@ -433,7 +433,7 @@ const Index = () => {
         <div className="container">
           <div className="home-hero-content">
             <h1>
-              <span className="hero-title-animated">your finance &amp; taxation partner</span>
+              <span className="hero-title-animated">Your finance &amp; taxation partner</span>
             </h1>
             <p>
               Providing end-to-end accounting, taxation, and business services for

@@ -7,6 +7,7 @@
   --success: #28a745;
   --cobalt: #0047ab;
   --lightgray: #f1f1f1;
+  --navbar-height: 86px;
   --transition: all 0.3s ease;
 }
 
@@ -27,46 +28,27 @@ body {
 
 .site-bg-gradient {
   background:
-    radial-gradient(circle at 14% 18%, rgba(56, 139, 250, 0.22), transparent 42%),
-    radial-gradient(circle at 82% 14%, rgba(244, 185, 66, 0.16), transparent 36%),
-    radial-gradient(circle at 20% 82%, rgba(26, 101, 158, 0.2), transparent 44%),
-    radial-gradient(circle at 78% 78%, rgba(13, 59, 102, 0.15), transparent 42%),
+    radial-gradient(circle at 14% 18%, rgba(56, 139, 250, 0.14), transparent 42%),
+    radial-gradient(circle at 82% 14%, rgba(244, 185, 66, 0.1), transparent 36%),
+    radial-gradient(circle at 20% 82%, rgba(26, 101, 158, 0.12), transparent 44%),
+    radial-gradient(circle at 78% 78%, rgba(13, 59, 102, 0.1), transparent 42%),
     linear-gradient(125deg, #ecf2f8 0%, #f8fafc 50%, #e9f0f7 100%);
-  animation: siteBgFloat 24s ease-in-out infinite alternate;
+  animation: siteBgFloat 40s ease-in-out infinite alternate;
   transform-origin: center;
 }
 
-.site-bg-pattern {
-  background-image:
-    linear-gradient(rgba(13, 59, 102, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 59, 102, 0.05) 1px, transparent 1px);
-  background-size: 42px 42px;
-  opacity: 0.38;
-  animation: siteBgGrid 26s linear infinite;
-}
-
-.site-bg-orbs {
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.62) 1px, transparent 2px) 0 0 / 140px 140px,
-    radial-gradient(circle, rgba(13, 59, 102, 0.2) 1px, transparent 2px) 50px 60px / 180px 180px;
-  opacity: 0.28;
-  animation: siteBgOrbs 34s linear infinite;
-}
-
 .site-main,
-.navbar,
 .footer {
   position: relative;
   z-index: 1;
 }
 
+.site-main {
+  padding-top: var(--navbar-height);
+}
+
 .site-main .section-title h2 {
-  background: linear-gradient(125deg, #0d3b66 0%, #1a659e 48%, #0d3b66 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: sectionHeadingFlow 8s linear infinite;
+  color: var(--primary);
 }
 
 @keyframes siteBgFloat {
@@ -74,73 +56,43 @@ body {
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(-1.5%, 1.2%, 0) scale(1.03);
+    transform: translate3d(-1%, 0.8%, 0) scale(1.015);
   }
   100% {
-    transform: translate3d(1.7%, -1.2%, 0) scale(1.02);
-  }
-}
-
-@keyframes siteBgGrid {
-  0% {
-    background-position: 0 0, 0 0;
-  }
-  100% {
-    background-position: 42px 42px, -42px -42px;
-  }
-}
-
-@keyframes siteBgOrbs {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-140px, -90px, 0);
-  }
-}
-
-@keyframes sectionHeadingFlow {
-  0% {
-    background-position: 0 50%;
-  }
-  100% {
-    background-position: 220% 50%;
+    transform: translate3d(1%, -0.8%, 0) scale(1.012);
   }
 }
 
 /* Global text animation */
 .text-fx-init {
   opacity: 0;
-  transform: translate3d(0, 24px, 0) scale(0.985);
-  filter: blur(3px);
-  will-change: opacity, transform, filter;
+  transform: translate3d(0, 14px, 0);
+  will-change: opacity, transform;
 }
 
 .text-fx-in {
-  animation: textReveal 840ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation: textReveal 560ms ease forwards;
   animation-delay: var(--text-fx-delay, 0ms);
 }
 
 @keyframes textReveal {
   from {
     opacity: 0;
-    transform: translate3d(0, 24px, 0) scale(0.985);
-    filter: blur(3px);
+    transform: translate3d(0, 14px, 0);
   }
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    filter: blur(0);
   }
 }
 
 .site-main a,
 .site-main .btn {
-  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .site-main a:hover {
-  text-shadow: 0 0 14px rgba(29, 108, 240, 0.16);
+  text-shadow: none;
 }
 
 .card,
@@ -190,21 +142,18 @@ body {
 .tool-logo-card:hover,
 .leadership-card:hover,
 .why-choose-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 30px rgba(13, 59, 102, 0.14);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(13, 59, 102, 0.12);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-bg-gradient,
-  .site-bg-pattern,
-  .site-bg-orbs {
+  .site-bg-gradient {
     animation: none;
   }
 
   .text-fx-init {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 
   .text-fx-in {
@@ -232,8 +181,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------------------- NAVBAR ---------------------- */
 .navbar {
+  min-height: var(--navbar-height);
   background-color: var(--primary) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(90deg, rgba(13, 59, 102, 0.96), rgba(22, 84, 138, 0.94));
+  box-shadow: 0 6px 18px rgba(10, 28, 52, 0.18);
+  backdrop-filter: blur(6px);
   padding: 15px 0;
 }
 
@@ -577,33 +529,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title-animated {
   display: inline-block;
-  text-transform: lowercase;
   letter-spacing: 0.015em;
-  background: linear-gradient(95deg, #ffffff 0%, #d8eeff 28%, #ffffff 56%, #c8e8ff 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 2px 8px rgba(8, 34, 69, 0.28));
-  animation: heroTitleShimmer 7s linear infinite, heroTitleGlow 3.2s ease-in-out infinite;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(8, 34, 69, 0.28);
+  animation: heroTitleFadeIn 650ms ease-out both;
 }
 
-@keyframes heroTitleShimmer {
+@keyframes heroTitleFadeIn {
   0% {
-    background-position: 0% 50%;
+    opacity: 0;
+    transform: translateY(10px);
   }
   100% {
-    background-position: 220% 50%;
-  }
-}
-
-@keyframes heroTitleGlow {
-  0%,
-  100% {
-    filter: drop-shadow(0 2px 8px rgba(8, 34, 69, 0.28));
-  }
-  50% {
-    filter: drop-shadow(0 6px 18px rgba(170, 220, 255, 0.55));
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

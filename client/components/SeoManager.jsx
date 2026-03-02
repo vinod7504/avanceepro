@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SITE_NAME = 'AvanceePro';
-const SITE_URL = 'https://www.avanceepro.com';
+const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://www.avanceepro.com').replace(/\/+$/, '');
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=1200&q=80';
 

@@ -1,9 +1,50 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = process.env.SITE_URL || 'https://www.avanceepro.com';
-const appFilePath = path.join(__dirname, '..', 'client', 'App.jsx');
+const appFilePath = path.join(__dirname, '..', 'App.jsx');
 const outputPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
+const envFilePath = path.join(__dirname, '..', '.env');
+
+const readEnvFile = () => {
+  if (!fs.existsSync(envFilePath)) {
+    return {};
+  }
+
+  const envText = fs.readFileSync(envFilePath, 'utf8');
+  const envEntries = {};
+
+  envText.split(/\r?\n/).forEach((line) => {
+    const trimmed = line.trim();
+
+    if (!trimmed || trimmed.startsWith('#')) {
+      return;
+    }
+
+    const separatorIndex = trimmed.indexOf('=');
+
+    if (separatorIndex === -1) {
+      return;
+    }
+
+    const key = trimmed.slice(0, separatorIndex).trim();
+    const value = trimmed.slice(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, '');
+
+    if (key) {
+      envEntries[key] = value;
+    }
+  });
+
+  return envEntries;
+};
+
+const envFile = readEnvFile();
+const SITE_URL = (
+  process.env.SITE_URL ||
+  process.env.VITE_SITE_URL ||
+  envFile.SITE_URL ||
+  envFile.VITE_SITE_URL ||
+  'https://www.avanceepro.com'
+).replace(/\/+$/, '');
 
 const normalizePath = (value) => {
   if (!value) {

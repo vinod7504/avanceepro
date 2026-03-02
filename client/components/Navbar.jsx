@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
                 <div className="container">
                     <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
                         <img

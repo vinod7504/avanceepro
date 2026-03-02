@@ -29,10 +29,9 @@ const Layout = ({ children }) => {
             sectionCounter.set(block, currentCount + 1);
 
             node.classList.remove('text-fx-init', 'text-fx-in');
-            node.dataset.textFxBound = 'true';
 
-            const baseDelay = Math.min(currentCount * 65, 520);
-            const waveDelay = (index % 6) * 22;
+            const baseDelay = Math.min(currentCount * 40, 220);
+            const waveDelay = (index % 4) * 14;
             node.style.setProperty('--text-fx-delay', `${baseDelay + waveDelay}ms`);
             node.classList.add('text-fx-init');
         });
@@ -48,7 +47,7 @@ const Layout = ({ children }) => {
             },
             {
                 threshold: 0.15,
-                rootMargin: '0px 0px -7% 0px'
+                rootMargin: '0px 0px -6% 0px'
             }
         );
 
@@ -60,8 +59,6 @@ const Layout = ({ children }) => {
     return (
         <>
             <div className="site-bg site-bg-gradient" aria-hidden="true"></div>
-            <div className="site-bg site-bg-pattern" aria-hidden="true"></div>
-            <div className="site-bg site-bg-orbs" aria-hidden="true"></div>
             <Navbar />
             <main className="site-main">
                 {children}
