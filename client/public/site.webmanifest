@@ -1,0 +1,14 @@
+{
+  "name": "AvanceePro",
+  "short_name": "AvanceePro",
+  "icons": [
+    {
+      "src": "https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo",
+      "sizes": "768x249",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0a3f75",
+  "background_color": "#f2f7ff",
+  "display": "standalone"
+}

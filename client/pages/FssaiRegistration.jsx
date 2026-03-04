@@ -12,7 +12,7 @@ const FssaiRegistration = () => {
         <nav aria-label="breadcrumb" className="mb-3 crumbs">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/licenses">Licenses &amp; Registrations</Link></li>
+                <li className="breadcrumb-item"><span className="breadcrumb-disabled">Licenses &amp; Registrations</span></li>
                 <li className="breadcrumb-item active" aria-current="page">FSSAI Registration / License</li>
             </ol>
         </nav>

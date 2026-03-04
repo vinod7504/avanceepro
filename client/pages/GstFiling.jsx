@@ -11,7 +11,7 @@ const GstFiling = () => {
         <nav aria-label="breadcrumb" className="mb-3 crumbs">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/tax-compliance">Tax &amp; Compliance</Link></li>
+                <li className="breadcrumb-item"><span className="breadcrumb-disabled">Tax &amp; Compliance</span></li>
                 <li className="breadcrumb-item active" aria-current="page">GST Return Filing</li>
             </ol>
         </nav>

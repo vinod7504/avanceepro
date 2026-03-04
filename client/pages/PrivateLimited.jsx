@@ -12,7 +12,7 @@ const PrivateLimited = () => {
         <nav aria-label="breadcrumb" className="mb-3 crumbs">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/register-company">Start a Business</Link></li>
+                <li className="breadcrumb-item"><span className="breadcrumb-disabled">Start a Business</span></li>
                 <li className="breadcrumb-item active" aria-current="page">Private Limited Company Registration</li>
             </ol>
         </nav>

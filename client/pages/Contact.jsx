@@ -2,132 +2,162 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 
-
 const Contact = () => {
   return (
     <Layout>
       <div>
-<header className="page-header">
-        <div className="container pt-2">
-            <h1>Contact Us</h1>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb justify-content-center">
-                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Contact</li>
-                </ol>
-            </nav>
-        </div>
-    </header>
-
-    
-    <section className="section">
-        <div className="container">
-            <div className="section-title">
-                <h2>Get In Touch</h2>
-                <p>Get in touch and we'll get back to you as soon as we can. We look forward to hearing from you!</p>
-            </div>
-
-            
-            <div className="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.392049806048!2d77.646314174985!3d12.94972538736231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144a1a35f6e3%3A0x7e36b7f7e6e6b7f7!2sHSR%20Layout%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1689684567890!5m2!1sen!2sin" width="1000" height="1000" style={{ border: '0' }} allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
-            <div className="row">
-                <div className="col-lg-5 mb-5 mb-lg-0">
-                    <div className="contact-info">
-                        <h3>Registered Office</h3>
-
-                        <div className="contact-details">
-                            <div className="contact-item">
-                                <div className="contact-icon">
-                                    <i className="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div className="contact-text">
-                                    <h5>Address</h5>
-                                    <p>AvanceePro Business Services Private Limited,<br />
-                                        No: 384 Second Floor<br />
-                                        15th Cross, 5th Main Rd,<br />
-                                        6th Sector, HSR Layout,<br />
-                                        Bangalore-560 102</p>
-                                </div>
-                            </div>
-
-                            <div className="contact-item">
-                                <div className="contact-icon">
-                                    <i className="fas fa-phone-alt"></i>
-                                </div>
-                                <div className="contact-text">
-                                    <h5>Phone</h5>
-                                    <p>080 79665489<br />+91 9164456153</p>
-                                </div>
-                            </div>
-
-                            <div className="contact-item">
-                                <div className="contact-icon">
-                                    <i className="fas fa-envelope"></i>
-                                </div>
-                                <div className="contact-text">
-                                    <h5>Email</h5>
-                                    <p>info@avanceepro.com</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4><div className="text-warning bold ">Business Hours</div></h4>
-                        <p>Monday to Friday: 9:00 AM – 6:00 PM<br />
-                            Saturday, Sunday: Closed</p>
-                    </div>
+        <section className="section contact-banner-wrap pb-4">
+          <div className="container">
+            <div className="contact-hero-banner">
+              <div className="contact-hero-content">
+                <h1>Contact Us for Business Assistance</h1>
+                <p>
+                  Experienced professionals ready to support your taxation, accounting,
+                  and compliance needs.
+                </p>
+                <div className="contact-hero-actions">
+                  <Link to="/services" className="contact-pill-btn">Our Areas of Service</Link>
+                  <a href="#contactFormPanel" className="contact-inline-link">
+                    Get in touch <i className="bi bi-arrow-up-right"></i>
+                  </a>
                 </div>
-
-                <div className="col-lg-7">
-                    <div className="contact-form">
-                        <h3 className="mb-4">Send us a Message</h3>
-                        <p className="mb-4">Fields marked with an * are required</p>
-
-                        <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label htmlFor="name" className="form-label required">Name</label>
-                                        <input type="text" id="name" className="form-control" required="" />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label htmlFor="email" className="form-label required">Email</label>
-                                        <input type="email" id="email" className="form-control" required="" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="subject" className="form-label">Subject</label>
-                                <input type="text" id="subject" className="form-control" />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="message" className="form-label required">Message</label>
-                                <textarea id="message" className="form-control" rows="5" required=""></textarea>
-                            </div>
-
-                            <div className="captcha-group">
-                                <div className="form-group">
-                                    <label htmlFor="captcha" className="form-label required">What is thirteen minus 6?</label>
-                                    <input type="text" id="captcha" className="form-control" required="" />
-                                </div>
-                            </div>
-
-                            <button type="submit" className="btn btn-submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
+              </div>
+              <div className="contact-hero-media" aria-hidden="true">
+                <span className="contact-hero-letter">A</span>
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80"
+                  alt=""
+                />
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
+        </section>
 
-    
-    
-</div>
+        <section className="section pt-2 contact-main-section">
+          <div className="container">
+            <div className="row g-4">
+              <div className="col-lg-5">
+                <div className="contact-info-panel h-100">
+                  <h2>Registered Office</h2>
+                  <div className="contact-detail-item">
+                    <span className="contact-detail-icon"><i className="bi bi-geo-alt-fill"></i></span>
+                    <p>
+                      AvanceePro Business Services Private Limited,<br />
+                      No: 384 Second Floor, 15th Cross, 5th Main Rd,<br />
+                      6th Sector, HSR Layout, Bangalore-560102
+                    </p>
+                  </div>
+                  <div className="contact-detail-item">
+                    <span className="contact-detail-icon"><i className="bi bi-telephone-fill"></i></span>
+                    <p>080 79665489<br />+91 9164456153</p>
+                  </div>
+                  <div className="contact-detail-item">
+                    <span className="contact-detail-icon"><i className="bi bi-envelope-fill"></i></span>
+                    <p>
+                      <a href="mailto:info@avanceepro.com">info@avanceepro.com</a>
+                    </p>
+                  </div>
+                  <div className="contact-hours">
+                    <h3>Business Hours</h3>
+                    <p>Monday to Friday: 9:00 AM - 6:00 PM</p>
+                    <p>Saturday, Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-7">
+                <div id="contactFormPanel" className="contact-form-panel h-100">
+                  <h2>Send us a Message</h2>
+                  <p>Share your requirement and our team will contact you quickly.</p>
+
+                  <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
+                    <input type="hidden" name="_source" value="Contact Page" />
+                    <input type="hidden" name="_subject" value="New Contact Message" />
+
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <label htmlFor="contactName" className="form-label">Name *</label>
+                        <input
+                          type="text"
+                          id="contactName"
+                          name="Name"
+                          className="form-control"
+                          placeholder="Your name"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label htmlFor="contactEmail" className="form-label">Email *</label>
+                        <input
+                          type="email"
+                          id="contactEmail"
+                          name="Email"
+                          className="form-control"
+                          placeholder="you@example.com"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label htmlFor="contactPhone" className="form-label">Phone Number *</label>
+                        <input
+                          type="tel"
+                          id="contactPhone"
+                          name="Phone Number"
+                          className="form-control"
+                          placeholder="10 digit mobile"
+                          pattern="[0-9]{10}"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label htmlFor="contactSubject" className="form-label">Subject</label>
+                        <input
+                          type="text"
+                          id="contactSubject"
+                          name="Subject"
+                          className="form-control"
+                          placeholder="How can we help?"
+                        />
+                      </div>
+
+                      <div className="col-12">
+                        <label htmlFor="contactMessage" className="form-label">Message *</label>
+                        <textarea
+                          id="contactMessage"
+                          name="Message"
+                          className="form-control"
+                          rows="5"
+                          placeholder="Write your query here..."
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary mt-4">Send Message</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-map contact-map-card mt-4">
+              <iframe
+                title="AvanceePro Location"
+                src="https://www.google.com/maps?q=No%20384,%2015th%20Cross,%205th%20Main%20Rd,%206th%20Sector,%20HSR%20Layout,%20Bangalore%20560102&output=embed"
+                width="100%"
+                height="420"
+                className="contact-map-frame"
+                style={{ border: '0' }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </div>
     </Layout>
   );
 };

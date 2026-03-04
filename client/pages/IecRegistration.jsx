@@ -11,7 +11,7 @@ const IecRegistration = () => {
         <nav aria-label="breadcrumb" className="mb-3 crumbs">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/trade-services">Trade Services</Link></li>
+                <li className="breadcrumb-item"><span className="breadcrumb-disabled">Trade Services</span></li>
                 <li className="breadcrumb-item active" aria-current="page">IEC Registration</li>
             </ol>
         </nav>

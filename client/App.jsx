@@ -33,11 +33,13 @@ import TdsReturnFiling from './pages/TdsReturnFiling';
 import Tds from './pages/Tds';
 import Usa from './pages/Usa';
 import SeoManager from './components/SeoManager';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
       <SeoManager />
+      <ScrollToTop />
       <Routes>
         <Route path="/Taxreturn.html" element={<Taxreturn />} />
         <Route path="/Taxreturn" element={<Taxreturn />} />

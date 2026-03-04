@@ -158,19 +158,40 @@ const ROUTE_META = {
       'Overview of accounting services, reporting support, and process-driven financial controls.'
   },
   '/india': {
-    title: 'India Services | AvanceePro',
+    title: 'India Accounting, Taxation and Compliance Services | AvanceePro',
     description:
-      'Explore accounting and taxation service offerings for businesses operating in India.'
+      'Explore AvanceePro India services: accounting, bookkeeping, GST, registrations, income tax, statutory compliance, FEMA, company law, ERP migration, and business advisory.',
+    keywords:
+      'india accounting services, india taxation services, gst consultancy india, statutory compliance india, company law consultancy india, fema rbi consultancy, erp migration accounting'
   },
   '/australia': {
-    title: 'Australia Services | AvanceePro',
+    title: 'Australia Bookkeeping and Taxation Services | AvanceePro',
     description:
-      'Accounting and taxation support tailored for Australian market service requirements.'
+      'Australia-focused bookkeeping, accounting, BAS preparation, payroll processing, taxation support, management reporting, and India incorporation support by AvanceePro.',
+    keywords:
+      'australia bookkeeping services, bas preparation, australia payroll outsourcing, accounting services australia, tax return support australia, offshore bookkeeping'
   },
   '/usa': {
-    title: 'USA Services | AvanceePro',
+    title: 'USA Bookkeeping, Taxation and Payroll Services | AvanceePro',
     description:
-      'Accounting and tax support for USA-oriented reporting, operations, and compliance needs.'
+      'USA-focused bookkeeping, tax return preparation for 1040/1065/1120/1120S/1041, payroll outsourcing, management reporting, and India incorporation support from AvanceePro.',
+    keywords:
+      'usa bookkeeping services, us tax return outsourcing, 1040 1065 1120 preparation, payroll outsourcing usa, accounting support usa'
+  }
+};
+
+const COUNTRY_PAGE_SCHEMA = {
+  '/india': {
+    name: 'India Financial and Compliance Services',
+    areaServed: 'IN'
+  },
+  '/australia': {
+    name: 'Australia Bookkeeping and Taxation Services',
+    areaServed: 'AU'
+  },
+  '/usa': {
+    name: 'USA Bookkeeping and Taxation Services',
+    areaServed: 'US'
   }
 };
 
@@ -290,6 +311,22 @@ const SeoManager = () => {
 
     upsertLink('canonical', canonicalUrl);
 
+    const countrySchema = COUNTRY_PAGE_SCHEMA[path];
+    const serviceGraphItem = countrySchema
+      ? [
+          {
+            '@type': 'Service',
+            '@id': `${canonicalUrl}#service`,
+            name: countrySchema.name,
+            provider: {
+              '@id': `${SITE_URL}#organization`
+            },
+            areaServed: countrySchema.areaServed,
+            serviceType: 'Accounting, taxation, compliance, payroll and advisory services'
+          }
+        ]
+      : [];
+
     upsertStructuredData('avp-seo-schema', {
       '@context': 'https://schema.org',
       '@graph': [
@@ -322,7 +359,8 @@ const SeoManager = () => {
           isPartOf: {
             '@id': `${SITE_URL}#website`
           }
-        }
+        },
+        ...serviceGraphItem
       ]
     });
   }, [location.pathname]);

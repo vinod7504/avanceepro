@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+const NAVBAR_SYMBOL_URL =
+    'https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo';
+
 const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
         // Re-initialize Bootstrap dropdowns on navigation if needed
         const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+        const cleanups = [];
+
         dropdowns.forEach(function (item) {
-            item.addEventListener('mouseenter', function () {
+            const onMouseEnter = function () {
                 if (window.innerWidth >= 992) {
                     const toggle = this.querySelector('[data-bs-toggle="dropdown"]');
                     if (toggle && !toggle.classList.contains('show')) {
@@ -17,8 +22,9 @@ const Navbar = () => {
                         dropdown?.show();
                     }
                 }
-            });
-            item.addEventListener('mouseleave', function () {
+            };
+
+            const onMouseLeave = function () {
                 if (window.innerWidth >= 992) {
                     const toggle = this.querySelector('[data-bs-toggle="dropdown"]');
                     if (toggle && toggle.classList.contains('show')) {
@@ -27,21 +33,70 @@ const Navbar = () => {
                         dropdown?.hide();
                     }
                 }
+            };
+
+            item.addEventListener('mouseenter', onMouseEnter);
+            item.addEventListener('mouseleave', onMouseLeave);
+            cleanups.push(() => {
+                item.removeEventListener('mouseenter', onMouseEnter);
+                item.removeEventListener('mouseleave', onMouseLeave);
             });
         });
+
+        return () => {
+            cleanups.forEach((cleanup) => cleanup());
+        };
     }, [location.pathname]);
+
+    useEffect(() => {
+        const navElement = document.querySelector('.site-navbar');
+        const collapseElement = document.getElementById('mainNav');
+
+        if (!navElement) {
+            return undefined;
+        }
+
+        const setNavbarOffset = () => {
+            const navHeight = navElement.offsetHeight;
+            document.documentElement.style.setProperty('--navbar-offset', `${navHeight}px`);
+        };
+
+        setNavbarOffset();
+
+        const onResize = () => {
+            setNavbarOffset();
+        };
+
+        const onCollapseTransition = () => {
+            setNavbarOffset();
+            window.setTimeout(setNavbarOffset, 220);
+        };
+
+        window.addEventListener('resize', onResize);
+        collapseElement?.addEventListener('show.bs.collapse', onCollapseTransition);
+        collapseElement?.addEventListener('shown.bs.collapse', onCollapseTransition);
+        collapseElement?.addEventListener('hide.bs.collapse', onCollapseTransition);
+        collapseElement?.addEventListener('hidden.bs.collapse', onCollapseTransition);
+
+        return () => {
+            window.removeEventListener('resize', onResize);
+            collapseElement?.removeEventListener('show.bs.collapse', onCollapseTransition);
+            collapseElement?.removeEventListener('shown.bs.collapse', onCollapseTransition);
+            collapseElement?.removeEventListener('hide.bs.collapse', onCollapseTransition);
+            collapseElement?.removeEventListener('hidden.bs.collapse', onCollapseTransition);
+        };
+    }, []);
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top site-navbar">
                 <div className="container">
                     <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
                         <img
-                            src="https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo"
-                            alt="AvanceePro"
-                            style={{ height: '38px' }}
+                            src={NAVBAR_SYMBOL_URL}
+                            alt="AvanceePro logo"
+                            className="navbar-symbol"
                         />
-                        <span className="d-none d-sm-inline"></span>
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -49,7 +104,7 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="collapse navbar-collapse" id="mainNav">
+                    <div className="collapse navbar-collapse main-nav-panel" id="mainNav">
                         <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                             <li className="nav-item me-lg-2">
                                 <div className="btn-group">

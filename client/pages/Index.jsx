@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
+import avanceeproImage from '../assets/avanceepro.png';
 
 const SEARCHABLE_PAGES = [
   { title: 'Home', path: '/', keywords: ['home page', 'landing'] },
@@ -431,14 +432,45 @@ const Index = () => {
     <Layout>
       <header className="home-hero">
         <div className="container">
-          <div className="home-hero-content">
+          <div className="home-hero-content home-hero-content-modern">
+            <p className="home-hero-kicker">Driven by Expertise,</p>
             <h1>
-              <span className="hero-title-animated">Your finance &amp; taxation partner</span>
+              <span className="hero-title-animated">Empowering Your Financial Journey</span>
             </h1>
-            <p>
-              Providing end-to-end accounting, taxation, and business services for
-              companies of all sizes.
+            <p className="home-hero-subtext">
+              We transform accounting, taxation, and compliance into a seamless growth engine
+              for your business across India and global markets.
             </p>
+            <Link to="/about" className="home-hero-cta">Discover Our Story</Link>
+
+            <div className="home-hero-showcase">
+              <div className="home-showcase-panel left">
+                <h3>Core Focus</h3>
+                <ul>
+                  <li>Company Registration</li>
+                  <li>GST and Tax Filing</li>
+                  <li>Compliance and Audit</li>
+                </ul>
+              </div>
+
+              <div className="home-showcase-phone">
+                <img
+                  src={avanceeproImage}
+                  alt="AvanceePro digital service experience"
+                  className="home-showcase-image-centered"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="home-showcase-panel right">
+                <h3>Why Businesses Choose Us</h3>
+                <ul>
+                  <li>Fast Turnaround</li>
+                  <li>Expert Advisory Team</li>
+                  <li>Secure, Structured Process</li>
+                </ul>
+              </div>
+            </div>
 
             <div className="home-search-wrap" ref={searchRef}>
               <form className="home-search-form" onSubmit={handleSearchSubmit}>
@@ -618,24 +650,23 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="why-choose-section">
+      <section className="why-choose-section why-choose-premium">
         <div className="container">
-          <div className="section-title">
+          <div className="why-choose-intro">
+            <span className="why-choose-chip">Our Strengths</span>
             <h2>Why Choose AvanceePro?</h2>
             <p>Discover the advantages of partnering with our expert team</p>
           </div>
 
-          <div className="row g-4">
+          <div className="row g-4 why-choose-grid">
             {WHY_CHOOSE_ITEMS.map((item) => (
               <div className="col-md-6 col-xl-4" key={item.title}>
-                <article className="why-choose-item h-100">
-                  <div className="why-choose-icon">
+                <article className="why-choose-item why-choose-item-premium h-100">
+                  <div className="why-choose-orb">
                     <i className={item.icon}></i>
                   </div>
-                  <div>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </article>
               </div>
             ))}
