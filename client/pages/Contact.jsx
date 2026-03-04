@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 
+const AVANCEEPRO_SYMBOL_URL =
+  'https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo';
+
 const Contact = () => {
   return (
     <Layout>
@@ -23,10 +26,21 @@ const Contact = () => {
                 </div>
               </div>
               <div className="contact-hero-media" aria-hidden="true">
-                <span className="contact-hero-letter">A</span>
+                <img
+                  src={AVANCEEPRO_SYMBOL_URL}
+                  alt="Avanceepro logo"
+                  className="contact-hero-logo"
+                />
+                <img
+                  src={AVANCEEPRO_SYMBOL_URL}
+                  alt="Avanceepro symbol"
+                  className="contact-hero-symbol-mobile"
+                />
+                <span className="contact-hero-brand-mobile">Avanceepro</span>
                 <img
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80"
                   alt=""
+                  className="contact-hero-photo"
                 />
               </div>
             </div>
