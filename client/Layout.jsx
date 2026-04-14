@@ -7,6 +7,8 @@ const FORM_SELECTOR = 'form[action*="formsubmit.co/services@avanceepro.in"]';
 const BRAND_SYMBOL_URL =
     'https://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
 const ADVICE_SESSION_KEY = 'avp_advice_shown';
+const WHATSAPP_URL =
+    'https://wa.me/919164456153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services.';
 
 const buildApiUrl = (path) => {
     const base = String(import.meta.env.VITE_API_BASE || '').trim();
@@ -63,15 +65,6 @@ const Layout = ({ children }) => {
     const [showAdviceModal, setShowAdviceModal] = useState(false);
     const [adviceStatus, setAdviceStatus] = useState('idle');
     const [adviceMessage, setAdviceMessage] = useState('');
-    const [showChatWidget, setShowChatWidget] = useState(false);
-    const [chatStatus, setChatStatus] = useState('idle');
-    const [chatMessage, setChatMessage] = useState('');
-    const [chatFields, setChatFields] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        message: ''
-    });
     const [showPageLoader, setShowPageLoader] = useState(() => {
         if (typeof document === 'undefined') {
             return true;
@@ -217,26 +210,6 @@ const Layout = ({ children }) => {
         setAdviceMessage('');
     };
 
-    const toggleChatWidget = () => {
-        setShowChatWidget((prev) => !prev);
-        setChatStatus('idle');
-        setChatMessage('');
-    };
-
-    const closeChatWidget = () => {
-        setShowChatWidget(false);
-        setChatStatus('idle');
-        setChatMessage('');
-    };
-
-    const handleChatFieldChange = (event) => {
-        const { name, value } = event.target;
-        setChatFields((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
     const handleAdviceSubmit = async (event) => {
         event.preventDefault();
 
@@ -274,50 +247,6 @@ const Layout = ({ children }) => {
         } catch (error) {
             setAdviceStatus('error');
             setAdviceMessage(error.message || 'Unable to send request right now. Please try again.');
-        }
-    };
-
-    const handleChatSubmit = async (event) => {
-        event.preventDefault();
-
-        if (chatStatus === 'submitting') {
-            return;
-        }
-
-        const payload = new FormData();
-        payload.append('Name', chatFields.name.trim());
-        payload.append('Phone Number', chatFields.phone.trim());
-        payload.append('Email', chatFields.email.trim());
-        payload.append('Message', chatFields.message.trim());
-        payload.append('_source', 'Floating Chat Widget');
-        payload.append('_subject', 'New Chat Enquiry');
-        payload.append('_page', window.location.pathname);
-
-        setChatStatus('submitting');
-        setChatMessage('Sending your message...');
-
-        try {
-            const response = await fetch(FORM_API_URL, {
-                method: 'POST',
-                body: payload
-            });
-            const result = await response.json().catch(() => ({}));
-
-            if (!response.ok || !result.ok) {
-                throw new Error(result.message || 'Unable to send your message right now.');
-            }
-
-            setChatStatus('success');
-            setChatMessage(result.message || 'Thanks, we will contact you within 24 hours.');
-            setChatFields({
-                name: '',
-                phone: '',
-                email: '',
-                message: ''
-            });
-        } catch (error) {
-            setChatStatus('error');
-            setChatMessage(error.message || 'Unable to send your message right now.');
         }
     };
 
@@ -419,94 +348,15 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
             )}
-            <button
-                type="button"
-                className={`floating-chat-toggle ${showChatWidget ? 'is-open' : ''}`}
-                onClick={toggleChatWidget}
-                aria-label="Open chat form"
+            <a
+                className="floating-whatsapp-logo"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open WhatsApp chat with AvanceePro"
             >
-                <i className="bi bi-chat-dots-fill"></i>
-                <span>Chat</span>
-            </button>
-            {showChatWidget && (
-                <aside className="floating-chat-box" role="dialog" aria-labelledby="floating-chat-title">
-                    <div className="floating-chat-head">
-                        <h2 id="floating-chat-title">Chat With Us</h2>
-                        <button type="button" className="floating-chat-close" onClick={closeChatWidget} aria-label="Close chat">
-                            <i className="bi bi-x-lg"></i>
-                        </button>
-                    </div>
-
-                    <p className="floating-chat-copy">Share your details and we will email you back quickly.</p>
-
-                    <form onSubmit={handleChatSubmit} className="floating-chat-form">
-                        <div className="mb-2">
-                            <label htmlFor="chatName" className="form-label">Name</label>
-                            <input
-                                id="chatName"
-                                name="name"
-                                type="text"
-                                className="form-control"
-                                value={chatFields.name}
-                                onChange={handleChatFieldChange}
-                                placeholder="Enter name"
-                                required
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="chatPhone" className="form-label">Phone Number</label>
-                            <input
-                                id="chatPhone"
-                                name="phone"
-                                type="tel"
-                                className="form-control"
-                                value={chatFields.phone}
-                                onChange={handleChatFieldChange}
-                                placeholder="10 digit phone"
-                                pattern="[0-9]{10}"
-                                required
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="chatEmail" className="form-label">Email</label>
-                            <input
-                                id="chatEmail"
-                                name="email"
-                                type="email"
-                                className="form-control"
-                                value={chatFields.email}
-                                onChange={handleChatFieldChange}
-                                placeholder="Enter email"
-                                required
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="chatMessage" className="form-label">Message</label>
-                            <textarea
-                                id="chatMessage"
-                                name="message"
-                                className="form-control"
-                                rows="3"
-                                value={chatFields.message}
-                                onChange={handleChatFieldChange}
-                                placeholder="Type your requirement"
-                            ></textarea>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="btn btn-primary w-100"
-                            disabled={chatStatus === 'submitting'}
-                        >
-                            {chatStatus === 'submitting' ? 'Sending...' : 'Submit'}
-                        </button>
-
-                        {chatMessage && (
-                            <p className={`floating-chat-feedback ${chatStatus}`}>{chatMessage}</p>
-                        )}
-                    </form>
-                </aside>
-            )}
+                <i className="bi bi-whatsapp"></i>
+            </a>
             <Navbar />
             <main className="site-main">
                 {children}

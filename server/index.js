@@ -6,8 +6,8 @@ const nodemailer = require('nodemailer');
 const path = require('path');
 const fs = require('fs');
 
-// Load env only from project root .env (outside server folder).
-dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
+// Load env from the server folder.
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app = express();
 const port = Number(process.env.SERVER_PORT || 8787);
@@ -146,7 +146,7 @@ app.post('/api/forms/submit', upload.any(), async (req, res) => {
       return res.status(500).json({
         ok: false,
         message:
-          'SMTP is not configured. Please set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS in project root .env.'
+          'SMTP is not configured. Please set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS in server/.env.'
       });
     }
 
