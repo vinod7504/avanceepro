@@ -10,6 +10,34 @@ const BRAND_SYMBOL_URL = BRAND_LOGO_URL;
 const ADVICE_SESSION_KEY = 'avp_advice_shown';
 const WHATSAPP_URL =
   'https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services.';
+const CINEMATIC_REVEAL_SELECTOR = [
+  '.site-main section',
+  '.site-main .page-header',
+  '.site-main .section-title',
+  '.site-main .svc',
+  '.site-main .card',
+  '.site-main .service-detail',
+  '.site-main .service-package-card',
+  '.site-main .our-service-card',
+  '.site-main .tool-logo-card',
+  '.site-main .leadership-card',
+  '.site-main .why-choose-item',
+  '.site-main .category-card',
+  '.site-main .visual-card',
+  '.site-main .apply-card',
+  '.site-main .contact-info-panel',
+  '.site-main .contact-form-panel',
+  '.site-main .contact-map-card',
+  '.site-main .global-country-card',
+  '.site-main .global-solution-card',
+  '.site-main .neo-package-card',
+  '.site-main .neo-service-card',
+  '.site-main .neo-tool-card',
+  '.site-main .neo-why-card',
+  '.site-main .neo-leader-card',
+  '.site-main .neo-cta-card',
+  '.site-main .core-value-square'
+].join(', ');
 
 const buildApiUrl = (path) => {
   const base = String(import.meta.env.VITE_API_BASE || '').trim();
@@ -207,6 +235,74 @@ const Layout = ({ children }) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
+    const uniqueNodes = [];
+    const seen = new Set();
+    const nodes = document.querySelectorAll(CINEMATIC_REVEAL_SELECTOR);
+
+    nodes.forEach((node) => {
+      if (!(node instanceof HTMLElement)) {
+        return;
+      }
+
+      if (seen.has(node)) {
+        return;
+      }
+
+      seen.add(node);
+      uniqueNodes.push(node);
+    });
+
+    if (uniqueNodes.length === 0) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add('is-cinematic-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -12% 0px'
+      }
+    );
+
+    uniqueNodes.forEach((node, index) => {
+      node.classList.add('cinematic-reveal');
+      node.style.setProperty('--cinematic-index', String(index % 12));
+      observer.observe(node);
+    });
+
+    const makeHeroVisible = window.setTimeout(() => {
+      uniqueNodes.forEach((node) => {
+        if (node.getBoundingClientRect().top < window.innerHeight * 0.8) {
+          node.classList.add('is-cinematic-visible');
+          observer.unobserve(node);
+        }
+      });
+    }, 50);
+
+    return () => {
+      clearTimeout(makeHeroVisible);
+      observer.disconnect();
+      uniqueNodes.forEach((node) => {
+        node.classList.remove('cinematic-reveal', 'is-cinematic-visible');
+        node.style.removeProperty('--cinematic-index');
+      });
+    };
+  }, [location.pathname, prefersReducedMotion]);
 
   const closeAdviceModal = () => {
     setShowAdviceModal(false);
@@ -430,13 +526,30 @@ const Layout = ({ children }) => {
 
       <Navbar />
 
+      <AnimatePresence mode="wait">
+        {!prefersReducedMotion && (
+          <motion.div
+            key={`route-sweep-${location.pathname}`}
+            className="cinematic-route-sweep"
+            aria-hidden="true"
+            initial={{ opacity: 0, x: '-34%' }}
+            animate={{ opacity: [0, 0.46, 0], x: ['-34%', '0%', '34%'] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.08, ease: 'easeInOut' }}
+          />
+        )}
+      </AnimatePresence>
+
       <motion.main
-        className="site-main"
+        className="site-main cinematic-stage"
         key={location.pathname}
-        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -18 }}
-        transition={{ duration: prefersReducedMotion ? 0.01 : 0.45, ease: 'easeOut' }}
+        initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 36, scale: 0.985 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20, scale: 1.008 }}
+        transition={{
+          duration: prefersReducedMotion ? 0.01 : 0.64,
+          ease: [0.22, 1, 0.36, 1]
+        }}
       >
         {children}
       </motion.main>

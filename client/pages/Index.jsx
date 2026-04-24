@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Layout from '../Layout';
-import avanceeproImage from '../assets/avanceepro.png';
 
 const SEARCHABLE_PAGES = [
   { title: 'Home', path: '/', keywords: ['home page', 'landing'] },
@@ -50,6 +49,35 @@ const HERO_SHORTCUTS = [
   'GST Registration',
   'Company Registration',
   'Accounting and Business Compliance'
+];
+
+const HERO_FOCUS_AREAS = [
+  {
+    title: 'Company Formation',
+    description: 'Private Limited, LLP, OPC, and partnership setup with compliance-ready paperwork.',
+    icon: 'bi bi-buildings'
+  },
+  {
+    title: 'GST and Tax Filing',
+    description: 'GST registration, returns, TDS filings, and tax notices handled by specialists.',
+    icon: 'bi bi-receipt-cutoff'
+  },
+  {
+    title: 'Accounting Operations',
+    description: 'Structured bookkeeping, MIS-ready records, and monthly closure support.',
+    icon: 'bi bi-journal-check'
+  },
+  {
+    title: 'Licenses and Compliance',
+    description: 'ISO, FSSAI, IEC, audit, and annual compliance under a single workflow.',
+    icon: 'bi bi-shield-check'
+  }
+];
+
+const HERO_ASSURANCE_POINTS = [
+  { title: 'Fast Turnaround', description: 'Most requests processed in 24-48 hours' },
+  { title: 'Dedicated Advisor', description: 'Single point of contact for better coordination' },
+  { title: 'Secure Workflow', description: 'Confidential handling of business and tax documents' }
 ];
 
 const TOOL_LOGOS = [
@@ -496,31 +524,32 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.58, delay: 0.1, ease: 'easeOut' }}
             >
-              <div className="neo-hero-image-wrap">
-                <img
-                  src={avanceeproImage}
-                  alt="AvanceePro digital service experience"
-                  className="neo-hero-image"
-                  loading="lazy"
-                />
-              </div>
+              <div className="neo-hero-showcase">
+                <p className="neo-hero-showcase-kicker">Service Snapshot</p>
+                <h3 className="neo-hero-showcase-title">
+                  Finance, compliance, and registrations in one streamlined workflow.
+                </h3>
 
-              <div className="neo-hero-card neo-hero-card-top">
-                <h3>Core Focus</h3>
-                <ul>
-                  <li>Company Registration</li>
-                  <li>GST and Tax Filing</li>
-                  <li>Compliance and Audit</li>
-                </ul>
-              </div>
+                <div className="neo-hero-focus-grid">
+                  {HERO_FOCUS_AREAS.map((item) => (
+                    <article className="neo-hero-focus-tile" key={item.title}>
+                      <span className="neo-hero-focus-icon" aria-hidden="true">
+                        <i className={item.icon}></i>
+                      </span>
+                      <h4>{item.title}</h4>
+                      <p>{item.description}</p>
+                    </article>
+                  ))}
+                </div>
 
-              <div className="neo-hero-card neo-hero-card-bottom">
-                <h3>Why Businesses Choose Us</h3>
-                <ul>
-                  <li>Fast Turnaround</li>
-                  <li>Expert Advisory Team</li>
-                  <li>Secure, Structured Process</li>
-                </ul>
+                <div className="neo-hero-assurance-row">
+                  {HERO_ASSURANCE_POINTS.map((item) => (
+                    <div className="neo-hero-assurance-item" key={item.title}>
+                      <strong>{item.title}</strong>
+                      <span>{item.description}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>
