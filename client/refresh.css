@@ -376,13 +376,14 @@ a {
 
 .neo-hero-visual {
   position: relative;
-  min-height: clamp(360px, 44vw, 520px);
+  min-height: clamp(420px, 46vw, 560px);
+  isolation: isolate;
 }
 
 .neo-hero-image-wrap {
   position: absolute;
-  inset: 8% 9% 7% 9%;
-  border-radius: 30px;
+  inset: 12% 6% 12% 6%;
+  border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.58);
   background: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(224, 236, 246, 0.9));
@@ -397,19 +398,20 @@ a {
 
 .neo-hero-card {
   position: absolute;
-  width: min(300px, 68%);
-  border-radius: 18px;
-  padding: 16px 18px;
-  background: rgba(6, 35, 61, 0.8);
+  width: min(260px, 56%);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: linear-gradient(145deg, rgba(6, 35, 61, 0.88), rgba(14, 63, 101, 0.84));
   color: #e9f3fb;
   border: 1px solid rgba(255, 255, 255, 0.24);
   backdrop-filter: blur(8px);
   box-shadow: 0 14px 30px rgba(6, 35, 61, 0.28);
+  z-index: 2;
 }
 
 .neo-hero-card h3 {
-  margin: 0 0 10px;
-  font-size: 0.98rem;
+  margin: 0 0 8px;
+  font-size: 0.94rem;
   color: #ffffff;
 }
 
@@ -419,18 +421,19 @@ a {
 }
 
 .neo-hero-card li {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  font-size: 0.94rem;
   color: rgba(236, 245, 253, 0.92);
 }
 
 .neo-hero-card-top {
-  top: 2%;
-  left: -5%;
+  top: 5%;
+  left: 1.5%;
 }
 
 .neo-hero-card-bottom {
-  bottom: -2%;
-  right: -2%;
+  bottom: 5%;
+  right: 1.5%;
 }
 
 .neo-search-shell {
@@ -1156,7 +1159,11 @@ a {
   }
 
   .neo-hero-visual {
-    min-height: 420px;
+    min-height: 460px;
+  }
+
+  .neo-hero-image-wrap {
+    inset: 9% 4% 10% 4%;
   }
 
   .footer-brand-row {
@@ -1196,12 +1203,35 @@ a {
     width: 100%;
   }
 
+  .neo-hero-visual {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .neo-hero-image-wrap {
+    position: relative;
+    inset: auto;
+    min-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .neo-hero-card {
+    position: relative;
+    width: 100%;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+
   .neo-hero-card-top {
-    left: 2%;
+    order: 2;
   }
 
   .neo-hero-card-bottom {
-    right: 2%;
+    order: 3;
   }
 
   .neo-cta-card {
@@ -1228,25 +1258,24 @@ a {
   }
 
   .neo-hero-visual {
-    min-height: 390px;
+    min-height: auto;
   }
 
   .neo-hero-image-wrap {
-    inset: 12% 4% 10% 4%;
+    min-height: 250px;
+    aspect-ratio: 4 / 3;
   }
 
   .neo-hero-card {
-    width: calc(100% - 36px);
-    left: 18px;
-    right: 18px;
+    width: 100%;
   }
 
   .neo-hero-card-top {
-    top: -2%;
+    order: 2;
   }
 
   .neo-hero-card-bottom {
-    bottom: -1%;
+    order: 3;
   }
 
   .neo-search-form {

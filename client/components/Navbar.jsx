@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
+import { BRAND_LOGO_URL } from '../constants/branding';
 
-const NAVBAR_SYMBOL_URL =
-  'https://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+const NAVBAR_SYMBOL_URL = BRAND_LOGO_URL;
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },

@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { BRAND_LOGO_URL } from './constants/branding';
 
 const FORM_SELECTOR = 'form[action*="formsubmit.co/services@avanceepro.in"]';
-const BRAND_SYMBOL_URL =
-  'http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+const BRAND_SYMBOL_URL = BRAND_LOGO_URL;
 const ADVICE_SESSION_KEY = 'avp_advice_shown';
 const WHATSAPP_URL =
   'https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services.';

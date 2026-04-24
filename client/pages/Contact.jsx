@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
+import { BRAND_LOGO_URL } from '../constants/branding';
 
-const AVANCEEPRO_SYMBOL_URL =
-  'http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+const AVANCEEPRO_SYMBOL_URL = BRAND_LOGO_URL;
 
 const Contact = () => {
   return (

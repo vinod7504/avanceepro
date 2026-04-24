@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
+import { BRAND_LOGO_URL } from '../constants/branding';
 
-const FOOTER_LOGO_URL =
-  'http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+const FOOTER_LOGO_URL = BRAND_LOGO_URL;
 
 const Footer = () => {
   const prefersReducedMotion = useReducedMotion();
