@@ -1,369 +1,449 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 const FORM_SELECTOR = 'form[action*="formsubmit.co/services@avanceepro.in"]';
 const BRAND_SYMBOL_URL =
-    'https://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+  'http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
 const ADVICE_SESSION_KEY = 'avp_advice_shown';
 const WHATSAPP_URL =
-    'https://wa.me/919164456153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services.';
+  'https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services.';
 
 const buildApiUrl = (path) => {
-    const base = String(import.meta.env.VITE_API_BASE || '').trim();
+  const base = String(import.meta.env.VITE_API_BASE || '').trim();
 
-    if (!base) {
-        return path;
-    }
+  if (!base) {
+    return path;
+  }
 
-    return `${base.replace(/\/+$/, '')}${path}`;
+  return `${base.replace(/\/+$/, '')}${path}`;
 };
 
 const FORM_API_URL = buildApiUrl('/api/forms/submit');
 
 const setFormFeedback = (form, type, message) => {
-    let feedback = form.querySelector('.form-server-feedback');
+  let feedback = form.querySelector('.form-server-feedback');
 
-    if (!feedback) {
-        feedback = document.createElement('div');
-        feedback.className = 'form-server-feedback';
-        form.prepend(feedback);
-    }
+  if (!feedback) {
+    feedback = document.createElement('div');
+    feedback.className = 'form-server-feedback';
+    form.prepend(feedback);
+  }
 
-    feedback.classList.remove('is-info', 'is-success', 'is-error');
-    feedback.classList.add(`is-${type}`);
-    feedback.textContent = message;
+  feedback.classList.remove('is-info', 'is-success', 'is-error');
+  feedback.classList.add(`is-${type}`);
+  feedback.textContent = message;
 };
 
 const toggleFormButtons = (form, disabled) => {
-    const submitControls = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+  const submitControls = form.querySelectorAll('button[type="submit"], input[type="submit"]');
 
-    submitControls.forEach((node) => {
-        if (disabled) {
-            node.dataset.originalLabel = node.tagName === 'INPUT' ? node.value : node.textContent;
-            if (node.tagName === 'INPUT') {
-                node.value = 'Sending...';
-            } else {
-                node.textContent = 'Sending...';
-            }
-        } else if (node.dataset.originalLabel) {
-            if (node.tagName === 'INPUT') {
-                node.value = node.dataset.originalLabel;
-            } else {
-                node.textContent = node.dataset.originalLabel;
-            }
-            delete node.dataset.originalLabel;
-        }
+  submitControls.forEach((node) => {
+    if (disabled) {
+      node.dataset.originalLabel = node.tagName === 'INPUT' ? node.value : node.textContent;
+      if (node.tagName === 'INPUT') {
+        node.value = 'Sending...';
+      } else {
+        node.textContent = 'Sending...';
+      }
+    } else if (node.dataset.originalLabel) {
+      if (node.tagName === 'INPUT') {
+        node.value = node.dataset.originalLabel;
+      } else {
+        node.textContent = node.dataset.originalLabel;
+      }
+      delete node.dataset.originalLabel;
+    }
 
-        node.disabled = disabled;
-    });
+    node.disabled = disabled;
+  });
 };
 
 const Layout = ({ children }) => {
-    const navigate = useNavigate();
-    const [showAdviceModal, setShowAdviceModal] = useState(false);
-    const [adviceStatus, setAdviceStatus] = useState('idle');
-    const [adviceMessage, setAdviceMessage] = useState('');
-    const [showPageLoader, setShowPageLoader] = useState(() => {
-        if (typeof document === 'undefined') {
-            return true;
-        }
+  const navigate = useNavigate();
+  const location = useLocation();
+  const prefersReducedMotion = useReducedMotion();
 
-        if (document.readyState !== 'complete') {
-            return true;
-        }
+  const [showAdviceModal, setShowAdviceModal] = useState(false);
+  const [adviceStatus, setAdviceStatus] = useState('idle');
+  const [adviceMessage, setAdviceMessage] = useState('');
+  const [showPageLoader, setShowPageLoader] = useState(() => {
+    if (typeof document === 'undefined') {
+      return true;
+    }
 
-        return Boolean(document.fonts && document.fonts.status !== 'loaded');
-    });
-    const timeoutRef = useRef(null);
+    if (document.readyState !== 'complete') {
+      return true;
+    }
 
-    useEffect(() => {
-        let cancelled = false;
+    return Boolean(document.fonts && document.fonts.status !== 'loaded');
+  });
+  const timeoutRef = useRef(null);
 
-        const hideLoaderWhenReady = async () => {
-            if (document.readyState !== 'complete') {
-                await new Promise((resolve) => {
-                    window.addEventListener('load', resolve, { once: true });
-                });
-            }
+  useEffect(() => {
+    let cancelled = false;
 
-            if (document.fonts && typeof document.fonts.ready?.then === 'function') {
-                try {
-                    await document.fonts.ready;
-                } catch (_error) {
-                    // Font readiness should not block rendering on failure.
-                }
-            }
+    const hideLoaderWhenReady = async () => {
+      if (document.readyState !== 'complete') {
+        await new Promise((resolve) => {
+          window.addEventListener('load', resolve, { once: true });
+        });
+      }
 
-            if (!cancelled) {
-                setShowPageLoader(false);
-            }
-        };
-
-        hideLoaderWhenReady();
-
-        return () => {
-            cancelled = true;
-        };
-    }, []);
-
-    useEffect(() => {
+      if (document.fonts && typeof document.fonts.ready?.then === 'function') {
         try {
-            const hasShown = window.sessionStorage.getItem(ADVICE_SESSION_KEY) === '1';
-
-            if (!hasShown) {
-                setShowAdviceModal(true);
-                window.sessionStorage.setItem(ADVICE_SESSION_KEY, '1');
-            }
+          await document.fonts.ready;
         } catch (_error) {
-            if (!window.__AVP_ADVICE_OPENED__) {
-                setShowAdviceModal(true);
-                window.__AVP_ADVICE_OPENED__ = true;
-            }
+          // Font readiness should not block rendering on failure.
         }
-    }, []);
+      }
 
-    useEffect(() => {
-        if (showAdviceModal) {
-            document.body.classList.add('advice-modal-open');
-        } else {
-            document.body.classList.remove('advice-modal-open');
-        }
-
-        return () => {
-            document.body.classList.remove('advice-modal-open');
-        };
-    }, [showAdviceModal]);
-
-    useEffect(() => {
-        const handleFormSubmit = async (event) => {
-            const form = event.target;
-
-            if (!(form instanceof HTMLFormElement)) {
-                return;
-            }
-
-            if (!form.matches(FORM_SELECTOR)) {
-                return;
-            }
-
-            event.preventDefault();
-
-            if (form.dataset.isSubmitting === '1') {
-                return;
-            }
-
-            form.dataset.isSubmitting = '1';
-            toggleFormButtons(form, true);
-            setFormFeedback(form, 'info', 'Sending your request...');
-
-            try {
-                const payload = new FormData(form);
-                if (!payload.get('_source')) {
-                    payload.append('_source', 'Website Form');
-                }
-                payload.set('_page', window.location.pathname);
-
-                const response = await fetch(FORM_API_URL, {
-                    method: 'POST',
-                    body: payload
-                });
-                const result = await response.json().catch(() => ({}));
-
-                if (!response.ok || !result.ok) {
-                    throw new Error(result.message || 'Unable to submit form right now.');
-                }
-
-                setFormFeedback(form, 'success', result.message || 'Thanks, we will contact you within 24 hours.');
-                form.reset();
-            } catch (error) {
-                setFormFeedback(
-                    form,
-                    'error',
-                    error.message || 'Unable to submit form right now. Please try again.'
-                );
-            } finally {
-                form.dataset.isSubmitting = '0';
-                toggleFormButtons(form, false);
-            }
-        };
-
-        document.addEventListener('submit', handleFormSubmit, true);
-
-        return () => {
-            document.removeEventListener('submit', handleFormSubmit, true);
-        };
-    }, []);
-
-    useEffect(() => {
-        return () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-        };
-    }, []);
-
-    const closeAdviceModal = () => {
-        setShowAdviceModal(false);
-        setAdviceStatus('idle');
-        setAdviceMessage('');
+      if (!cancelled) {
+        setShowPageLoader(false);
+      }
     };
 
-    const handleAdviceSubmit = async (event) => {
-        event.preventDefault();
+    hideLoaderWhenReady();
 
-        if (adviceStatus === 'submitting') {
-            return;
-        }
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-        const form = event.currentTarget;
+  useEffect(() => {
+    try {
+      const hasShown = window.sessionStorage.getItem(ADVICE_SESSION_KEY) === '1';
+
+      if (!hasShown) {
+        setShowAdviceModal(true);
+        window.sessionStorage.setItem(ADVICE_SESSION_KEY, '1');
+      }
+    } catch (_error) {
+      if (!window.__AVP_ADVICE_OPENED__) {
+        setShowAdviceModal(true);
+        window.__AVP_ADVICE_OPENED__ = true;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showAdviceModal) {
+      document.body.classList.add('advice-modal-open');
+    } else {
+      document.body.classList.remove('advice-modal-open');
+    }
+
+    return () => {
+      document.body.classList.remove('advice-modal-open');
+    };
+  }, [showAdviceModal]);
+
+  useEffect(() => {
+    const handleFormSubmit = async (event) => {
+      const form = event.target;
+
+      if (!(form instanceof HTMLFormElement)) {
+        return;
+      }
+
+      if (!form.matches(FORM_SELECTOR)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (form.dataset.isSubmitting === '1') {
+        return;
+      }
+
+      form.dataset.isSubmitting = '1';
+      toggleFormButtons(form, true);
+      setFormFeedback(form, 'info', 'Sending your request...');
+
+      try {
         const payload = new FormData(form);
-        payload.append('_source', 'Get Advice Popup');
-        payload.append('_subject', 'New Get Advice Request');
-        payload.append('_page', window.location.pathname);
-
-        setAdviceStatus('submitting');
-        setAdviceMessage('Sending your request...');
-
-        try {
-            const response = await fetch(FORM_API_URL, {
-                method: 'POST',
-                body: payload
-            });
-            const result = await response.json().catch(() => ({}));
-
-            if (!response.ok || !result.ok) {
-                throw new Error(result.message || 'Unable to send request right now.');
-            }
-
-            setAdviceStatus('success');
-            setAdviceMessage('Thanks, we will contact you within 24 hours.');
-
-            timeoutRef.current = setTimeout(() => {
-                setShowAdviceModal(false);
-                navigate('/');
-            }, 2000);
-        } catch (error) {
-            setAdviceStatus('error');
-            setAdviceMessage(error.message || 'Unable to send request right now. Please try again.');
+        if (!payload.get('_source')) {
+          payload.append('_source', 'Website Form');
         }
+        payload.set('_page', window.location.pathname);
+
+        const response = await fetch(FORM_API_URL, {
+          method: 'POST',
+          body: payload
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message || 'Unable to submit form right now.');
+        }
+
+        setFormFeedback(form, 'success', result.message || 'Thanks, we will contact you within 24 hours.');
+        form.reset();
+      } catch (error) {
+        setFormFeedback(
+          form,
+          'error',
+          error.message || 'Unable to submit form right now. Please try again.'
+        );
+      } finally {
+        form.dataset.isSubmitting = '0';
+        toggleFormButtons(form, false);
+      }
     };
 
-    return (
-        <>
-            {showPageLoader && (
-                <div className="page-loader" role="status" aria-live="polite">
-                    <div className="page-loader-card">
-                        <div className="page-loader-symbol-wrap">
-                            <img src={BRAND_SYMBOL_URL} alt="AvanceePro symbol" className="page-loader-symbol" />
-                        </div>
-                        <p className="page-loader-brand">Avanceepro</p>
-                        <div className="page-loader-track" aria-hidden="true">
-                            <span className="page-loader-fill"></span>
-                        </div>
-                    </div>
-                </div>
-            )}
-            <div className="site-bg site-bg-gradient" aria-hidden="true"></div>
-            <div className="site-bg site-bg-glow" aria-hidden="true"></div>
-            <div className="site-bg site-bg-grid" aria-hidden="true"></div>
-            {showAdviceModal && (
-                <div className="advice-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="advice-modal-title">
-                    <div className="advice-modal-card">
-                        <button
-                            type="button"
-                            className="advice-close-btn"
-                            onClick={closeAdviceModal}
-                            aria-label="Close advice form"
-                        >
-                            <i className="bi bi-x-lg"></i>
-                        </button>
-                        <h2 id="advice-modal-title">Get an Advice</h2>
-                        <p>Share your details and our team will reach you quickly.</p>
+    document.addEventListener('submit', handleFormSubmit, true);
 
-                        <form onSubmit={handleAdviceSubmit} className="advice-form">
-                            <div className="mb-3">
-                                <label htmlFor="adviceName" className="form-label">Name</label>
-                                <input
-                                    id="adviceName"
-                                    name="Name"
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Enter your name"
-                                    required
-                                />
-                            </div>
+    return () => {
+      document.removeEventListener('submit', handleFormSubmit, true);
+    };
+  }, []);
 
-                            <div className="mb-3">
-                                <label htmlFor="advicePhone" className="form-label">Phone Number</label>
-                                <input
-                                    id="advicePhone"
-                                    name="Phone Number"
-                                    type="tel"
-                                    className="form-control"
-                                    placeholder="Enter your phone number"
-                                    pattern="[0-9]{10}"
-                                    required
-                                />
-                            </div>
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
-                            <div className="mb-3">
-                                <label htmlFor="adviceEmail" className="form-label">Email</label>
-                                <input
-                                    id="adviceEmail"
-                                    name="Email"
-                                    type="email"
-                                    className="form-control"
-                                    placeholder="Enter your email"
-                                    required
-                                />
-                            </div>
+  const closeAdviceModal = () => {
+    setShowAdviceModal(false);
+    setAdviceStatus('idle');
+    setAdviceMessage('');
+  };
 
-                            <div className="mb-3">
-                                <label htmlFor="adviceMessage" className="form-label">Message (Optional)</label>
-                                <textarea
-                                    id="adviceMessage"
-                                    name="Message"
-                                    className="form-control"
-                                    rows="3"
-                                    placeholder="Tell us what you need"
-                                ></textarea>
-                            </div>
+  const handleAdviceSubmit = async (event) => {
+    event.preventDefault();
 
-                            <button
-                                type="submit"
-                                className="btn btn-primary w-100"
-                                disabled={adviceStatus === 'submitting' || adviceStatus === 'success'}
-                            >
-                                {adviceStatus === 'submitting' ? 'Sending...' : 'Submit'}
-                            </button>
+    if (adviceStatus === 'submitting') {
+      return;
+    }
 
-                            {adviceMessage && (
-                                <p className={`advice-form-feedback mt-3 mb-0 ${adviceStatus}`}>
-                                    {adviceMessage}
-                                </p>
-                            )}
-                        </form>
-                    </div>
-                </div>
-            )}
-            <a
-                className="floating-whatsapp-logo"
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open WhatsApp chat with AvanceePro"
+    const form = event.currentTarget;
+    const payload = new FormData(form);
+    payload.append('_source', 'Get Advice Popup');
+    payload.append('_subject', 'New Get Advice Request');
+    payload.append('_page', window.location.pathname);
+
+    setAdviceStatus('submitting');
+    setAdviceMessage('Sending your request...');
+
+    try {
+      const response = await fetch(FORM_API_URL, {
+        method: 'POST',
+        body: payload
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'Unable to send request right now.');
+      }
+
+      setAdviceStatus('success');
+      setAdviceMessage('Thanks, we will contact you within 24 hours.');
+
+      timeoutRef.current = setTimeout(() => {
+        setShowAdviceModal(false);
+        navigate('/');
+      }, 2000);
+    } catch (error) {
+      setAdviceStatus('error');
+      setAdviceMessage(error.message || 'Unable to send request right now. Please try again.');
+    }
+  };
+
+  return (
+    <>
+      <AnimatePresence>
+        {showPageLoader && (
+          <motion.div
+            className="page-loader"
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <motion.div
+              className="page-loader-card"
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
             >
-                <i className="bi bi-whatsapp"></i>
-            </a>
-            <Navbar />
-            <main className="site-main">
-                {children}
-            </main>
-            <Footer />
-        </>
-    );
+              <div className="page-loader-symbol-wrap">
+                <img src={BRAND_SYMBOL_URL} alt="AvanceePro symbol" className="page-loader-symbol" />
+              </div>
+              <p className="page-loader-brand">AvanceePro</p>
+              <div className="page-loader-track" aria-hidden="true">
+                <span className="page-loader-fill"></span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="site-bg site-bg-gradient" aria-hidden="true"></div>
+      <motion.div
+        className="site-bg site-bg-glow"
+        aria-hidden="true"
+        animate={
+          prefersReducedMotion
+            ? false
+            : {
+                scale: [1, 1.09, 0.98, 1],
+                rotate: [0, 8, -4, 0],
+                x: ['0%', '1.2%', '-1%', '0%'],
+                y: ['0%', '-1%', '1%', '0%']
+              }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: 30,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }
+        }
+      ></motion.div>
+      <div className="site-bg site-bg-grid" aria-hidden="true"></div>
+
+      <AnimatePresence>
+        {showAdviceModal && (
+          <motion.div
+            className="advice-modal-backdrop"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="advice-modal-title"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28 }}
+          >
+            <motion.div
+              className="advice-modal-card"
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.98 }}
+              transition={{ duration: 0.32, ease: 'easeOut' }}
+            >
+              <button
+                type="button"
+                className="advice-close-btn"
+                onClick={closeAdviceModal}
+                aria-label="Close advice form"
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
+              <h2 id="advice-modal-title">Get an Advice</h2>
+              <p>Share your details and our team will reach you quickly.</p>
+
+              <form onSubmit={handleAdviceSubmit} className="advice-form">
+                <div className="mb-3">
+                  <label htmlFor="adviceName" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    id="adviceName"
+                    name="Name"
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="advicePhone" className="form-label">
+                    Phone Number
+                  </label>
+                  <input
+                    id="advicePhone"
+                    name="Phone Number"
+                    type="tel"
+                    className="form-control"
+                    placeholder="Enter your phone number"
+                    pattern="[0-9]{10}"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="adviceEmail" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    id="adviceEmail"
+                    name="Email"
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="adviceMessage" className="form-label">
+                    Message (Optional)
+                  </label>
+                  <textarea
+                    id="adviceMessage"
+                    name="Message"
+                    className="form-control"
+                    rows="3"
+                    placeholder="Tell us what you need"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100"
+                  disabled={adviceStatus === 'submitting' || adviceStatus === 'success'}
+                >
+                  {adviceStatus === 'submitting' ? 'Sending...' : 'Submit'}
+                </button>
+
+                {adviceMessage && (
+                  <p className={`advice-form-feedback mt-3 mb-0 ${adviceStatus}`}>{adviceMessage}</p>
+                )}
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.a
+        className="floating-whatsapp-logo"
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open WhatsApp chat with AvanceePro"
+        whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.08 }}
+        whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
+      >
+        <i className="bi bi-whatsapp"></i>
+      </motion.a>
+
+      <Navbar />
+
+      <motion.main
+        className="site-main"
+        key={location.pathname}
+        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -18 }}
+        transition={{ duration: prefersReducedMotion ? 0.01 : 0.45, ease: 'easeOut' }}
+      >
+        {children}
+      </motion.main>
+
+      <Footer />
+    </>
+  );
 };
 
 export default Layout;

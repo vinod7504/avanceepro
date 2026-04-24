@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Layout from '../Layout';
 import avanceeproImage from '../assets/avanceepro.png';
 
@@ -27,7 +28,11 @@ const SEARCHABLE_PAGES = [
     path: '/annual-compliance',
     keywords: ['compliance', 'business compliance', 'annual compliance']
   },
-  { title: 'Accounting and Bookkeeping', path: '/accounting-bookkeeping', keywords: ['accounting', 'bookkeeping', 'books'] },
+  {
+    title: 'Accounting and Bookkeeping',
+    path: '/accounting-bookkeeping',
+    keywords: ['accounting', 'bookkeeping', 'books']
+  },
   { title: 'TDS Return Filing', path: '/tds-return-filing', keywords: ['tds', 'withholding tax'] },
   { title: 'Income Tax Notice', path: '/income-tax-notice', keywords: ['income tax notice', 'assessment notice'] },
   { title: 'Secretarial Audit', path: '/secretarial-audit', keywords: ['secretarial', 'audit'] },
@@ -48,34 +53,13 @@ const HERO_SHORTCUTS = [
 ];
 
 const TOOL_LOGOS = [
-  {
-    name: 'MYOB',
-    image: '/tools/myob.svg'
-  },
-  {
-    name: 'Xero',
-    image: '/tools/xero.svg'
-  },
-  {
-    name: 'Zoho Books',
-    image: '/tools/zoho.svg'
-  },
-  {
-    name: 'QuickBooks',
-    image: '/tools/quickbooks.svg'
-  },
-  {
-    name: 'Tally',
-    image: '/tools/tally.svg'
-  },
-  {
-    name: 'RealBooks',
-    image: '/tools/realbooks.svg'
-  },
-  {
-    name: 'Fund360',
-    image: '/tools/fund360.svg'
-  }
+  { name: 'MYOB', image: '/tools/myob.svg' },
+  { name: 'Xero', image: '/tools/xero.svg' },
+  { name: 'Zoho Books', image: '/tools/zoho.svg' },
+  { name: 'QuickBooks', image: '/tools/quickbooks.svg' },
+  { name: 'Tally', image: '/tools/tally.svg' },
+  { name: 'RealBooks', image: '/tools/realbooks.svg' },
+  { name: 'Fund360', image: '/tools/fund360.svg' }
 ];
 
 const LEADERS = [
@@ -163,29 +147,25 @@ const SERVICE_PACKAGES = [
 const OUR_SERVICES = [
   {
     title: 'Accounting & Bookkeeping',
-    description:
-      'End-to-end bookkeeping and accounting solutions for businesses of all sizes.',
+    description: 'End-to-end bookkeeping and accounting solutions for businesses of all sizes.',
     path: '/account',
     icon: 'bi bi-journal-bookmark-fill'
   },
   {
     title: 'Tax Return & Compliance',
-    description:
-      'Tax return preparation and filing for individuals and businesses.',
+    description: 'Tax return preparation and filing for individuals and businesses.',
     path: '/Taxreturn',
     icon: 'bi bi-calculator-fill'
   },
   {
     title: 'TDS/Withholding Tax',
-    description:
-      'Complete TDS and withholding tax management and compliance.',
+    description: 'Complete TDS and withholding tax management and compliance.',
     path: '/tds',
     icon: 'bi bi-percent'
   },
   {
     title: 'Appeals & Assessments',
-    description:
-      'Assistance with tax assessments and representation in income tax appeals.',
+    description: 'Assistance with tax assessments and representation in income tax appeals.',
     path: '/appeals',
     icon: 'bi bi-hammer'
   }
@@ -296,9 +276,35 @@ const getInitials = (name) =>
     .slice(0, 2)
     .toUpperCase();
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 34 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: 'easeOut' }
+  }
+};
+
+const cardParentVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.08 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.42, ease: 'easeOut' }
+  }
+};
+
 const Index = () => {
   const navigate = useNavigate();
   const searchRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -309,6 +315,15 @@ const Index = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const maxSlideIndex = Math.max(0, TOOL_LOGOS.length - itemsPerView);
+
+  const heroStats = useMemo(
+    () => [
+      { label: 'Years Expertise', value: '15+' },
+      { label: 'Services', value: '30+' },
+      { label: 'Response Time', value: '<24h' }
+    ],
+    []
+  );
 
   useEffect(() => {
     const updateItemsPerView = () => {
@@ -340,7 +355,7 @@ const Index = () => {
 
     const timer = window.setInterval(() => {
       setActiveSlide((previous) => (previous >= maxSlideIndex ? 0 : previous + 1));
-    }, 3200);
+    }, 3500);
 
     return () => window.clearInterval(timer);
   }, [maxSlideIndex]);
@@ -430,21 +445,67 @@ const Index = () => {
 
   return (
     <Layout>
-      <header className="home-hero">
+      <header className="neo-hero">
         <div className="container">
-          <div className="home-hero-content home-hero-content-modern">
-            <p className="home-hero-kicker">Driven by Expertise,</p>
-            <h1>
-              <span className="hero-title-animated">Empowering Your Financial Journey</span>
-            </h1>
-            <p className="home-hero-subtext">
-              We transform accounting, taxation, and compliance into a seamless growth engine
-              for your business across India and global markets.
-            </p>
-            <Link to="/about" className="home-hero-cta">Discover Our Story</Link>
+          <motion.div
+            className="neo-hero-grid"
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.56, ease: 'easeOut' }}
+          >
+            <motion.div
+              className="neo-hero-copy"
+              variants={cardParentVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.p className="neo-hero-kicker" variants={cardVariants}>
+                Strategic Finance Partner
+              </motion.p>
+              <motion.h1 variants={cardVariants}>
+                Accounting, Taxation and Compliance,
+                <span> designed for business momentum.</span>
+              </motion.h1>
+              <motion.p className="neo-hero-sub" variants={cardVariants}>
+                AvanceePro simplifies your financial operations with expert-led execution,
+                transparent workflows, and measurable reliability.
+              </motion.p>
 
-            <div className="home-hero-showcase">
-              <div className="home-showcase-panel left">
+              <motion.div className="neo-hero-actions" variants={cardVariants}>
+                <Link to="/contact" className="neo-btn neo-btn-primary">
+                  Start a Consultation
+                </Link>
+                <Link to="/services" className="neo-btn neo-btn-ghost">
+                  Explore Services
+                </Link>
+              </motion.div>
+
+              <motion.div className="neo-hero-stats" variants={cardParentVariants}>
+                {heroStats.map((item) => (
+                  <motion.article className="neo-stat" key={item.label} variants={cardVariants}>
+                    <h3>{item.value}</h3>
+                    <p>{item.label}</p>
+                  </motion.article>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className="neo-hero-visual"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.58, delay: 0.1, ease: 'easeOut' }}
+            >
+              <div className="neo-hero-image-wrap">
+                <img
+                  src={avanceeproImage}
+                  alt="AvanceePro digital service experience"
+                  className="neo-hero-image"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="neo-hero-card neo-hero-card-top">
                 <h3>Core Focus</h3>
                 <ul>
                   <li>Company Registration</li>
@@ -453,16 +514,7 @@ const Index = () => {
                 </ul>
               </div>
 
-              <div className="home-showcase-phone">
-                <img
-                  src={avanceeproImage}
-                  alt="AvanceePro digital service experience"
-                  className="home-showcase-image-centered"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="home-showcase-panel right">
+              <div className="neo-hero-card neo-hero-card-bottom">
                 <h3>Why Businesses Choose Us</h3>
                 <ul>
                   <li>Fast Turnaround</li>
@@ -470,30 +522,46 @@ const Index = () => {
                   <li>Secure, Structured Process</li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
+          </motion.div>
 
-            <div className="home-search-wrap" ref={searchRef}>
-              <form className="home-search-form" onSubmit={handleSearchSubmit}>
-                <input
-                  type="search"
-                  className="form-control home-search-input"
-                  value={query}
-                  placeholder="Try 'Company Registration'"
-                  autoComplete="off"
-                  spellCheck="false"
-                  onChange={handleInputChange}
-                  onFocus={() => query.trim() && setShowSuggestions(true)}
-                  aria-label="Search services"
-                />
-                <button className="home-search-button" type="submit" aria-label="Search">
-                  <i className="bi bi-search"></i>
-                </button>
-              </form>
+          <motion.div
+            className="neo-search-shell"
+            ref={searchRef}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.44, delay: 0.28, ease: 'easeOut' }}
+          >
+            <form className="neo-search-form" onSubmit={handleSearchSubmit}>
+              <input
+                type="search"
+                className="form-control neo-search-input"
+                value={query}
+                placeholder="Search services like GST Registration, Company Registration..."
+                autoComplete="off"
+                spellCheck="false"
+                onChange={handleInputChange}
+                onFocus={() => query.trim() && setShowSuggestions(true)}
+                aria-label="Search services"
+              />
+              <button className="neo-search-button" type="submit" aria-label="Search">
+                <i className="bi bi-search"></i>
+              </button>
+            </form>
 
+            <AnimatePresence>
               {showSuggestions && (
-                <div className="home-search-suggestions" role="listbox" aria-label="Search suggestions">
+                <motion.div
+                  className="neo-search-suggestions"
+                  role="listbox"
+                  aria-label="Search suggestions"
+                  initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -4 }}
+                  transition={{ duration: 0.2 }}
+                >
                   {showRelatedSearches && searchResults.length > 0 && (
-                    <p className="home-related-searches-label">Related searches</p>
+                    <p className="neo-related-label">Related searches</p>
                   )}
 
                   {searchResults.length > 0 ? (
@@ -501,7 +569,7 @@ const Index = () => {
                       <button
                         key={`${page.path}-${page.title}`}
                         type="button"
-                        className="home-search-item"
+                        className="neo-search-item"
                         onClick={() => openPage(page.path)}
                       >
                         <i className="bi bi-search"></i>
@@ -509,114 +577,147 @@ const Index = () => {
                       </button>
                     ))
                   ) : (
-                    <p className="home-search-empty">No matching page found.</p>
+                    <p className="neo-search-empty">No matching page found.</p>
                   )}
-                </div>
+                </motion.div>
               )}
-            </div>
+            </AnimatePresence>
 
-            <div className="home-shortcuts">
+            <div className="neo-shortcuts">
               {HERO_SHORTCUTS.map((item) => (
                 <button
                   key={item}
                   type="button"
-                  className="home-shortcut-btn"
+                  className="neo-shortcut-btn"
                   onClick={() => handleShortcutClick(item)}
                 >
                   {item}
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </header>
 
-      <section className="service-packages-section">
+      <motion.section
+        className="neo-packages section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <div className="row g-4">
+          <div className="neo-section-head">
+            <p>Built around real business journeys</p>
+            <h2>Choose the package that fits your current stage</h2>
+          </div>
+
+          <motion.div
+            className="row g-4"
+            variants={cardParentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.14 }}
+          >
             {SERVICE_PACKAGES.map((pack) => (
               <div className="col-md-6 col-xl-3" key={pack.title}>
-                <article className="service-package-card h-100">
-                  <div className="service-package-icon">
+                <motion.article className="neo-package-card h-100" variants={cardVariants}>
+                  <div className="neo-package-icon">
                     <img src={pack.icon} alt={pack.title} loading="lazy" />
                   </div>
                   <h3>{pack.title}</h3>
-                  <p className="service-package-price">{pack.price}</p>
+                  <p className="neo-package-price">{pack.price}</p>
 
-                  <div className="service-package-links">
+                  <div className="neo-package-links">
                     {pack.items.map((item) => (
-                      <Link key={item.label} to={item.path} className="service-package-link">
+                      <Link key={item.label} to={item.path} className="neo-package-link">
                         <span>{item.label}</span>
                         <i className="bi bi-chevron-right"></i>
                       </Link>
                     ))}
                   </div>
-                </article>
+                </motion.article>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="section our-services-section">
+      <motion.section
+        className="neo-services section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <div className="section-title">
-            <h2>Our Services</h2>
-            <p>
-              We offer comprehensive solutions in accounting, taxation, compliance,
-              and more to meet your business needs.
-            </p>
+          <div className="neo-section-head">
+            <p>End-to-end support</p>
+            <h2>Our flagship services</h2>
           </div>
 
-          <div className="row g-4">
+          <motion.div
+            className="row g-4"
+            variants={cardParentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
             {OUR_SERVICES.map((service) => (
               <div className="col-md-6 col-xl-3" key={service.title}>
-                <article className="our-service-card h-100">
-                  <div className="our-service-icon">
+                <motion.article className="neo-service-card h-100" variants={cardVariants}>
+                  <div className="neo-service-icon">
                     <i className={service.icon}></i>
                   </div>
                   <h3>{service.title}</h3>
-                  <p className="our-service-desc">{service.description}</p>
-                  <Link to={service.path} className="our-service-link">
+                  <p>{service.description}</p>
+                  <Link to={service.path} className="neo-service-link">
                     Learn more <i className="bi bi-arrow-right"></i>
                   </Link>
-                </article>
+                </motion.article>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="tools-carousel-section">
+      <motion.section
+        className="neo-tools section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <div className="section-title">
-            <h2>Tools We Use</h2>
-            <p>Platforms used by our team for accurate, secure, and scalable service delivery.</p>
+          <div className="neo-section-head">
+            <p>Systems we work with daily</p>
+            <h2>Tools we use for reliable delivery</h2>
           </div>
 
-          <div className="tools-carousel-shell">
+          <div className="neo-tools-shell">
             <button
               type="button"
-              className="tools-carousel-nav"
+              className="neo-tools-nav"
               onClick={handlePreviousSlide}
               aria-label="Previous tools"
             >
               <i className="bi bi-chevron-left"></i>
             </button>
 
-            <div className="tools-carousel-window">
-              <div
-                className="tools-carousel-track"
-                style={{ transform: `translateX(-${(activeSlide * 100) / itemsPerView}%)` }}
+            <div className="neo-tools-window">
+              <motion.div
+                className="neo-tools-track"
+                animate={{ x: `-${(activeSlide * 100) / itemsPerView}%` }}
+                transition={{ duration: 0.45, ease: 'easeInOut' }}
               >
                 {TOOL_LOGOS.map((tool) => (
                   <div
                     key={tool.name}
-                    className="tools-carousel-item"
+                    className="neo-tools-item"
                     style={{ flex: `0 0 ${100 / itemsPerView}%` }}
                   >
-                    <article className="tool-logo-card">
-                      <div className="tool-logo-media">
+                    <article className="neo-tool-card">
+                      <div className="neo-tool-media">
                         <img
                           src={tool.image}
                           alt={tool.name}
@@ -629,87 +730,116 @@ const Index = () => {
                             }
                           }}
                         />
-                        <div className="tool-logo-fallback">{tool.name}</div>
+                        <div className="neo-tool-fallback">{tool.name}</div>
                       </div>
-                      <p className="tool-logo-title">{tool.name}</p>
+                      <p>{tool.name}</p>
                     </article>
                   </div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
-            <button
-              type="button"
-              className="tools-carousel-nav"
-              onClick={handleNextSlide}
-              aria-label="Next tools"
-            >
+            <button type="button" className="neo-tools-nav" onClick={handleNextSlide} aria-label="Next tools">
               <i className="bi bi-chevron-right"></i>
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="why-choose-section why-choose-premium">
+      <motion.section
+        className="neo-why section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+      >
         <div className="container">
-          <div className="why-choose-intro">
-            <span className="why-choose-chip">Our Strengths</span>
-            <h2>Why Choose AvanceePro?</h2>
-            <p>Discover the advantages of partnering with our expert team</p>
+          <div className="neo-section-head neo-section-head-centered">
+            <p>Our strengths</p>
+            <h2>Why businesses choose AvanceePro</h2>
           </div>
 
-          <div className="row g-4 why-choose-grid">
+          <motion.div
+            className="row g-4"
+            variants={cardParentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {WHY_CHOOSE_ITEMS.map((item) => (
               <div className="col-md-6 col-xl-4" key={item.title}>
-                <article className="why-choose-item why-choose-item-premium h-100">
-                  <div className="why-choose-orb">
+                <motion.article className="neo-why-card h-100" variants={cardVariants}>
+                  <div className="neo-why-orb">
                     <i className={item.icon}></i>
                   </div>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                </article>
+                </motion.article>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="leadership-section">
+      <motion.section
+        className="neo-leadership section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+      >
         <div className="container">
-          <div className="section-title">
-            <h2>Our Leadership Team</h2>
-            <p>Experienced professionals driving strategy, governance, and delivery quality.</p>
+          <div className="neo-section-head neo-section-head-centered">
+            <p>Experienced and accountable</p>
+            <h2>Leadership team</h2>
           </div>
 
-          <div className="row g-4">
+          <motion.div
+            className="row g-4"
+            variants={cardParentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {LEADERS.map((leader) => (
               <div className="col-md-6 col-xl-3" key={leader.name}>
-                <article className="leadership-card h-100">
-                  <div className="leader-avatar">{getInitials(leader.name)}</div>
+                <motion.article className="neo-leader-card h-100" variants={cardVariants}>
+                  <div className="neo-leader-avatar">{getInitials(leader.name)}</div>
                   <h3>{leader.name}</h3>
-                  <p className="leader-role">{leader.role}</p>
-                  <span className="leader-skill">{leader.skills}</span>
-                  <p className="leader-description">{leader.description}</p>
-                </article>
+                  <p className="neo-leader-role">{leader.role}</p>
+                  <span className="neo-leader-skill">{leader.skills}</span>
+                  <p className="neo-leader-description">{leader.description}</p>
+                </motion.article>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="home-cta-section">
+      <motion.section
+        className="neo-bottom-cta section"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div className="container">
-          <div className="home-cta-card">
+          <div className="neo-cta-card">
             <div>
               <h3>Ready to streamline your financial operations?</h3>
-              <p>Schedule a free consultation with our experts today.</p>
+              <p>Schedule a free consultation and get a practical roadmap for your next milestone.</p>
             </div>
-            <a href="https://wa.me/919164453153" target="_blank" rel="noreferrer" className="btn btn-light btn-lg">
+            <a
+              href="https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services."
+              target="_blank"
+              rel="noreferrer"
+              className="neo-btn neo-btn-light"
+            >
               <i className="bi bi-whatsapp"></i> Book Consultation
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
     </Layout>
   );
 };

@@ -43,7 +43,7 @@ const About = () => {
     </section>
 
     
-    <section className="section bg-light">
+    <section className="section bg-light about-core-values-section">
         <div className="container">
             <div className="section-title">
                 <h2>Our Core Values</h2>
@@ -51,23 +51,23 @@ const About = () => {
             </div>
             
             <div className="values-container">
-                <div className="row">
-                    <div className="col-md-6 mb-4">
-                        <div className="value-card">
-                            <div className="value-icon text-center">
+                <div className="row g-4 justify-content-center core-values-row">
+                    <div className="col-md-6 col-xl-5">
+                        <div className="value-card core-value-square h-100">
+                            <div className="value-icon core-value-icon">
                                 <i className="fas fa-eye"></i>
                             </div>
-                            <h3 className="text-center mb-3">Vision</h3>
-                            <p className="text-center">To be the most trusted and respected professional services company recognized by our clients for delivering excellence.</p>
+                            <h3 className="core-value-title">Vision</h3>
+                            <p className="core-value-text">To be the most trusted and respected professional services company recognized by our clients for delivering excellence.</p>
                         </div>
                     </div>
-                    <div className="col-md-6 mb-4">
-                        <div className="value-card">
-                            <div className="value-icon text-center">
+                    <div className="col-md-6 col-xl-5">
+                        <div className="value-card core-value-square h-100">
+                            <div className="value-icon core-value-icon">
                                 <i className="fas fa-bullseye"></i>
                             </div>
-                            <h3 className="text-center mb-3">Mission</h3>
-                            <p className="text-center">To serve our clients by providing the highest quality professional services that address their business issues. We attract, recruit, and retain the most knowledgeable and passionate professionals, and we provide a collaborative culture that enables them to thrive professionally and personally.</p>
+                            <h3 className="core-value-title">Mission</h3>
+                            <p className="core-value-text">To serve our clients by providing the highest quality professional services that address their business issues. We attract, recruit, and retain the most knowledgeable and passionate professionals, and we provide a collaborative culture that enables them to thrive professionally and personally.</p>
                         </div>
                     </div>
                 </div>

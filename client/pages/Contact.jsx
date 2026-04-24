@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 
 const AVANCEEPRO_SYMBOL_URL =
-  'https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo';
+  'http://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
 
 const Contact = () => {
   return (

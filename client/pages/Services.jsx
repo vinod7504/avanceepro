@@ -92,7 +92,7 @@ const Services = () => {
             <h3>Comprehensive Financial Solutions</h3>
             <p>We provide end-to-end services tailored to your business needs.</p>
             <a
-              href="https://wa.me/919164453153"
+              href="https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services."
               target="_blank"
               rel="noreferrer"
               className="btn btn-primary"

@@ -1,176 +1,215 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const NAVBAR_SYMBOL_URL =
-    'https://lh3.googleusercontent.com/proxy/MmGB62IcN8nj21vkkrOK-nDYosNtZTL4h7pHAjU-seJxPRZR4yF5jEBaLIgxs_K6DQrri3jhjf1KEuTRbvCimATH4Cj-ErebeVnIC_x_nhafGlJbEkMUnBTubqdSqFk7lQFXLhV0Zeo';
+  'https://www.avanceepro.com/wp-content/uploads/2018/12/cropped-cropped-logo-768x249.png';
+
+const NAV_ITEMS = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Contact', to: '/contact' }
+];
+
+const isActiveRoute = (pathname, route) => {
+  if (route === '/') {
+    return pathname === '/';
+  }
+
+  return pathname === route || pathname.startsWith(`${route}/`);
+};
 
 const Navbar = () => {
-    const location = useLocation();
+  const location = useLocation();
+  const prefersReducedMotion = useReducedMotion();
 
-    useEffect(() => {
-        // Re-initialize Bootstrap dropdowns on navigation if needed
-        const dropdowns = document.querySelectorAll('.nav-item.dropdown');
-        const cleanups = [];
+  useEffect(() => {
+    const navElement = document.querySelector('.site-navbar');
+    const collapseElement = document.getElementById('mainNav');
 
-        dropdowns.forEach(function (item) {
-            const onMouseEnter = function () {
-                if (window.innerWidth >= 992) {
-                    const toggle = this.querySelector('[data-bs-toggle="dropdown"]');
-                    if (toggle && !toggle.classList.contains('show')) {
-                        // @ts-ignore
-                        const dropdown = window.bootstrap?.Dropdown.getOrCreateInstance(toggle);
-                        dropdown?.show();
-                    }
-                }
-            };
+    if (!navElement) {
+      return undefined;
+    }
 
-            const onMouseLeave = function () {
-                if (window.innerWidth >= 992) {
-                    const toggle = this.querySelector('[data-bs-toggle="dropdown"]');
-                    if (toggle && toggle.classList.contains('show')) {
-                        // @ts-ignore
-                        const dropdown = window.bootstrap?.Dropdown.getOrCreateInstance(toggle);
-                        dropdown?.hide();
-                    }
-                }
-            };
+    const setNavbarOffset = () => {
+      const navHeight = navElement.offsetHeight;
+      document.documentElement.style.setProperty('--navbar-offset', `${navHeight}px`);
+    };
 
-            item.addEventListener('mouseenter', onMouseEnter);
-            item.addEventListener('mouseleave', onMouseLeave);
-            cleanups.push(() => {
-                item.removeEventListener('mouseenter', onMouseEnter);
-                item.removeEventListener('mouseleave', onMouseLeave);
-            });
-        });
+    setNavbarOffset();
 
-        return () => {
-            cleanups.forEach((cleanup) => cleanup());
-        };
-    }, [location.pathname]);
+    const onResize = () => {
+      setNavbarOffset();
+    };
 
-    useEffect(() => {
-        const navElement = document.querySelector('.site-navbar');
-        const collapseElement = document.getElementById('mainNav');
+    const onCollapseTransition = () => {
+      setNavbarOffset();
+      window.setTimeout(setNavbarOffset, 220);
+    };
 
-        if (!navElement) {
-            return undefined;
-        }
+    window.addEventListener('resize', onResize);
+    collapseElement?.addEventListener('show.bs.collapse', onCollapseTransition);
+    collapseElement?.addEventListener('shown.bs.collapse', onCollapseTransition);
+    collapseElement?.addEventListener('hide.bs.collapse', onCollapseTransition);
+    collapseElement?.addEventListener('hidden.bs.collapse', onCollapseTransition);
 
-        const setNavbarOffset = () => {
-            const navHeight = navElement.offsetHeight;
-            document.documentElement.style.setProperty('--navbar-offset', `${navHeight}px`);
-        };
+    return () => {
+      window.removeEventListener('resize', onResize);
+      collapseElement?.removeEventListener('show.bs.collapse', onCollapseTransition);
+      collapseElement?.removeEventListener('shown.bs.collapse', onCollapseTransition);
+      collapseElement?.removeEventListener('hide.bs.collapse', onCollapseTransition);
+      collapseElement?.removeEventListener('hidden.bs.collapse', onCollapseTransition);
+    };
+  }, []);
 
-        setNavbarOffset();
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top site-navbar">
+        <div className="container nav-shell">
+          <Link className="navbar-brand nav-brand" to="/" aria-label="AvanceePro home">
+            <img src={NAVBAR_SYMBOL_URL} alt="AvanceePro logo" className="navbar-symbol" />
+          </Link>
 
-        const onResize = () => {
-            setNavbarOffset();
-        };
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        const onCollapseTransition = () => {
-            setNavbarOffset();
-            window.setTimeout(setNavbarOffset, 220);
-        };
+          <div className="collapse navbar-collapse main-nav-panel" id="mainNav">
+            <ul className="navbar-nav ms-auto align-items-lg-center nav-links-wrap">
+              {NAV_ITEMS.map((item) => {
+                const active = isActiveRoute(location.pathname, item.to);
 
-        window.addEventListener('resize', onResize);
-        collapseElement?.addEventListener('show.bs.collapse', onCollapseTransition);
-        collapseElement?.addEventListener('shown.bs.collapse', onCollapseTransition);
-        collapseElement?.addEventListener('hide.bs.collapse', onCollapseTransition);
-        collapseElement?.addEventListener('hidden.bs.collapse', onCollapseTransition);
-
-        return () => {
-            window.removeEventListener('resize', onResize);
-            collapseElement?.removeEventListener('show.bs.collapse', onCollapseTransition);
-            collapseElement?.removeEventListener('shown.bs.collapse', onCollapseTransition);
-            collapseElement?.removeEventListener('hide.bs.collapse', onCollapseTransition);
-            collapseElement?.removeEventListener('hidden.bs.collapse', onCollapseTransition);
-        };
-    }, []);
-
-    return (
-        <>
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top site-navbar">
-                <div className="container">
-                    <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
-                        <img
-                            src={NAVBAR_SYMBOL_URL}
-                            alt="AvanceePro logo"
-                            className="navbar-symbol"
+                return (
+                  <li className="nav-item" key={item.to}>
+                    <Link className={`nav-link nav-link-modern ${active ? 'active' : ''}`} to={item.to}>
+                      {item.label}
+                      {active && (
+                        <motion.span
+                          className="nav-link-glow"
+                          layoutId="nav-active-pill"
+                          transition={{ duration: 0.24, ease: 'easeOut' }}
                         />
+                      )}
                     </Link>
+                  </li>
+                );
+              })}
 
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+              <li className="nav-item dropdown nav-consult-dropdown">
+                <button
+                  type="button"
+                  className="btn nav-consult-btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Consult an Expert
+                </button>
+                <ul className="dropdown-menu dropdown-menu-end nav-dropdown-menu">
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="https://wa.me/919164453153?text=Hello%20AvanceePro%2C%20I%20need%20assistance%20with%20your%20services."
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      WhatsApp Consultation
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="tel:+919164456153">
+                      Talk to Chartered Accountant
+                    </a>
+                  </li>
+                </ul>
+              </li>
 
-                    <div className="collapse navbar-collapse main-nav-panel" id="mainNav">
-                        <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                            <li className="nav-item me-lg-2">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-info d-flex align-items-center">
-                                        Consult an Expert
-                                    </button>
-                                    <button type="button" className="btn btn-info dropdown-toggle dropdown-toggle-split"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span className="visually-hidden">Toggle Dropdown</span>
-                                    </button>
-                                    <ul className="dropdown-menu dropdown-menu-end">
-                                        <li><a className="dropdown-item" href="#">Talk to Consultant</a></li>
-                                        <li><a className="dropdown-item" href="#">Talk to Chartered Accountant</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn nav-login-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#loginSlider"
+                >
+                  Login
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} to="/about">About Us</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`} to="/contact">Contact</Link>
-                            </li>
-                            <li className="nav-item ms-lg-2">
-                                <button type="button" className="btn btn-outline-light" data-bs-toggle="offcanvas"
-                                    data-bs-target="#loginSlider">
-                                    Login
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+      <div className="offcanvas offcanvas-end" tabIndex={-1} id="loginSlider" aria-labelledby="loginSliderLabel">
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="loginSliderLabel">
+            Login or Create an Account
+          </h5>
+          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div className="offcanvas-body">
+          <motion.form
+            action="https://formsubmit.co/services@avanceepro.in"
+            method="POST"
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="box" />
+            <input
+              type="hidden"
+              name="_autoresponse"
+              value="Thank you for contacting me! I’ll get back to you soon."
+            />
 
-            <div className="offcanvas offcanvas-end" tabIndex={-1} id="loginSlider" aria-labelledby="loginSliderLabel">
-                <div className="offcanvas-header">
-                    <h5 className="offcanvas-title" id="loginSliderLabel">Login or Create an Account</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div className="offcanvas-body">
-                    <form action="https://formsubmit.co/services@avanceepro.in" method="POST">
-                        <input type="hidden" name="_captcha" value="false" />
-                        <input type="hidden" name="_template" value="box" />
-                        <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I’ll get back to you soon." />
-
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email address</label>
-                            <input name="email" type="email" className="form-control" id="email" placeholder="Enter email" required />
-                        </div>
-
-                        <div className="mb-3">
-                            <label htmlFor="phone" className="form-label">Phone Number</label>
-                            <input name="phone" type="tel" className="form-control" id="phone" placeholder="Enter phone number" required />
-                        </div>
-
-                        <button type="submit" className="btn btn-warning w-100" style={{ color: 'var(--primary)', fontWeight: '600' }}>
-                            Login
-                        </button>
-                    </form>
-                </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <input
+                name="email"
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Enter email"
+                required
+              />
             </div>
-        </>
-    );
+
+            <div className="mb-3">
+              <label htmlFor="phone" className="form-label">
+                Phone Number
+              </label>
+              <input
+                name="phone"
+                type="tel"
+                className="form-control"
+                id="phone"
+                placeholder="Enter phone number"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-warning w-100"
+              style={{ color: 'var(--brand-ink)', fontWeight: '700' }}
+            >
+              Login
+            </button>
+          </motion.form>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Navbar;

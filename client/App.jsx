@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import Taxreturn from './pages/Taxreturn';
 import About from './pages/About';
@@ -35,12 +36,12 @@ import Usa from './pages/Usa';
 import SeoManager from './components/SeoManager';
 import ScrollToTop from './components/ScrollToTop';
 
-const App = () => {
+const AppRoutes = () => {
+  const location = useLocation();
+
   return (
-    <Router>
-      <SeoManager />
-      <ScrollToTop />
-      <Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         <Route path="/Taxreturn.html" element={<Taxreturn />} />
         <Route path="/Taxreturn" element={<Taxreturn />} />
         <Route path="/about.html" element={<About />} />
@@ -103,6 +104,16 @@ const App = () => {
         <Route path="/usa.html" element={<Usa />} />
         <Route path="/usa" element={<Usa />} />
       </Routes>
+    </AnimatePresence>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <SeoManager />
+      <ScrollToTop />
+      <AppRoutes />
     </Router>
   );
 };
